@@ -7,18 +7,142 @@
 //
 
 #import "btcAppDelegate.h"
+#import "BFROStore.h"
+#import "EveryReportViewController.h"
+#import <FacebookSDK.h>
+#import "TestFlight.h"
+#import <GooglePlus/GooglePlus.h>
+#import "SightingsMapViewController.h"
+#import "NewsFeedViewController.h"
+#import "FillDB.h"
+#import "FAQViewController.h"
+#import "bfroExpeditionsViewController.h"
+#import "ImageViewController.h"
+#import "SideDeckViewController.h"
+#import "AltFrontViewController.h"
+
+@interface btcAppDelegate ()
+
+@property (nonatomic, strong) TWTSideMenuViewController *sideMenuViewController;
+@end
 
 @implementation btcAppDelegate
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize iivdc, tbc;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+      [TestFlight takeOff:@"043e8498-3ded-4e24-ba8a-c45cd6b4c082"];
+        
+    NSMutableDictionary *favoritesDic = [[[NSUserDefaults standardUserDefaults] objectForKey:@"favoritesDictionary"] mutableCopy];
+    
+    if (!favoritesDic) {
+        favoritesDic = [[NSMutableDictionary alloc] init];
+        [[NSUserDefaults standardUserDefaults] setObject:favoritesDic forKey:@"favoritesDictionary"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+        
+    AltFrontViewController *afvc = [[AltFrontViewController alloc] init];
+    
+    SideDeckViewController *side = [[SideDeckViewController alloc] init];
+    self.sideMenuViewController = [[TWTSideMenuViewController alloc] initWithMenuViewController:[[UINavigationController alloc] initWithRootViewController:side] mainViewController:[[UINavigationController alloc] initWithRootViewController:afvc]];
+    
+    self.sideMenuViewController.shadowColor = [UIColor blackColor];
+    self.sideMenuViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 18.0f : 0.0f };
+    self.sideMenuViewController.zoomScale = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 0.35f : 0.85f;
+    self.sideMenuViewController.delegate = self;
+    
+    tbc = [[CustomTabBarController alloc] init];
+    
+    EveryReportViewController *rvc = [[EveryReportViewController alloc] initwithSearchRequest];
+    UINavigationController *searchNav = [[UINavigationController alloc] initWithRootViewController:rvc];
+    
+    SightingsMapViewController *smvc = [[SightingsMapViewController alloc] init];
+    UINavigationController *sightingNav = [[UINavigationController alloc] initWithRootViewController:smvc];
+
+    NewsFeedViewController *nfvc = [[NewsFeedViewController alloc] init];
+    UINavigationController *newsNav = [[UINavigationController alloc] initWithRootViewController:nfvc];
+    
+    FAQViewController *faqs = [[FAQViewController alloc] init];
+    faqs.title = @"BFRO FAQs";
+    faqs.hidesBottomBarWhenPushed = YES;
+    UINavigationController *faqNav = [[UINavigationController alloc] initWithRootViewController:faqs];
+    
+    bfroExpeditionsViewController *exp = [[bfroExpeditionsViewController alloc] init];
+    exp.title = @"BFRO Expeditions";
+    exp.hidesBottomBarWhenPushed = YES;
+    UINavigationController *bfroExp = [[UINavigationController alloc] initWithRootViewController:exp];
+    
+    ImageViewController *imv;
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        imv = [[ImageViewController alloc] initWithNibName:@"ShopViewiPad" bundle:Nil];
+        [imv setUrl:[NSURL URLWithString:@"http://www.rabblerouserindustries.com/categories/BFRO/"]];
+        imv.title = @"BFRO Gear";
+        imv.edgesForExtendedLayout = UIRectEdgeNone;
+
+    } else {
+        imv = [[ImageViewController alloc] init];
+        [imv setUrl:[NSURL URLWithString:@"http://www.rabblerouserindustries.com/categories/BFRO/"]];
+        imv.title = @"BFRO Gear";
+        imv.hidesBottomBarWhenPushed = YES;
+    }
+    
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithObjects:self.sideMenuViewController, searchNav, sightingNav, newsNav, faqNav, bfroExp, imv, nil];
+    
+    [tbc setViewControllers:viewControllers];
+    
+    UITabBar *tabBar = tbc.tabBar;
+    
+    UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:0];
+    UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:1];
+    UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
+    UITabBarItem *tabBarItem4 = [tabBar.items objectAtIndex:3];
+    
+    tabBarItem1.selectedImage = [[UIImage imageNamed:@"news"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem1.image = [[UIImage imageNamed:@"news"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem1.title = @"Reports";
+    
+    tabBarItem2.selectedImage = [[UIImage imageNamed:@"search"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem2.image = [[UIImage imageNamed:@"search"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem2.title = @"Search";
+    
+    tabBarItem3.selectedImage = [[UIImage imageNamed:@"map_marker"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem3.image = [[UIImage imageNamed:@"map_marker"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem3.title = @"Map of Reports";
+    
+    tabBarItem4.selectedImage = [[UIImage imageNamed:@"twitter"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem4.image = [[UIImage imageNamed:@"twitter"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    tabBarItem4.title = @"BFRO News";
+    
+    if (tabBar.items.count > 5) {
+        UITabBarItem *tabBarItem5 = [tabBar.items objectAtIndex:4];
+        tabBarItem5.selectedImage = [[UIImage imageNamed:@"help"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem5.image = [[UIImage imageNamed:@"help"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem5.title = @"FAQs";
+        faqs.hidesBottomBarWhenPushed = NO;
+
+        
+        UITabBarItem *tabBarItem6 = [tabBar.items objectAtIndex:5];
+        tabBarItem6.selectedImage = [[UIImage imageNamed:@"camping_tent"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem6.image = [[UIImage imageNamed:@"camping_tent"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem6.title = @"BFRO Expeditions";
+        exp.hidesBottomBarWhenPushed = NO;
+        
+        UITabBarItem *tabBarItem7 = [tabBar.items objectAtIndex:6];
+        tabBarItem7.selectedImage = [[UIImage imageNamed:@"cart"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem7.image = [[UIImage imageNamed:@"cart"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        tabBarItem7.title = @"BFRO Gear";
+    }
+        
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+   
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.window.rootViewController = tbc;
+
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -43,107 +167,64 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+
 }
 
-- (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    if ([sourceApplication isEqualToString:@"com.facebook.Facebook"]) {
+        BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+                                    sourceApplication:sourceApplication
+                                      fallbackHandler:^(FBAppCall *call) {
+                                          NSLog(@"Unhandled deep link: %@", url);
+                                          // Parse the incoming URL to look for a target_url parameter
+                                          NSString *query = [url fragment];
+                                          if (!query) {
+                                              query = [url query];
+                                          }
+                                          NSDictionary *params = [self parseURLParams:query];
+                                          // Check if target URL exists
+                                          NSString *targetURLString = [params valueForKey:@"target_url"];
+                                          if (targetURLString) {
+                                              // Show the incoming link in an alert
+                                              // Your code to direct the user to the appropriate flow within your app goes here
+                                              [[[UIAlertView alloc] initWithTitle:@"Received link:"
+                                                                          message:targetURLString
+                                                                         delegate:self
+                                                                cancelButtonTitle:@"OK"
+                                                                otherButtonTitles:nil] show];
+                                          }
+                                      }];
+        
+        return urlWasHandled;
+        
+    } else {
+        return [GPPURLHandler handleURL:url
+                      sourceApplication:sourceApplication
+                             annotation:annotation];
     }
 }
 
-#pragma mark - Core Data stack
-
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+// A function for parsing URL parameters
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val = [[kv objectAtIndex:1]
+                         stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [params setObject:val forKey:[kv objectAtIndex:0]];
     }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return _managedObjectContext;
+    return params;
 }
 
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"BigfootReports" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
-}
-
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
-    
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"BigfootReports.sqlite"];
-    
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }    
-    
-    return _persistentStoreCoordinator;
-}
-
-#pragma mark - Application's Documents directory
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
 
 @end

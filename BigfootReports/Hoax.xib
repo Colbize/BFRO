@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
+            <connections>
+                <outlet property="view" destination="1" id="ui5-tq-VmU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TM-D1-58h">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <string key="text">One of the most important aspects of the BFRO's mission is to determine which reports are credible enough to display to the public. Due to the large number reports that are submitted, and the limited resources of this all-volunteer organization, the BFRO can only investigate a fraction of the reports sent in during any given interval. All of the potentially legitimate, credible reports sent in to the BFRO are preserved in a large database. Reports are immediately accessible as cross-references for other BFRO investigations, but not all reports are posted online. Many credible witnesses specifically ask the BFRO to not post their sighting report on the web site, but to simply keep it in database in case something else occurs in the same area. For the reports with implicit or explicit approval to post the report publicly, the BFRO prefers to err on the side of caution, and only post those reports which have been investigated, rather than immediately post all those which seem potentially credible on the surface. Thus, no report is posted without a BFRO investigator first making personal contact with the witness.
+
+Some the BFRO’s investigators have been evaluating reports for years. They are remarkably skilled at determining the whether a report is credible or fabricated. Other BFRO investigators have law enforcement backgrounds and have years of prior experience questioning witnesses. Still other BFRO investigators are professional biologists. Among other duties, they often assist with cases that may involve misidentifications by sincere people -- confusing tracks of humans or bears for bigfoot tracks, or mistaking the calls of owls or other animals for sasquatch screams. When one or more BFRO biologists conclude that an incident was most likely caused by a known animal, the report is not posted publicly. The "likely misidentification" reports are still retained in the database though, in case other reports surface for which they may be relevant.
+
+When the BFRO has reason to believe that a report which has already been posted online is likely a fake report, the report is immediately unpublished from the web site. Because of that process and policy, none of the reports currently on the BFRO web site are hoaxes, as far as the organization knows. Hundreds of reports are investigated and added to the site each year by the BFRO, but only a handful or so get removed each year in that process. </string>
+                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4TM-D1-58h" firstAttribute="top" secondItem="1" secondAttribute="top" id="FQj-Mb-49i"/>
+                <constraint firstAttribute="trailing" secondItem="4TM-D1-58h" secondAttribute="trailing" id="Mfa-fb-Av7"/>
+                <constraint firstAttribute="bottom" secondItem="4TM-D1-58h" secondAttribute="bottom" id="hKj-hD-JAP"/>
+                <constraint firstItem="4TM-D1-58h" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="jwV-qi-RRf"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
