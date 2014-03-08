@@ -14,12 +14,13 @@
 #import <GooglePlus/GooglePlus.h>
 #import "SightingsMapViewController.h"
 #import "NewsFeedViewController.h"
-#import "FillDB.h"
 #import "FAQViewController.h"
 #import "bfroExpeditionsViewController.h"
 #import "ImageViewController.h"
 #import "SideDeckViewController.h"
 #import "AltFrontViewController.h"
+#import "iRate.h"
+#import "Instabug/Instabug.h"
 
 @interface btcAppDelegate ()
 
@@ -27,12 +28,25 @@
 @end
 
 @implementation btcAppDelegate
-@synthesize iivdc, tbc;
+@synthesize tbc;
+
++ (void)initialize
+{
+    //configure iRate
+    [iRate sharedInstance].daysUntilPrompt = 14;
+    [iRate sharedInstance].usesUntilPrompt = 6;
+    [[iRate sharedInstance] setAppStoreID:826168573];
+    [[iRate sharedInstance] setRemindPeriod:7];
+    [[iRate sharedInstance] setMessage:@"If you have enjoyed using the B.F.R.O App, would you mind taking a moment to rate it? If there are any issues please contact us! Thank you for your support!"];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-      [TestFlight takeOff:@"043e8498-3ded-4e24-ba8a-c45cd6b4c082"];
-        
+    [TestFlight takeOff:@"bbe91f76-43cc-42fd-b787-6f050e2a8ce8"];
+    
+   [Instabug KickOffWithToken:@"c5aa2b739e33a08e77dbbbeca4de0015" CaptureSource:InstabugCaptureSourceUIKit FeedbackEvent:InstabugFeedbackEventShake IsTrackingLocation:NO];
+    [Instabug setShowStartAlert:NO];
+    
     NSMutableDictionary *favoritesDic = [[[NSUserDefaults standardUserDefaults] objectForKey:@"favoritesDictionary"] mutableCopy];
     
     if (!favoritesDic) {
@@ -40,11 +54,19 @@
         [[NSUserDefaults standardUserDefaults] setObject:favoritesDic forKey:@"favoritesDictionary"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-        
+    
+    NSMutableDictionary *newReports = [[[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAdded"] mutableCopy];
+    if (!newReports) {
+        newReports = [[NSMutableDictionary alloc] init];
+        [[NSUserDefaults standardUserDefaults] setObject:newReports forKey:@"RecentlyAdded"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
+    
     AltFrontViewController *afvc = [[AltFrontViewController alloc] init];
     
     SideDeckViewController *side = [[SideDeckViewController alloc] init];
-    self.sideMenuViewController = [[TWTSideMenuViewController alloc] initWithMenuViewController:[[UINavigationController alloc] initWithRootViewController:side] mainViewController:[[UINavigationController alloc] initWithRootViewController:afvc]];
+    self.sideMenuViewController = [[TWTSideMenuViewController alloc] initWithMenuViewController:side mainViewController:[[UINavigationController alloc] initWithRootViewController:afvc]];
     
     self.sideMenuViewController.shadowColor = [UIColor blackColor];
     self.sideMenuViewController.edgeOffset = (UIOffset) { .horizontal = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 18.0f : 0.0f };
@@ -64,12 +86,12 @@
     
     FAQViewController *faqs = [[FAQViewController alloc] init];
     faqs.title = @"BFRO FAQs";
-    faqs.hidesBottomBarWhenPushed = YES;
+    faqs.hidesBottomBarWhenPushed = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? YES : NO;
     UINavigationController *faqNav = [[UINavigationController alloc] initWithRootViewController:faqs];
     
     bfroExpeditionsViewController *exp = [[bfroExpeditionsViewController alloc] init];
     exp.title = @"BFRO Expeditions";
-    exp.hidesBottomBarWhenPushed = YES;
+    exp.hidesBottomBarWhenPushed = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? YES : NO;
     UINavigationController *bfroExp = [[UINavigationController alloc] initWithRootViewController:exp];
     
     ImageViewController *imv;
@@ -120,29 +142,26 @@
         tabBarItem5.selectedImage = [[UIImage imageNamed:@"help"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem5.image = [[UIImage imageNamed:@"help"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem5.title = @"FAQs";
-        faqs.hidesBottomBarWhenPushed = NO;
-
         
         UITabBarItem *tabBarItem6 = [tabBar.items objectAtIndex:5];
         tabBarItem6.selectedImage = [[UIImage imageNamed:@"camping_tent"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem6.image = [[UIImage imageNamed:@"camping_tent"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem6.title = @"BFRO Expeditions";
-        exp.hidesBottomBarWhenPushed = NO;
         
         UITabBarItem *tabBarItem7 = [tabBar.items objectAtIndex:6];
         tabBarItem7.selectedImage = [[UIImage imageNamed:@"cart"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem7.image = [[UIImage imageNamed:@"cart"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         tabBarItem7.title = @"BFRO Gear";
+
     }
-        
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-   
+           
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.window.rootViewController = tbc;
 
+    UIColor * color = [UIColor colorWithRed:52/255.0f green:53/255.0f blue:71/255.0f alpha:1.0f];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    self.window.backgroundColor = color;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -162,6 +181,9 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+     UIView *view = [[[[UIApplication sharedApplication] keyWindow] subviews] lastObject];
+    [view endEditing:YES];
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

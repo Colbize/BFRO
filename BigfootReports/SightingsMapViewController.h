@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *layers;
 - (IBAction)changeLayer:(id)sender;
 
-@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (strong, nonatomic) IBOutlet MKMapView *map;
 
 - (IBAction)findMe:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *findMe;

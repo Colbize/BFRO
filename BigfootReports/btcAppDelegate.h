@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IIViewDeckController.h"
+#import "CustomTabBarController.h"
+#import "TWTSideMenuViewController.h"
+//#import <Instabug/Instabug.h>
 
-@interface btcAppDelegate : UIResponder <UIApplicationDelegate>
+@interface btcAppDelegate : UIResponder <UIApplicationDelegate, TWTSideMenuViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UITabBarController *tabBarController;
-@property (strong, nonatomic) IIViewDeckController *iivdc;
+@property (strong, nonatomic) CustomTabBarController *tbc;
 @end

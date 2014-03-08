@@ -38,6 +38,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
     [[self.navigationController navigationBar] setBarTintColor:[UIColor colorWithRed:255/255.0f green:77/255.0f blue:77/255.0f alpha:1.0f]];
 }
 
@@ -46,7 +48,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [textView setDelegate:self];
-    [self.tabBarController.tabBar setHidden:YES];
+    self.tabBarController.tabBar.hidden = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? YES : NO;
     
 }
 

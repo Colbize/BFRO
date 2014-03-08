@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view alpha="0.94999998807907104" contentMode="scaleToFill" id="Ov7-ac-yik">
+            <rect key="frame" x="0.0" y="0.0" width="248" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyV-bz-eOa">
+                    <rect key="frame" x="205" y="19" width="23" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="0TY-LT-fHy"/>
+                        <constraint firstAttribute="width" constant="23" id="HTu-ZR-OjA"/>
+                    </constraints>
+                    <state key="normal" image="delete_sign.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help Tip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJ3-Vu-rBI">
+                    <rect key="frame" x="20" y="19" width="208" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="208" translatesAutoresizingMaskIntoConstraints="NO" id="ClL-Xi-k6j">
+                    <rect key="frame" x="20" y="48" width="208" height="172"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <string key="text">Search the entire reports database via ReportID, Date, or by any keywords.  The keywords will show up highlighted in the report.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="SJ3-Vu-rBI" firstAttribute="top" secondItem="yyV-bz-eOa" secondAttribute="top" id="5Mq-2g-7So"/>
+                <constraint firstItem="ClL-Xi-k6j" firstAttribute="top" secondItem="yyV-bz-eOa" secondAttribute="bottom" constant="8" symbolic="YES" id="72X-vJ-fLk"/>
+                <constraint firstAttribute="bottom" secondItem="ClL-Xi-k6j" secondAttribute="bottom" constant="20" symbolic="YES" id="a0X-7n-qBG"/>
+                <constraint firstItem="SJ3-Vu-rBI" firstAttribute="leading" secondItem="Ov7-ac-yik" secondAttribute="leading" constant="20" symbolic="YES" id="hF2-fX-ROT"/>
+                <constraint firstItem="yyV-bz-eOa" firstAttribute="trailing" secondItem="SJ3-Vu-rBI" secondAttribute="trailing" id="hzc-04-ybw"/>
+                <constraint firstItem="yyV-bz-eOa" firstAttribute="trailing" secondItem="ClL-Xi-k6j" secondAttribute="trailing" id="u2c-0c-4sp"/>
+                <constraint firstItem="SJ3-Vu-rBI" firstAttribute="leading" secondItem="ClL-Xi-k6j" secondAttribute="leading" id="ud1-Ol-bLn"/>
+                <constraint firstItem="SJ3-Vu-rBI" firstAttribute="top" secondItem="Ov7-ac-yik" secondAttribute="top" constant="19" id="ul3-yB-bP5"/>
+                <constraint firstItem="ClL-Xi-k6j" firstAttribute="top" secondItem="SJ3-Vu-rBI" secondAttribute="bottom" constant="8" symbolic="YES" id="vca-tr-L8j"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="delete_sign.png" width="32" height="32"/>
+    </resources>
+</document>

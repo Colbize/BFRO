@@ -34,10 +34,10 @@
         
         NSError *error = nil;
         
-        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"bfro1.db"];
+        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"bfro1.sqlite"];
         
         if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
-            NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"bfroDB" ofType:@"db"]];
+            NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"bfro1" ofType:@"sqlite"]];
             
             NSError* err = nil;
             

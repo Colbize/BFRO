@@ -27,14 +27,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
     [[self.navigationController navigationBar] setBarTintColor:[UIColor colorWithRed:255/255.0f green:77/255.0f blue:77/255.0f alpha:1.0f]];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.tabBarController.tabBar setHidden:YES];
+    self.tabBarController.tabBar.hidden = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? YES : NO;
     [textView flashScrollIndicators];
 
 }
@@ -49,7 +52,7 @@
     WebViewController *webViewController = [[WebViewController alloc] init];
     [webViewController setHtmlString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"anatomy" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil]];
     [webViewController setUrlString:@"http://www.bfro.net/gdb/show_FAQ.asp?id=585"];
-    
+    webViewController.title = @"Anatomy";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -57,7 +60,7 @@
     WebViewController *webViewController = [[WebViewController alloc] init];
     [webViewController setHtmlString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"physiology" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil]];
     [webViewController setUrlString:@"http://www.bfro.net/gdb/show_FAQ.asp?id=586"];
-    
+    webViewController.title = @"Physiology";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -65,7 +68,7 @@
     WebViewController *webViewController = [[WebViewController alloc] init];
     [webViewController setHtmlString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"behavior" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil]];
     [webViewController setUrlString:@"http://www.bfro.net/gdb/show_FAQ.asp?id=587"];
-    
+    webViewController.title = @"Behavior";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -73,7 +76,7 @@
     WebViewController *webViewController = [[WebViewController alloc] init];
     [webViewController setHtmlString:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"literature" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil]];
     [webViewController setUrlString:@"http://www.bfro.net/gdb/show_FAQ.asp?id=588"];
-    
+    webViewController.title = @"Literature";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 @end

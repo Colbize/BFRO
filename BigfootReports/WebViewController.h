@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "PopoverView.h"
 
-@interface WebViewController : UIViewController <UIWebViewDelegate>
+@interface WebViewController : UIViewController <UIWebViewDelegate, MKMapViewDelegate, PopoverViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) NSString *htmlString;
 @property (strong, nonatomic) NSString *urlString;

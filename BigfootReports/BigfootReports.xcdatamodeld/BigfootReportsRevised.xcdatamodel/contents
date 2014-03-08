@@ -19,9 +19,11 @@
     <entity name="ReportsByLocation" representedClassName="ReportsByLocation" syncable="YES">
         <attribute name="classSighting" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateOfSighting" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reportHTML" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="reportID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reportID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="shortDesc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="witnessSubmitted" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="reportsByLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="reportsByLocation" inverseEntity="Location" syncable="YES"/>

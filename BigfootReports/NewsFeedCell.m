@@ -9,7 +9,7 @@
 #import "NewsFeedCell.h"
 
 @implementation NewsFeedCell
-
+@synthesize profilePic, userName, tweetDate, tweet, retweeted, retweetIcon;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

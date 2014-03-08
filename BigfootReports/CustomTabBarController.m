@@ -32,6 +32,10 @@
                                     [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
     
     UINavigationController *moreController = self.moreNavigationController;
+
+    [moreController.navigationBar setTranslucent:NO];
+    moreController.navigationBar.barStyle = UIBarStyleBlack;
+
     moreController.navigationBar.titleTextAttributes = textAttributes;
     [moreController.navigationBar setBarTintColor:[UIColor colorWithRed:255/255.0f green:77/255.0f blue:77/255.0f alpha:1.0f]];
     [moreController setDelegate:self];

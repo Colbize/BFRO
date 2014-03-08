@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="DZO-sC-xFc">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZO-sC-xFc">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
@@ -29,6 +29,12 @@ As with bears, most sasquatches may be able to climb trees, but they may spend l
                 </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="DZO-sC-xFc" secondAttribute="trailing" id="2LX-lO-J8a"/>
+                <constraint firstAttribute="bottom" secondItem="DZO-sC-xFc" secondAttribute="bottom" id="E2d-ac-ipq"/>
+                <constraint firstItem="DZO-sC-xFc" firstAttribute="top" secondItem="1" secondAttribute="top" id="sN6-Qg-lLi"/>
+                <constraint firstItem="DZO-sC-xFc" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="sYF-Si-bxV"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

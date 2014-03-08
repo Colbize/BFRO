@@ -22,14 +22,15 @@
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
                 </textView>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="lZC-gz-ul7" secondAttribute="trailing" id="3Da-Vt-a5J"/>
-                <constraint firstItem="lZC-gz-ul7" firstAttribute="top" secondItem="1" secondAttribute="top" id="AA8-qD-1EL"/>
-                <constraint firstItem="lZC-gz-ul7" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Nd5-rV-ryj"/>
-                <constraint firstAttribute="bottom" secondItem="lZC-gz-ul7" secondAttribute="bottom" id="Uhb-Hd-PWe"/>
+                <constraint firstItem="lZC-gz-ul7" firstAttribute="top" secondItem="1" secondAttribute="top" id="XEB-AW-xO3"/>
+                <constraint firstAttribute="trailing" secondItem="lZC-gz-ul7" secondAttribute="trailing" id="aj0-4Y-Com"/>
+                <constraint firstAttribute="bottom" secondItem="lZC-gz-ul7" secondAttribute="bottom" id="bMC-rv-p1o"/>
+                <constraint firstItem="lZC-gz-ul7" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="qJH-Sb-5g6"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

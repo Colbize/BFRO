@@ -200,14 +200,21 @@
     
 	self.badge.parent = self;
     
-    
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    self.badgeLeftOffset = 10.f;
-    self.badgeRightOffset = 0;
-#else
-    self.badgeLeftOffset = 10.f;
-    self.badgeRightOffset = 12.f;
-#endif
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        self.badgeLeftOffset = 10.f;
+        self.badgeRightOffset = 0.f;//350.f; //0
+        
+    } else {
+        
+    #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+        self.badgeLeftOffset = 10.f;
+        self.badgeRightOffset = 10.f;//80.f; //0
+    #else
+        self.badgeLeftOffset = 10.f;
+        self.badgeRightOffset = 80.f;
+    #endif
+    }
     
     
     // by default, resize textLabel & detailTextLabel

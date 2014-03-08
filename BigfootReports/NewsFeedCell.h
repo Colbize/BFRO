@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsFeedCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *tweetDate;
+@property (weak, nonatomic) IBOutlet UITextView *tweet;
+@property (weak, nonatomic) IBOutlet UILabel *retweeted;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *retweetIcon;
 @end

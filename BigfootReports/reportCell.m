@@ -9,7 +9,7 @@
 #import "reportCell.h"
 
 @implementation reportCell
-@synthesize reportID, classID, shortDesc, location, date, containsPicturesYN, favoritedYN;
+@synthesize reportID, classID, shortDesc, location, date, containsPicturesYN, favoritedYN, hasLocation;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

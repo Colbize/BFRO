@@ -20,26 +20,149 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     <attributedString key="attributedText">
+                        <fragment content="Is there any physical evidence at all?:  ">
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
                         <fragment>
-                            <string key="content">Is there any physical evidence at all?:  
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">The short answer: Yes, there is quite a bit of physical evidence. Tracks, hairs, scat, and tree damage are all "physical evidence." People tend to misuse this phrase when they really mean "physical remains."
 
-The short answer: Yes, there is quite a bit of physical evidence. Tracks, hairs, scat, and tree damage are all "physical evidence." People tend to misuse this phrase when they really mean "physical remains."
-
-For an updated overview of the scope of evidence, please refer to the Wikipedia article about bigfoot evidence:
-
-http://en.wikipedia.org/wiki/Evidence_regarding_Bigfoot
-
-Evidence vs. Remains
-
-The assertion that there is absolutely no physical evidence is absolutely false. There is more physical evidence than most people realize. Physical evidence is found every month in various areas across the country. Distinct tracks that do not match other animal tracks, hairs that match each other but no known wild animals, and large scats that could not be made by any known species, are all "physical evidence."
+For an updated overview of the scope of evidence, please refer to the Wikipedia article about bigfoot evidence:</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">http://en.wikipedia.org/wiki/Evidence_regarding_Bigfoot
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">Evidence vs. Remains
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">The assertion that there is absolutely no physical evidence is absolutely false. There is more physical evidence than most people realize. Physical evidence is found every month in various areas across the country. Distinct tracks that do not match other animal tracks, hairs that match each other but no known wild animals, and large scats that could not be made by any known species, are all "physical evidence."
 
 The presence or absence of "physical remains" is a wholly different matter. "Physical remains" means body parts, or fossils of body parts. Though mammals may leave tracks, scats and hairs behind, they do not leave body parts behind very often. Body parts of mammals are only available when they die. Thus availability of physical remains is initially determined by population size and lifespan. A rare species with a long lifespan will leave very little physical remains, collectively, for humans to find. The probability of humans actually finding and collecting and identifying those remains before they are completely reabsorbed into the biomass complicates the "physical remains as evidence" equation dramatically.
 
-The sections below address scenarios such as natural deaths, road kills, and hunter kills.
-  
- Why haven't we found the remains of a bigfoot that died of natural causes? 
-    
-The short answer: Because "we" have never looked for these kinds of remains.
+The sections below address scenarios such as natural deaths, road kills, and hunter kills.</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+CiAgCg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" Why haven't we found the remains of a bigfoot that died of natural causes? ">
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+ICAgIAo
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">The short answer: Because "we" have never looked for these kinds of remains.
 
 Nobody Looks for Bigfoot Remains
 
@@ -50,14 +173,95 @@ Very few remains of ancient wood apes have ever been found in Asia, where they w
 Remains do not become fossilized very often, but unless that happens, all the remains will, in time, become completely reabsorbed into the ecosystem. There would be remains of animals everywhere if remains were not naturally recycled, including bones and teeth.
 
 Fossils or preserved bones of wood apes may exist in the Americas, but they will be exceedingly rare, because these animals are rare to begin with, and only a tiny fraction of that population will die in locations and soils that will preserve bones somehow. Odds are slim at best that any bones (which are normally fragmentary) will be found, collected and identified unless a focused effort is made to look for them. Until efforts are made in many places, over a long period of time, no one should be scratching their head wondering why "we" don't have any physical remains.
-
-How come there's no bigfoot roadkill?
-
-The short answer: Bigfoots are extremely rare and extremely cautious--so much so that the odds of a roadkill have not caught up with any yet.
-
-The Roadkill Potential
-
-Only a very small fraction of the thousands of credible sighting reports describe near-misses with vehicles. No substantiated reports describe a collision with a bigfoot.
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">How come there's no bigfoot roadkill?
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">The short answer: Bigfoots are extremely rare and extremely cautious--so much so that the odds of a roadkill have not caught up with any yet.</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">The Roadkill Potential
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">Only a very small fraction of the thousands of credible sighting reports describe near-misses with vehicles. No substantiated reports describe a collision with a bigfoot.
 
 Every other large mammal in North America is far more abundant than bigfoots. Hundreds of near-misses happen with other animals before an animal is hit. Some species are hit more often than others. Deer often get "dazzled in the headlights" and stand paralyzed in the paths of trucks. Bigfoots seem to be far more intelligent than that.
 
@@ -68,8 +272,9 @@ Many roadside sightings describe them hanging back in the shadows of a tree line
 Waiting for a vehicle to pass before stepping out of the shadows to cross, merely demonstrates the same pattern of cautious behavior they exhibit in other encounters with humans. </string>
                             <attributes>
                                 <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <font key="NSFont" size="11" name=".LucidaGrandeUI"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                     </attributedString>

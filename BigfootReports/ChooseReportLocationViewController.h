@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChooseReportLocationViewController : UIViewController
+@interface ChooseReportLocationViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *chooseLocation;
+- (IBAction)chooseLocation:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

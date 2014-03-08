@@ -7,17 +7,19 @@
 //
 
 #import "SideDeckViewController.h"
-#import "AppInfoViewController.h"
+#import "SettingsViewController.h"
 #import "AltFrontViewController.h"
-#import "UIDevice-Hardware.h"   
 #import "myFavoriteReports.h"
 #import "EveryReportViewController.h"
+#import "UpdateReportsDB.h"
 
 @interface SideDeckViewController ()
 {
     UIView *hudView;
     UIActivityIndicatorView *aiView;
     NSMutableDictionary *recentlyAdded;
+    BOOL updateBeginYN;
+    UILabel *captionLabel;
 }
 @end
 
@@ -28,30 +30,33 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receivedUpdateFromReportsDBNoty:)
+                                                     name:@"receivedUpdateFromReportsDBNoty"
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receivedUpdateFromReportsDBNoty:)
+                                                     name:@"sendToastNoty"
+                                                   object:nil];
     }
     return self;
 }
-
-//
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    updateBeginYN = NO;
+    recentlyAdded = [[[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAdded"] mutableCopy];
 }
 
 - (void)viewWillAppear:(BOOL)animate
 {
     [self.sideMenuViewController setDelegate:self];
- //   [self.tableView setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
     
-    [[self.navigationController navigationBar] setBarTintColor:[UIColor viewFlipsideBackgroundColor]];
-    
-//    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                    [UIColor whiteColor],NSForegroundColorAttributeName,
-//                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
-//    
-//    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    [self.tableView reloadData];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,6 +66,11 @@
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return section == 0 ? 70 : 10;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -73,7 +83,7 @@
     if (section == 0) return 1;
     else if (section == 1) return 1;
     else if (section == 2) return 2;
-    else return 3;
+    else return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,33 +121,26 @@
             cell.badge.radius = 6;
             cell.badge.fontSize = 18;
             cell.badgeTextColor = [UIColor whiteColor];
-            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 50.f : 400.f;
+            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 50.f :450.f;
         } else if (indexPath.row == 1) {
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"internal"]];
+            imageView.image = [self imageWithColor:[UIColor whiteColor] withImage:imageView.image];
+            [[cell imageView] setImage:imageView.image];
             cell.badgeString = [NSString stringWithFormat:@"%lu",(unsigned long)[[[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAdded"] count]];
-            cell.badgeColor = self.view.tintColor;//[UIColor colorWithRed:255/255.0f green:77/255.0f blue:77/255.0f alpha:1.0f];
+            cell.badgeColor = self.view.tintColor;
             cell.badge.radius = 6;
             cell.badge.fontSize = 18;
             cell.badgeTextColor = [UIColor whiteColor];
-            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 50.f : 400.f;
-            [cell.textLabel setText:@"Recently Added Reports"];
+            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 50.f : 450.f;
+            [cell.textLabel setText:@"New Reports"];
         }
     } else {
     
         if (indexPath.row == 0) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info"]];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"settings"]];
             imageView.image = [self imageWithColor:[UIColor whiteColor] withImage:imageView.image];
             [[cell imageView] setImage:imageView.image];
-            [cell.textLabel setText:@"App Info"];
-        } else if (indexPath.row == 1) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"topic"]];
-            imageView.image = [self imageWithColor:[UIColor whiteColor] withImage:imageView.image];
-            [[cell imageView] setImage:imageView.image];
-            [cell.textLabel setText:@"Feedback"];
-        } else if (indexPath.row == 2) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bug"]];
-            imageView.image = [self imageWithColor:[UIColor whiteColor] withImage:imageView.image];
-            [[cell imageView] setImage:imageView.image];
-            [cell.textLabel setText:@"Submit a Bug"];
+            [cell.textLabel setText:@"Settings"];
         }
     }
     [cell.imageView setTintColor:[UIColor whiteColor]];
@@ -149,7 +152,11 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            [self findNewReports];
+            if (updateBeginYN != YES) {
+                updateBeginYN = YES;
+                [self checking];
+                [self performSelector:@selector(updatingReports) withObject:Nil afterDelay:1.0];
+            }
         }
     } else if (indexPath.section == 1) {
             AltFrontViewController *fvc = [[AltFrontViewController alloc] init];
@@ -166,112 +173,54 @@
             recentlyAdded = [[[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAdded"] mutableCopy];
             
             if (!recentlyAdded.count > 0) {
-                [self.tableView.superview makeToast:@"No New Reports Available" duration:2 position:@"center"];
+                id value = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? @"Center" : [NSValue valueWithCGPoint:CGPointMake(200, 300)];
+                
+                [self.tableView.superview makeToast:@"No New Reports Available" duration:2 position:value];
                 return;
             }
             [self loading];
-            
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportsByLocation" inManagedObjectContext:[[BFROStore sharedStore] context]];
-            NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                                      initWithKey:@"dateOfSighting" ascending:YES];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat: @"(ANY reportID IN %@)", recentlyAdded.allKeys];
-            
-            [fetchRequest setPredicate:predicate];
-            [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-            [fetchRequest setEntity:entity];
-            NSString *titleString = [NSString stringWithFormat:@"Recently Added Reports"];
-            EveryReportViewController *rvc = [[EveryReportViewController alloc] initwithFetchRequest:fetchRequest titleName:titleString];
-            [self stopLoading];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
-            [self.sideMenuViewController setMainViewController:nav animated:YES closeMenu:YES];
-            
-            if (![[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAddedNote"]) {
-                
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"RecentlyAddedNote"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"NOTE!"
-                                                                  message:@"A report will be automatically removed from the \"Recently Added\" section once the report has been opened/read."
-                                                                 delegate:nil
-                                                        cancelButtonTitle:@"Ok"
-                                                        otherButtonTitles:nil];
-                [message show];
+            [self performSelector:@selector(showRecentlyAdded) withObject:nil afterDelay:0.0];
         }
-    }
-
     } else {
-    
-        switch (indexPath.row) {
-            case 0: {
-                AppInfoViewController *aivc = [[AppInfoViewController alloc] initWithNibName:nil bundle:nil];
-                UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:aivc];
-                [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
-                break;
-            }
-            case 1: {
-                MFMailComposeViewController *messageVC = [[MFMailComposeViewController alloc] init];
-                [messageVC setMailComposeDelegate:self];
-                if ([MFMailComposeViewController canSendMail]) {
-                    [messageVC setToRecipients:[NSArray arrayWithObjects:@"BeyondTheCheese@gmail.com", nil]];
-                    [messageVC setSubject:@"BFRO App Reports Feedback"];
-
-                     NSString *messageBody = NSLocalizedString(([NSString stringWithFormat:@"<br/><br/><br/> App Version: %@ <br/> Device Model: %@ <br/>  OS Version: %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[UIDevice currentDevice] platformString], [[UIDevice currentDevice] systemVersion]]), nil);
-                    [messageVC setMessageBody:messageBody isHTML:YES];
-                    [self presentViewController:messageVC animated:YES completion:nil];
-                }
-
-                break;
-            }
-            case 2: {
-                MFMailComposeViewController *messageVC = [[MFMailComposeViewController alloc] init];
-                [messageVC setMailComposeDelegate:self];
-                if ([MFMailComposeViewController canSendMail]) {
-                    [messageVC setToRecipients:[NSArray arrayWithObjects:@"BeyondTheCheese@gmail.com", nil]];
-                    [messageVC setSubject:@"BFRO App Reporting a Bug"];
-                    
-                    NSString *messageBody = NSLocalizedString(([NSString stringWithFormat:@"<br/><br/><br/> App Version: %@ <br/> Device Model: %@ <br/>  OS Version: %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[UIDevice currentDevice] platformString], [[UIDevice currentDevice] systemVersion]]), nil);
-                    [messageVC setMessageBody:messageBody isHTML:YES];
-                    [self presentViewController:messageVC animated:YES completion:nil];
-                }
-
-                break;
-            }
-            default:
-                break;
-        }
+        SettingsViewController *svc = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:svc];
+        [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
     }
-    
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
-
-#pragma mark - Message delegate methods
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+# pragma mark - show recently added
+- (void)showRecentlyAdded
 {
-    // Notifies users about errors associated with the interface
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            break;
-        case MFMailComposeResultSent:
-        {
-            [self.view makeToast:@"Sent!" duration:1.5 position:@"center"];
-        }
-            break;
-        case MFMailComposeResultFailed:
-        {
-            [self.view makeToast:@"Unable to Send!" duration:1.5 position:@"center"];
-            
-        }
-            break;
-        default:
-            break;
-    }
-    [controller dismissViewControllerAnimated:YES completion:nil];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportsByLocation" inManagedObjectContext:[[BFROStore sharedStore] context]];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
+                              initWithKey:@"witnessSubmitted" ascending:NO];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"(reportID IN %@)", recentlyAdded.allKeys];
     
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setEntity:entity];
+    NSString *titleString = [NSString stringWithFormat:@"New Reports"];
+    EveryReportViewController *rvc = [[EveryReportViewController alloc] initwithFetchRequest:fetchRequest titleName:titleString];
+    [rvc setRecentlyAddedSection:YES];
+    [self stopLoading];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
+    [self.sideMenuViewController setMainViewController:nav animated:YES closeMenu:YES];
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAddedNote"]) {
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"RecentlyAddedNote"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"NOTE!"
+                                                          message:@"A report will be automatically removed from the \"Recently Added\" section once the report has been opened/read."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
 }
-
 
 # pragma mark - change image color
 - (UIImage *)imageWithColor:(UIColor *)color1 withImage:(UIImage *)img
@@ -305,12 +254,12 @@
     [hudView setCenter:self.view.center];
     [aiView startAnimating];
     
-    UILabel *captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, 140, 22)];
+    captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, 140, 22)];
     captionLabel.backgroundColor = [UIColor clearColor];
     captionLabel.textColor = [UIColor whiteColor];
     captionLabel.adjustsFontSizeToFitWidth = YES;
     captionLabel.textAlignment = NSTextAlignmentCenter;
-    captionLabel.text = @"Loading Report..";
+    captionLabel.text = @"Loading Reports...";
     [hudView addSubview:captionLabel];
     [self.view.superview addSubview:hudView];
 
@@ -319,7 +268,7 @@
 
 - (void)checking
 {
-    hudView = [[UIView alloc] initWithFrame:CGRectMake(75, 155, 180, 140)];
+    hudView = [[UIView alloc] initWithFrame:CGRectMake(75, 155, 180, 160)];
     hudView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.9];
     hudView.clipsToBounds = YES;
     hudView.layer.cornerRadius = 10.0;
@@ -330,14 +279,24 @@
     [hudView setCenter:self.view.center];
     [aiView startAnimating];
     
-    UILabel *captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, 140, 22)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self
+               action:@selector(requestToCancel)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Cancel" forState:UIControlStateNormal];
+    button.frame = CGRectMake(20, 105, 140, 60);
+    //[button setBackgroundColor:[UIColor whiteColor]];
+    [hudView addSubview:button];
+    
+    captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, 140, 22)];
     captionLabel.backgroundColor = [UIColor clearColor];
     captionLabel.textColor = [UIColor whiteColor];
     captionLabel.adjustsFontSizeToFitWidth = YES;
     captionLabel.textAlignment = NSTextAlignmentCenter;
-    captionLabel.text = @"Updating Reports DB..";
+    captionLabel.text = @"Connecting to DB...";
     [hudView addSubview:captionLabel];
     [self.view.superview addSubview:hudView];
+    hudView.center = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? CGPointMake(self.view.superview.frame.size.width/2, self.view.superview.frame.size.height/2) : CGPointMake(self.view.superview.frame.size.width/2 - 200, self.view.superview.frame.size.height/2 - 200);
     
 }
 
@@ -347,25 +306,56 @@
     [hudView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
 }
 
-
-#pragma mark - Find new reports method
-
-- (void)findNewReports
-{
-    [self checking];
-    [self performSelector:@selector(updatingReports) withObject:Nil afterDelay:5];
-}
+#pragma mark - updatingReports
 
 - (void)updatingReports
 {
-    [self stopLoading];
-    [self.tableView.superview makeToast:@"No New Reports" duration:2 position:@"center"];
+    UpdateReportsDB *update = [[UpdateReportsDB alloc] init];
+    [update connectToSite];
 }
 
-#pragma mark - side menu delegats
+- (void)receivedUpdateFromReportsDBNoty:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"receivedUpdateFromReportsDBNoty"]) {
+        captionLabel.text = (NSString*)[notification object];
+    } else if ([[notification name] isEqualToString:@"sendToastNoty"]) {
+         updateBeginYN = NO;
+        id value = UI_USER_INTERFACE_IDIOM() ==
+        UIUserInterfaceIdiomPhone ? [NSValue valueWithCGPoint:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2 + 150)] : [NSValue valueWithCGPoint:CGPointMake(200, 300)];
+        [hudView removeFromSuperview];
+        [self.view makeToast:(NSString*)[notification object] duration:2.0 position:value];
+        [self.tableView reloadData];
+    }
+}
+
+#pragma mark - side menu delegates
 - (void)sideMenuViewControllerWillOpenMenu:(TWTSideMenuViewController *)sideMenuViewController
 {
     [self.tableView reloadData];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self setNeedsStatusBarAppearanceUpdate];
+    
 }
 
+#pragma mark - preferredStatusBarStyle
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - requestToCancel
+- (void)requestToCancel
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"requestToCancel"
+                                                        object:@"cancel"];
+
+}
+
+#pragma mark - dealloc
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"receivedUpdateFromReportsDBNoty"  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sendToastNoty"  object:nil];
+}
 @end

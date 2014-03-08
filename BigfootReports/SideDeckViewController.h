@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
 #import "TDBadgedCell.h"
-@interface SideDeckViewController : UITableViewController <MFMailComposeViewControllerDelegate, TWTSideMenuViewControllerDelegate>
+@interface SideDeckViewController : UITableViewController <TWTSideMenuViewControllerDelegate>
 
 @end

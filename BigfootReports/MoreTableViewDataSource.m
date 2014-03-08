@@ -8,6 +8,8 @@
 
 #import "MoreTableViewDataSource.h"
 
+int count;
+
 @implementation MoreTableViewDataSource
 @synthesize originalDataSource;
 
@@ -17,6 +19,7 @@
     if (self)
     {
         self.originalDataSource = dataSource;
+        count = 0;
     }
         
     return self;
@@ -35,34 +38,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    UITableViewCell *cell = [originalDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
     
     if (cell == nil) {
         cell = [originalDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
-        NSLog(@"HERE");
     }
     
     cell.textLabel.textColor = [UIColor whiteColor];
     [cell setBackgroundColor:[UIColor clearColor]];
     
-    if (indexPath.row == 0) {
-        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(2, 9, 25, 25)];
-        imv.image=[UIImage imageNamed:@"help"];
-        imv.image =[self imageWithColor:[UIColor whiteColor] withImage:imv.image];
-        imv.contentMode = UIViewContentModeScaleAspectFit;
-        [cell.contentView addSubview:imv];
-    } else if (indexPath.row == 1) {
-        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(2, 9, 25, 25)];
-        imv.image=[UIImage imageNamed:@"camping_tent"];
-        imv.image =[self imageWithColor:[UIColor whiteColor] withImage:imv.image];
-        imv.contentMode = UIViewContentModeScaleAspectFit;
-        [cell.contentView addSubview:imv];
-    } else if (indexPath.row == 2) {
-        UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(2, 9, 25, 25)];
-        imv.image=[UIImage imageNamed:@"cart"];
-        imv.image =[self imageWithColor:[UIColor whiteColor] withImage:imv.image];
-        imv.contentMode = UIViewContentModeScaleAspectFit;
-        [cell.contentView addSubview:imv];
+    if (count == 0) {
+        if (indexPath.row == 0) {
+            UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(2, 9, 25, 25)];
+            imv.image=[UIImage imageNamed:@"help"];
+            imv.image =[self imageWithColor:[UIColor whiteColor] withImage:imv.image];
+            imv.contentMode = UIViewContentModeScaleAspectFit;
+            [cell.contentView addSubview:imv];
+        } else if (indexPath.row == 1) {
+            UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(2, 9, 25, 25)];
+            imv.image=[UIImage imageNamed:@"camping_tent"];
+            imv.image =[self imageWithColor:[UIColor whiteColor] withImage:imv.image];
+            imv.contentMode = UIViewContentModeScaleAspectFit;
+            [cell.contentView addSubview:imv];
+        } else if (indexPath.row == 2) {
+            UIImageView *imv = [[UIImageView alloc]initWithFrame:CGRectMake(2, 9, 25, 25)];
+            imv.image=[UIImage imageNamed:@"cart"];
+            imv.image =[self imageWithColor:[UIColor whiteColor] withImage:imv.image];
+            imv.contentMode = UIViewContentModeScaleAspectFit;
+            [cell.contentView addSubview:imv];
+            count = 1;
+        }
     }
     
     return cell;

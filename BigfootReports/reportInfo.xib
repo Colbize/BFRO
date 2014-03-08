@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="6w8-2f-YRB"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3X-SR-AyO">
+                    <rect key="frame" x="0.0" y="49" width="320" height="519"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <string key="text">All reports posted into the BFRO's online database are assigned a classification: Class A, Class B, or Class C. The difference between the classifications relates to the potential for misinterpretation of what was observed or heard. A witness might be very credible, but could have honestly misinterpreted something that was seen, found, or heard. Thus, for the most part, the circumstances of the incident determine the potential for misinterpretation, and therefore the classification of the report.
+
+Class A:
+Class A reports involve clear sightings in circumstances where misinterpretation or misidentification of other animals can be ruled out with greater confidence. For example, there are several footprint cases that are very well documented. These are considered Class A reports, because misidentification of common animals can be confidently ruled out, thus the potential for misinterpretation is very low.
+
+Class B:
+Incidents where a possible sasquatch was observed at a great distance or in poor lighting conditions and incidents in any other circumstance that did not afford a clear view of the subject are considered Class B reports.
+
+For example, credible reports where nothing was seen but distinct and characteristic sounds of sasquatches were heard are always considered Class B reports and never Class A, even in the most compelling "sound-only" cases. This is because the lack of a visual element raises a much greater potential for a misidentification of the sounds.
+
+Class B reports are not considered less credible or less important than Class A reports--both types are deemed credible enough by the BFRO to show to the public. For example, one of the best documented reports ever received by the BFRO is a Class B report from Trinity County California (Report ID: 596). It involved a very credible witness who backpacked into a remote area that has a history of sasquatch-related incidents. He described various occurrences around his camp at night that are strongly suspected to be sasquatch-related. The report is still considered Class B though because there was no clear visual observation to confirm what was heard outside the tent.
+
+Almost all reports included in the database are first-hand reports. Occassionally a second-hand report is considered reliable enough to add to the database, but those reports are never Class A, because of the higher potential for inaccuracy when the story does not come straight from the eyewitness.
+
+Class C:
+Most second-hand reports, and any third-hand reports, or stories with an untraceable sources, are considered Class C, because of the high potential for inaccuracy. Those reports are kept in BFRO archives but are very rarely listed publicly in this database. The exceptions are for published, or locally documented incidents from before 1958 (before the word "Bigfoot" entered the American vocabulary), and sightings mentioned in non-tabloid newspapers or magazines.</string>
+                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Classification System:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwt-4p-N7r">
+                    <rect key="frame" x="20" y="20" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ucF-r2-Bsi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="l3X-SR-AyO" firstAttribute="centerX" secondItem="Wwt-4p-N7r" secondAttribute="centerX" id="D5m-fD-Qpk"/>
+                <constraint firstItem="l3X-SR-AyO" firstAttribute="top" secondItem="Wwt-4p-N7r" secondAttribute="bottom" constant="8" symbolic="YES" id="IKu-ju-Ct3"/>
+                <constraint firstItem="Wwt-4p-N7r" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="MPO-Ue-skG"/>
+                <constraint firstItem="l3X-SR-AyO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NYk-IC-NWF"/>
+                <constraint firstItem="Wwt-4p-N7r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="O08-yb-klt"/>
+                <constraint firstAttribute="bottom" secondItem="l3X-SR-AyO" secondAttribute="bottom" id="PWb-io-yDA"/>
+                <constraint firstAttribute="trailing" secondItem="Wwt-4p-N7r" secondAttribute="trailing" constant="20" symbolic="YES" id="xrK-36-tzh"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

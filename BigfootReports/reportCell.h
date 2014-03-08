@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *shortDesc;
 @property (weak, nonatomic) IBOutlet UIImageView *containsPicturesYN;
 @property (weak, nonatomic) IBOutlet UIImageView *favoritedYN;
-@property (weak, nonatomic) IBOutlet UIImageView *classID;
+@property (weak, nonatomic) IBOutlet UIImageView *read;
+@property (weak, nonatomic) IBOutlet UILabel *classID;
+@property (weak, nonatomic) IBOutlet UIImageView *hasLocation;
 
 @end

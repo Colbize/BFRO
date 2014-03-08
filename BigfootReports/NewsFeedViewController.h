@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsFeedViewController : UITableViewController
-
+@interface NewsFeedViewController : UITableViewController <UITextViewDelegate>
+- (void)fetchTimelineForUser:(NSString *)username;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end

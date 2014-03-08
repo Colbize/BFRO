@@ -12,25 +12,30 @@
 #import "Location.h"
 #import "USACountiesByLocation.h"
 #import "ReportsViewController.h"
-#import "TFHpple.h"
 #import <QuartzCore/QuartzCore.h>
+#import "PopoverView.h"
+
+#define HEIGHT_UP 2000
+#define HEIGHT_DOWN 200
 
 @interface EveryReportViewController ()
 {
     NSMutableDictionary *favoritesDic;
     BOOL includeSearchBar;
-    UIActivityIndicatorView *aivew;
     UIBarButtonItem *dateButton;
     UIBarButtonItem *clearButton;
     UIBarButtonItem *sortButton;
     BOOL searchDatePresent;
     UIDatePicker *datePicker;
     UITextField *currentTextField;
+    PopoverView *pop;
+    UIView *xibView;
+    UIView *helpTipSearchView;
 }
 @end
 
 @implementation EveryReportViewController
-@synthesize fetchedResultsController, fetchRequest, menuButton, tableView, goToTop, noReportsLabel, searchbar;
+@synthesize fetchedResultsController, fetchRequest, tableView, goToTop, noReportsLabel, searchbar, aiView, recentlyAddedSection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,10 +60,10 @@
     if (self) {
         NSFetchRequest *fRequest = [[NSFetchRequest alloc] init];
         
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportsByLocation" inManagedObjectContext:[[BFROStore sharedStore] context]];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:[[BFROStore sharedStore] context]];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                                  initWithKey:@"dateOfSighting" ascending:YES];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"(link = %@)", @"BLANK"];
+                                  initWithKey:@"name" ascending:YES];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"(name = %@)", @"BLANK"];
         
         [fRequest setPredicate:predicate];
         [fRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
@@ -84,11 +89,18 @@
         // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
         cell = [topLevelObjects objectAtIndex:0];
     }
-    
     [self configureCell:(reportCell*)cell atIndexPath:indexPath];
 
-
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (includeSearchBar == YES) {
+        return section == 0 ? 80 : 10;
+    } else {
+        return section == 0 ? 40 : 10;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,9 +110,6 @@
 - (void)configureCell:(reportCell *)cell
           atIndexPath:(NSIndexPath *)indexPath
 {
-    
-    UIColor * color = [UIColor colorWithRed:127/255.0f green:127/255.0f blue:127/255.0f alpha:1.0f];
-    
     [cell setBackgroundColor:[UIColor colorWithRed:31/255.0f green:33/255.0f blue:36/255.0f alpha:1.0f]];//[UIColor colorWithRed:31/255.0f green:33/255.0f blue:36/255.0f alpha:1.0f]];
     
     [cell.layer setCornerRadius:20.0f];
@@ -163,7 +172,6 @@
     if (info.latitude && info.longitude) {
         [cell.hasLocation setImage:[self imageWithColor:[UIColor whiteColor] withImage:[UIImage imageNamed:@"location"]]];
     }
-    
 }
 
 - (void)tableView:(UITableView *)TableView
@@ -172,11 +180,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     ReportsByLocation *info = [fetchedResultsController objectAtIndexPath:indexPath];
     ReportsViewController *rvc = [[ReportsViewController alloc] init];
+    if (!([info.reportHTML.uppercaseString rangeOfString:@"JPG"].location == NSNotFound)) {
+         rvc.containsImageYN = YES;
+    }
+    if ([info.usaCountyReports.location.country isEqualToString:@"USA"]) {
+        rvc.countryUSAYN = YES;
+    }
     [rvc setReportInfo:info];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
+    
+    if (searchbar.text.length > 0) {
+        [rvc setSearchedString:searchbar.text];
+    }
     
     rvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:rvc animated:YES];
@@ -289,88 +307,118 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 # pragma mark - Alert Methods
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if ([[self.fetchedResultsController sections] count] > 0) {
     
-    NSArray *sortDescriptors;
-    
-    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
-    
-    if ([title isEqualToString:@"Date Asc"]) {
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"dateOfSighting" ascending:YES];
-        sortDescriptors = [NSArray arrayWithObject: sort];
+        NSArray *sortDescriptors;
         
-    } else if ([title isEqualToString:@"Date Desc"]) {
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"dateOfSighting" ascending:NO];
-        sortDescriptors = [NSArray arrayWithObject: sort];
+        NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
         
-    } else if ([title isEqualToString:@"Class Asc"]) {
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"classSighting" ascending:YES];
-        sortDescriptors = [NSArray arrayWithObject: sort];
-        
-    } else if ([title isEqualToString:@"Class Desc"]) {
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"classSighting" ascending:NO];
-        sortDescriptors = [NSArray arrayWithObject: sort];
-        
-    } else if ([title isEqualToString:@"Location Name"]) {
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"usaCountyReports.location.name" ascending:YES];
-        NSSortDescriptor *sort2 = [NSSortDescriptor sortDescriptorWithKey:@"reportsByLocation.name" ascending:YES];
+        if ([title isEqualToString:@"Date Asc"]) {
+            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"dateOfSighting" ascending:YES];
+            sortDescriptors = [NSArray arrayWithObject: sort];
+            
+        } else if ([title isEqualToString:@"Date Desc"]) {
+            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"dateOfSighting" ascending:NO];
+            sortDescriptors = [NSArray arrayWithObject: sort];
+            
+        } else if ([title isEqualToString:@"Class Asc"]) {
+            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"classSighting" ascending:YES];
+            sortDescriptors = [NSArray arrayWithObject: sort];
+            
+        } else if ([title isEqualToString:@"Class Desc"]) {
+            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"classSighting" ascending:NO];
+            sortDescriptors = [NSArray arrayWithObject: sort];
+            
+        } else if ([title isEqualToString:@"Location Name"]) {
+            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"usaCountyReports.location.name" ascending:YES];
+            NSSortDescriptor *sort2 = [NSSortDescriptor sortDescriptorWithKey:@"reportsByLocation.name" ascending:YES];
 
-        sortDescriptors = [NSArray arrayWithObjects: sort, sort2, nil];
+            sortDescriptors = [NSArray arrayWithObjects: sort, sort2, nil];
+            
+        } else if ([title isEqualToString:@"Reset Order"]) {
+            
+        } else if ([title isEqualToString:@"Cancel"]) {
+            return;
+        }
+        [[fetchedResultsController fetchRequest] setSortDescriptors:sortDescriptors];
         
-    } else if ([title isEqualToString:@"Reset Order"]) {
+        NSError *error;
+        if (![[self fetchedResultsController] performFetch:&error]) {
+            // Handle you error here
+        }
         
-    } else if ([title isEqualToString:@"Cancel"]) {
-        return;
+        [self.tableView reloadData];
+    } else {
+        [self.view makeToast:@"No Reports to Sort.." duration:2 position:@"Center"];
     }
-    [[fetchedResultsController fetchRequest] setSortDescriptors:sortDescriptors];
-    
-    NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        // Handle you error here
-    }
-    
-    [self.tableView reloadData];
 }
-
-# pragma mark - reveal menu
-- (void)revealMenu
-{
-    [self.viewDeckController openLeftViewBouncing:^(IIViewDeckController *controller){
-    }];
-}
-
 
 # pragma mark - scroll view
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y >= 200) {
-        [goToTop setHidden:NO];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (scrollView.contentOffset.y > 210) {
+            [goToTop setHidden:NO];
+            
+            searchbar.hidden = (includeSearchBar == YES) ? YES:YES;
+            
+            [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                                    withAnimation:UIStatusBarAnimationNone];
+            [self.tabBarController.tabBar setHidden:YES];
+            self.tabBarController.tabBar.hidden = (recentlyAddedSection == YES) ? YES:YES;
+            
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+        }
         
-        searchbar.hidden = (includeSearchBar == YES) ? YES:YES;
-        
-        [[UIApplication sharedApplication] setStatusBarHidden:YES
-                                                withAnimation:UIStatusBarAnimationNone];
-        [self.tabBarController.tabBar setHidden:YES];
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-    }
-    
-    if (scrollView.contentOffset.y <= 10) {
-        [goToTop setHidden:YES];
-        
-        [searchbar setHidden:NO];
-        
-        searchbar.hidden = (includeSearchBar == YES) ? NO:YES;
+        if (scrollView.contentOffset.y < 200) {
+            [goToTop setHidden:YES];
+            
+            [searchbar setHidden:NO];
+            
+            searchbar.hidden = (includeSearchBar == YES) ? NO:YES;
 
-        [self.tabBarController.tabBar setHidden:NO];
+            self.tabBarController.tabBar.hidden = (recentlyAddedSection == YES) ? YES:NO;
 
 
-        [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                                withAnimation:UIStatusBarAnimationSlide];
+            [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                    withAnimation:UIStatusBarAnimationSlide];
 
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+        }
     }
 }
 
+#pragma mark - animate tipView
+- (void)showTip:(UIView *)view
+{
+    CGFloat bounceDistance = 100;
+    CGFloat bounceDuration = 0.4;
+    [UIView animateWithDuration:0.5 delay:0.0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         CGFloat direction = (viewUp ? 1 : -1);
+                         view.center = CGPointMake(view.center.x, (viewUp ? (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad? 440 : 220) : HEIGHT_UP) + direction*bounceDistance);
+                     }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:bounceDuration animations:^{
+                             view.center = CGPointMake(view.center.x, (viewUp ? (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad? 440 : 220) : HEIGHT_UP));
+                             if (viewUp == NO) {
+                                 [xibView removeFromSuperview];
+                             }
+                             viewUp = !viewUp;
+                         }];
+                     }];
+
+}
+
+- (void)closeTip
+{
+    [self showTip:xibView];
+    [helpTipSearchView removeFromSuperview];
+}
+
 # pragma mark - view load methods
+
 - (void)viewWillLayoutSubviews
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO
@@ -379,13 +427,22 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
+    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
+
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    
+    [[self.navigationController navigationBar] setTranslucent:NO];
+    
+    UIColor * color = [UIColor colorWithRed:54/255.0f green:55/255.0f blue:58/255.0f alpha:1.0f];
+    [[self.navigationController navigationBar] setBarTintColor:color];
+    
     clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear"
                                                    style:UIBarButtonItemStylePlain
                                                   target:self action:@selector(deleteSearchResults)];
     
     [clearButton setTintColor:self.view.tintColor];
-    
-    [[self.navigationController navigationBar] setBarTintColor:[UIColor colorWithRed:31/255.0f green:33/255.0f blue:36/255.0f alpha:1.0f]];
     
     [self.tableView setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
         
@@ -395,7 +452,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 
-    [self.tabBarController.tabBar setHidden:NO];
+    self.tabBarController.tabBar.hidden = (recentlyAddedSection == YES) ? YES:NO;
 
     [goToTop setHidden:YES];
     [noReportsLabel setHidden:YES];
@@ -414,7 +471,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             
             UIFont* font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
             
-            UIColor* textColor = [UIColor lightGrayColor];
+            UIColor* textColor = [UIColor groupTableViewBackgroundColor];
             
             NSDictionary *attrs = @{ NSForegroundColorAttributeName : textColor,
                                      NSFontAttributeName : font,
@@ -428,7 +485,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             
             [noReportsLabel setBackgroundColor:[UIColor clearColor]];
             
-            [self.tableView.superview addSubview:noReportsLabel];
+            [self.view addSubview:noReportsLabel];
                         
         } else {
             [noReportsLabel setHidden:YES];
@@ -443,6 +500,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super viewDidLoad];
     
+    if (recentlyAddedSection == YES){
+        // OPEN DRAWER BUTTON
+        UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:Nil
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self action:@selector(revealMenu)];
+        [menuButton setImage:[UIImage imageNamed:@"menuButton"]];
+        [menuButton setTintColor:[UIColor whiteColor]];
+        
+        NSArray *leftItems = [[NSArray alloc] initWithObjects:menuButton, nil];
+        [[self navigationItem] setLeftBarButtonItems:leftItems];
+    } else {
+        self.navigationItem.leftBarButtonItem = nil ;
+    }
+    
     sortButton = [[UIBarButtonItem alloc] initWithTitle:@"Sort"
                                                   style:UIBarButtonItemStylePlain
                                                  target:self action:@selector(sortResults)];
@@ -452,31 +523,96 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSArray *rightItems = [[NSArray alloc] initWithObjects:sortButton, nil];
     [[self navigationItem] setRightBarButtonItems:rightItems];
     
-    dateButton = [[UIBarButtonItem alloc] initWithTitle:@"Date"
-                                                  style:UIBarButtonItemStylePlain
-                                                 target:self action:@selector(dateSearch)];
-    
-    [dateButton setTintColor:self.view.tintColor];
-    
-    
-    NSArray *leftItems = [[NSArray alloc] initWithObjects:dateButton, nil];
-    [[self navigationItem] setLeftBarButtonItems:leftItems];
-    
     [searchbar setHidden:YES];
-
-    self.navigationItem.leftBarButtonItem = nil ;
     
     if (includeSearchBar == YES) {
+        
+        dateButton = [[UIBarButtonItem alloc] initWithTitle:@"Date"
+                                                      style:UIBarButtonItemStylePlain
+                                                     target:self action:@selector(dateSearch)];
+        
+        [dateButton setTintColor:self.view.tintColor];
+        
+        
+        NSArray *leftItems = [[NSArray alloc] initWithObjects:dateButton, nil];
+        [[self navigationItem] setLeftBarButtonItems:leftItems];
         [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:self.view.tintColor];
         [searchbar setHidden:NO];
         searchbar.autocorrectionType = UITextAutocorrectionTypeNo;
         [searchbar setDelegate:self];
-        [searchbar setPlaceholder:@"Search"];
+        [searchbar setPlaceholder:@"Search Reports"];
         [searchbar setShowsCancelButton:YES animated:YES];
+        searchbar.barStyle = UIBarStyleBlack;
+        [searchbar setTranslucent:NO];
         [searchbar setBarTintColor:[UIColor colorWithRed:31/255.0f green:33/255.0f blue:36/255.0f alpha:1.0f]];
-        [searchbar setTranslucent:YES];
         self.title = @"Search";
         self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects: dateButton,nil];
+        
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"helpTipSearch"]) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"helpTipSearch"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            viewUp = YES;
+            
+            helpTipSearchView = [[[NSBundle mainBundle] loadNibNamed:@"helpTipSearch" owner:nil options:nil] objectAtIndex:0];
+            
+            for (UIView *v in helpTipSearchView.subviews) {
+                if ([v isKindOfClass:[UIButton class]]) {
+                    UIButton * myButton = (UIButton *)v;
+                    [myButton addTarget:self action:@selector(closeTip) forControlEvents:UIControlEventTouchUpInside];
+                }
+            }
+
+            [helpTipSearchView.layer setCornerRadius:30.0f];
+            
+            // border
+            [helpTipSearchView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+            [helpTipSearchView.layer setBorderWidth:1.5f];
+            
+            // drop shadow
+            [helpTipSearchView.layer setShadowColor:[UIColor blackColor].CGColor];
+            [helpTipSearchView.layer setShadowOpacity:0.8];
+            [helpTipSearchView.layer setShadowRadius:3.0];
+            [helpTipSearchView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+            
+            [self.view addSubview:helpTipSearchView];
+            [helpTipSearchView setCenter:CGPointMake(self.view.frame.size.width/2, -500)];
+            
+            [self showTip:helpTipSearchView];
+        }
+
+    } else {
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"helpTipReports"]) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"helpTipReports"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            viewUp = YES;
+            
+            xibView = [[[NSBundle mainBundle] loadNibNamed:@"helpTipReports" owner:nil options:nil] objectAtIndex:0];
+            
+            for (UIView *v in xibView.subviews) {
+                if ([v isKindOfClass:[UIButton class]]) {
+                    UIButton * myButton = (UIButton *)v;
+                    [myButton addTarget:self action:@selector(closeTip) forControlEvents:UIControlEventTouchUpInside];
+                }
+            }
+            
+            [xibView.layer setCornerRadius:30.0f];
+            
+            // border
+            [xibView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+            [xibView.layer setBorderWidth:1.5f];
+            
+            // drop shadow
+            [xibView.layer setShadowColor:[UIColor blackColor].CGColor];
+            [xibView.layer setShadowOpacity:0.8];
+            [xibView.layer setShadowRadius:3.0];
+            [xibView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+            
+            [self.view addSubview:xibView];
+            [xibView setCenter:CGPointMake(self.view.frame.size.width/2, -500)];
+            
+            [self showTip:xibView];
+        }
     }
     
     if (self.tableView.contentOffset.y <= 10) {
@@ -492,8 +628,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		exit(-1);  // Fail
 	}
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.view resignFirstResponder];
 }
 
 - (void)viewDidUnload
@@ -505,15 +645,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    self.fetchedResultsController = nil;
+    [NSFetchedResultsController deleteCacheWithName:[fetchedResultsController cacheName]];
 }
 
 
 #pragma mark - go to top method
 - (IBAction)goToTop:(id)sender
 {
-    if (self.tableView.contentOffset.y >= 100) {
+    if (self.tableView.contentOffset.y > 200) {
         
-        [self.tableView setContentOffset:CGPointMake(0, self.navigationController.navigationBar.frame.origin.y + 50)
+        [self.tableView setContentOffset:CGPointMake(0, 0)
                                 animated:YES];
     }
 }
@@ -564,7 +706,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         abort();
     }
     [tableView reloadData];
-    [aivew stopAnimating];
+    [aiView stopAnimating];
     [searchBar resignFirstResponder];
     
     [self.tableView.superview makeToast:[NSString stringWithFormat:@"Showing %lu Reports", (unsigned long)self.fetchedResultsController.fetchedObjects.count] duration:2 position:@"center"];
@@ -578,11 +720,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    aivew = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(searchBar.frame.size.width-130, 12, 22, 22)];
-    [aivew setHidesWhenStopped:YES];
-    [aivew setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-    [searchBar addSubview:aivew];
-    [aivew startAnimating];
+    [aiView startAnimating];
     [self performSelector:@selector(searchBarSearchReports:) withObject:searchBar afterDelay:0.5];
 
 }
@@ -604,31 +742,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - date search methods
 - (void)dateSearch
 {
-    if (searchDatePresent == NO) {
-        searchDatePresent = YES;
-        
-        UIView *view = [[[NSBundle mainBundle] loadNibNamed:@"searchByDate" owner:self options:nil] objectAtIndex:0];
-        [view setBackgroundColor:[UIColor clearColor]];
-        [view setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
-        [[[[view subviews] objectAtIndex:0] layer] setCornerRadius:9.0f];
-        [[[[view subviews] objectAtIndex:0] layer] setBorderColor:[UIColor whiteColor].CGColor];
-        [[[[view subviews] objectAtIndex:0] layer] setBorderWidth:2.0f];
-        
-        NSArray *searchBarSubViews = [[view.subviews objectAtIndex:0] subviews];
-        for (UIView *subView in searchBarSubViews) {
-            if([subView conformsToProtocol:@protocol(UITextInputTraits)])
-            {
-                [(UITextField *)subView setDelegate:self];
-                [(UITextField *)subView setReturnKeyType:UIReturnKeyDefault];
-            }
-        }
-        
-        [self showViewAnimated:self.searchByDate];
-    } else {
-        [self dismissViewAnimated:self.searchByDate];
-        searchDatePresent = NO;
-    }
+    [self.view resignFirstResponder];
     
+    UIView *view = [[[NSBundle mainBundle] loadNibNamed:@"searchByDate" owner:self options:nil] objectAtIndex:0];
+    [view setBackgroundColor:[UIColor viewFlipsideBackgroundColor]];
+    
+    [[[view subviews] objectAtIndex:2] setDelegate:self];
+    [[[view subviews] objectAtIndex:3] setDelegate:self];
+
+    pop = [PopoverView showPopoverAtPoint:self.navigationController.navigationBar.frame.origin inView:self.view withContentView:view delegate:nil];
 }
 
 
@@ -676,69 +798,74 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         self.fromDate.layer.borderColor=[[UIColor redColor]CGColor];
         self.fromDate.layer.borderWidth=1.0;
     } else if ([self.fromDate.text isEqualToString:@""] || [self.toDate.text isEqualToString:@""]) {
-        [self.searchByDate makeToast:@"Please select a date for both fields" duration:3 position:@"Center"];
+        [pop makeToast:@"Please select a date for both fields" duration:3 position:@"Center"];
     } else {
-        // Begin search
-        searchDatePresent = NO;
-        self.fetchedResultsController = nil;
-        [self dismissViewAnimated:self.searchByDate];
-        
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportsByLocation" inManagedObjectContext:[[BFROStore sharedStore] context]];
-        NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                                  initWithKey:@"dateOfSighting" ascending:NO];
-        NSPredicate *datePredicate = [NSPredicate predicateWithFormat: @"dateOfSighting >= %@ && dateOfSighting <= %@", dateFrom, dateTo];
-        
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-        [fetchRequest setEntity:entity];
-        [fetchRequest setPredicate:datePredicate];
-        titleName = [NSString stringWithFormat:@"%@ to %@", [df stringFromDate:dateFrom], [df stringFromDate:dateTo]];
+        [pop dismiss:YES];
+        [aiView startAnimating];
+        [self performSelector:@selector(beginSearchDate) withObject:nil afterDelay:1.0];
+    }
+}
 
-        NSError *error = nil;
-        if (![[self fetchedResultsController] performFetch:&error]) {
-            // Handle error
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
-        [tableView reloadData];
-        
-        if (self.fetchedResultsController.fetchedObjects.count > 0) {
-            UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-            self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: sortButton, flexibleItem ,clearButton, flexibleItem,nil];
-        }
-        
-        [self.tableView.superview makeToast:[NSString stringWithFormat:@"Showing %lu Reports", (unsigned long)self.fetchedResultsController.fetchedObjects.count] duration:2 position:@"center"];
+- (void)beginSearchDate
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateStyle:NSDateFormatterMediumStyle];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    NSDate *dateFrom = [dateFormatter dateFromString:self.fromDate.text];
+    NSDate *dateTo = [dateFormatter dateFromString:self.toDate.text];
+    
+    // Begin search
+    searchDatePresent = NO;
+    self.fetchedResultsController = nil;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportsByLocation" inManagedObjectContext:[[BFROStore sharedStore] context]];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
+                              initWithKey:@"dateOfSighting" ascending:NO];
+    NSPredicate *datePredicate = [NSPredicate predicateWithFormat: @"dateOfSighting >= %@ && dateOfSighting <= %@", dateFrom, dateTo];
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:datePredicate];
+    titleName = [NSString stringWithFormat:@"%@ to %@", [df stringFromDate:dateFrom], [df stringFromDate:dateTo]];
+    
+    NSError *error = nil;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        // Handle error
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    [tableView reloadData];
+    
+    if (self.fetchedResultsController.fetchedObjects.count > 0) {
+        UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: sortButton, flexibleItem ,clearButton, flexibleItem,nil];
     }
     
+    [aiView stopAnimating];
+    [self.tableView.superview makeToast:[NSString stringWithFormat:@"Showing %lu Reports", (unsigned long)self.fetchedResultsController.fetchedObjects.count] duration:2 position:@"center"];
 }
 
 - (IBAction)cancelDate:(id)sender {
     searchDatePresent = NO;
-    [self dismissViewAnimated:self.searchByDate];
-    
+    [pop dismiss:YES];
 }
 
-#pragma mark - show and hide view
-
-- (void)showViewAnimated:(UIView *)view {
-    [self.view.superview addSubview:view];
-    
-    [UIView transitionWithView:self.view.superview
-                      duration:.5
-                       options:UIViewAnimationOptionTransitionFlipFromRight
-                    animations:^{
-                        [self.view.superview addSubview:view];
-                    }
-                    completion:NULL];
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [pop dismiss:YES];
 }
 
-- (void)dismissViewAnimated:(UIView *)view {
-    [UIView transitionWithView:self.view.superview
-                      duration:.5
-                       options:UIViewAnimationOptionTransitionFlipFromRight
-                    animations:^{
-                        [view removeFromSuperview];
-                    }
-                    completion:NULL];
+# pragma mark - rotate view
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [noReportsLabel setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
 }
 
+# pragma mark - reveal menu
+- (void)revealMenu
+{
+    [self.sideMenuViewController openMenuAnimated:YES completion:nil];
+}
 
 @end

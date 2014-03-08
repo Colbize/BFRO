@@ -123,13 +123,13 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
     
     UIView *activityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CSToastActivityWidth, CSToastActivityHeight)];
     activityView.center = [self centerPointForPosition:position withToast:activityView];
-    activityView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:CSToastOpacity];
+    activityView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:CSToastOpacity];
     activityView.alpha = 0.0;
     activityView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
     activityView.layer.cornerRadius = CSToastCornerRadius;
     
     if (CSToastDisplayShadow) {
-        activityView.layer.shadowColor = [UIColor blackColor].CGColor;
+        activityView.layer.shadowColor = [UIColor whiteColor].CGColor;
         activityView.layer.shadowOpacity = CSToastShadowOpacity;
         activityView.layer.shadowRadius = CSToastShadowRadius;
         activityView.layer.shadowOffset = CSToastShadowOffset;
@@ -209,7 +209,7 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         wrapperView.layer.shadowOffset = CSToastShadowOffset;
     }
 
-    wrapperView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:CSToastOpacity];
+    wrapperView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:CSToastOpacity];
     
     if(image != nil) {
         imageView = [[UIImageView alloc] initWithImage:image];
@@ -234,14 +234,14 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         titleLabel.font = [UIFont boldSystemFontOfSize:CSToastFontSize];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.textColor = [UIColor blackColor];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.alpha = 1.0;
         titleLabel.text = title;
         
         // size the title label according to the length of the text
         CGSize maxSizeTitle = CGSizeMake((self.bounds.size.width * CSToastMaxWidth) - imageWidth, self.bounds.size.height * CSToastMaxHeight);
-        CGSize expectedSizeTitle = [title sizeWithFont:titleLabel.font constrainedToSize:maxSizeTitle lineBreakMode:titleLabel.lineBreakMode]; 
+        CGSize expectedSizeTitle = [title sizeWithFont:titleLabel.font constrainedToSize:maxSizeTitle lineBreakMode:titleLabel.lineBreakMode];
         titleLabel.frame = CGRectMake(0.0, 0.0, expectedSizeTitle.width, expectedSizeTitle.height);
     }
     
@@ -250,7 +250,7 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         messageLabel.numberOfLines = CSToastMaxMessageLines;
         messageLabel.font = [UIFont systemFontOfSize:CSToastFontSize];
         messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        messageLabel.textColor = [UIColor whiteColor];
+        messageLabel.textColor = [UIColor blackColor];
         messageLabel.backgroundColor = [UIColor clearColor];
         messageLabel.alpha = 1.0;
         messageLabel.text = message;

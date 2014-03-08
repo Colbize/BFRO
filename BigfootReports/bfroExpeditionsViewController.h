@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface bfroExpeditionsViewController : UIViewController
+@interface bfroExpeditionsViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate>
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) UIWebView *contentHolderView;
 
 @end

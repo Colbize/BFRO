@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface reportMapViewController : UIViewController
+@interface reportMapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
+@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (strong, nonatomic) CLLocation *pointLocation;
+@property (weak, nonatomic) NSString *pointName;
+
 
 @end

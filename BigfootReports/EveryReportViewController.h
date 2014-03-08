@@ -12,11 +12,10 @@
 {
     NSString *titleName;
     bool viewLoadedAlreadyYN;
+    bool viewUp;
 }
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSFetchRequest *fetchRequest;
-@property (strong, nonatomic) UIButton *menuButton;
-@property (strong, nonatomic) IIViewDeckController *iivdc;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *goToTop;
 @property (weak, nonatomic) IBOutlet UILabel *noReportsLabel;
@@ -24,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIView *searchByDate;
 @property (weak, nonatomic) IBOutlet UITextField *fromDate;
 @property (weak, nonatomic) IBOutlet UITextField *toDate;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *aiView;
+@property bool recentlyAddedSection;
 
 - (IBAction)searchDate:(id)sender;
 - (IBAction)cancelDate:(id)sender;
@@ -33,4 +34,6 @@
 - (id)initwithSearchRequest;
 - (id)initwithFetchRequest:(NSFetchRequest *)fRequest titleName:(NSString *)tn;
 - (void)sortResults;
+
+
 @end

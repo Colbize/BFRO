@@ -10,7 +10,7 @@
 #import "USACountiesByLocation.h"
 #import "Location.h"
 
-@interface FillDB : UIViewController <UIWebViewDelegate>
+@interface FillDB : UIViewController <UIWebViewDelegate, NSXMLParserDelegate>
 
 - (void)getLocations;
 - (void)getAllArticles;

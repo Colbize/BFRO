@@ -13,15 +13,17 @@
 #import "Location.h"
 #import "ReportsByLocation.h"
 #import "USACountiesByLocation.h"
+#import <CXMLDocument.h>
+#import <CXMLElement.h>
 
 @implementation FillDB
 
 - (id)init {
     if (self) {
-        [self getLocations];
-        [self getAllArticles];
-        //[self deleteEntries];
-        
+        // [self getLocations];
+        // [self getAllArticles];
+        // [self deleteEntries];
+        //[self getCoordsForReport];
     }
     
     return self;
@@ -466,6 +468,47 @@
 //    NSError *saveError = nil;
 //    [[[BFROStore sharedStore] context] save:&saveError];
 //    //more error handling here
+}
+
+- (void)getCoordsForReport
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportsByLocation"
+                                              inManagedObjectContext:[BFROStore sharedStore].context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [[BFROStore sharedStore].context executeFetchRequest:fetchRequest error:&error];
+    for (ReportsByLocation *info in fetchedObjects) {
+        [NSThread sleepForTimeInterval:0.3f];
+        NSLog(@"%@", info.reportID);
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.bfro.net/app/report.aspx?id=%@", info.reportID]];
+        NSString *xml = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&error];
+        //NSLog(@"%@", xml);
+        if (xml) {
+            CXMLDocument *xmlDoc = [[CXMLDocument alloc] initWithXMLString:xml options:0 error:&error];
+            //or get actual value of node
+            NSArray *elements = [xmlDoc nodesForXPath:@"/report" error:nil];
+            
+            for (CXMLElement *resultElement in elements) {
+                if ([resultElement  elementsForName:@"has-location"].count > 0) {
+                    NSString *hasLocation = [[[resultElement  elementsForName:@"has-location"] objectAtIndex:0] stringValue];
+                    if ([hasLocation.lowercaseString isEqualToString:@"true"]) {
+                        NSString *longValue = [[[resultElement  elementsForName:@"center-long"] objectAtIndex:0] stringValue];
+                        NSString *latValue = [[[resultElement  elementsForName:@"center-lat"] objectAtIndex:0] stringValue];
+                        NSLog(@"%@, %@", latValue, longValue);
+                        info.latitude = latValue;
+                        info.longitude = longValue;
+                    }
+                }
+            }
+        }
+    }
+    
+    if (![[[BFROStore sharedStore] context] save:&error]) {
+        // This is bad
+        NSLog(@"%@", error);
+    }
+    
 }
 
 @end

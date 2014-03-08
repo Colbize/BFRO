@@ -27,6 +27,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
     [[self.navigationController navigationBar] setBarTintColor:[UIColor colorWithRed:255/255.0f green:77/255.0f blue:77/255.0f alpha:1.0f]];
     
     webView.scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -36,7 +38,7 @@
 {
     [super viewDidLoad];
     
-    [self.tabBarController.tabBar setHidden:YES];
+    self.tabBarController.tabBar.hidden = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? YES : NO;
 
     [webView setDelegate:self];
     
@@ -49,7 +51,7 @@
                                  "</style> \n"
                                  "</head> \n"
                                  "<body>%@ \n Copyright © 2014 BFRO.net </body>"
-                                 "</html>", @"Helvetica Neue", [NSNumber numberWithInt:15], htmlString];
+                                 "</html>", @"Helvetica Neue", [NSNumber numberWithInt:17], htmlString];
     
     [self.webView loadHTMLString:DescriptionHTML baseURL:[NSURL URLWithString:@"http://www.bfro.net/gdb/show_FAQ.asp?id=751"]];
     

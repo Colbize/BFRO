@@ -7,7 +7,9 @@
 //
 
 #import "CountiesViewController.h"
-#import "Counties.h"
+#import "USACountiesByLocation.h"
+#import "EveryReportViewController.h"
+#import "TDBadgedCell.h"
 
 @interface CountiesViewController ()
 
@@ -29,8 +31,7 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id  sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
@@ -39,49 +40,30 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                                   reuseIdentifier:@"UITableViewCell"];
-    
+    TDBadgedCell *cell = [[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                             reuseIdentifier:@"UITableViewCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:@"UITableViewCell"];
+        cell = [[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                   reuseIdentifier:@"UITableViewCell"];
     }
+    
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }
 
-- (void)configureCell:(UITableViewCell *)cell
+- (void)configureCell:(TDBadgedCell *)cell
           atIndexPath:(NSIndexPath *)indexPath
 {
-    Counties *info = [fetchedResultsController objectAtIndexPath:indexPath];
+    USACountiesByLocation *info = [fetchedResultsController objectAtIndexPath:indexPath];
     [cell.textLabel setText:info.name];
+    
+    cell.badgeString = [NSString stringWithFormat:@"%lu", info.reportsByCounty.count];
+    cell.badgeColor = self.view.tintColor;
+    cell.badge.radius = 9;
+    cell.badge.fontSize = 18;
+    cell.badgeRightOffset = 10.f;
 }
-
-//- (void)tableView:(UITableView *)tableView
-//  willDisplayCell:(UITableViewCell *)cell
-//forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    cell.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_background"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_selected_background"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    
-//    cell.textLabel.textColor = [UIColor colorWithRed:190.0f/255.0f green:197.0f/255.0f blue:212.0f/255.0f alpha:1.0f];
-//    cell.textLabel.highlightedTextColor = cell.textLabel.textColor;
-//    cell.textLabel.shadowColor = [UIColor colorWithRed:33.0f/255.0f green:38.0f/255.0f blue:49.0f/255.0f alpha:1.0f];
-//    cell.textLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-//    cell.textLabel.backgroundColor = [UIColor clearColor];
-//    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0f];
-//    
-//    cell.imageView.clipsToBounds = YES;
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    
-//    UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_selected_background"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    
-//    [cell.contentView addSubview: separator];
-//    
-//}
-
 
 #pragma mark - Table view delegate
 
@@ -89,29 +71,19 @@
 {
      NSString *selectedValue = [self tableView:tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportsByLocation" inManagedObjectContext:[[BFROStore sharedStore] context]];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]
+                              initWithKey:@"dateOfSighting" ascending:NO];
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat: @"(usaCountyReports.name = %@) AND (usaCountyReports.location.name = %@)", selectedValue, stateName];
     
-    [tabbed.iivdc closeLeftViewBouncing:^(IIViewDeckController *controller) {
-        tabbed.iivdc.leftSize = 50;
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Reports" inManagedObjectContext:[[BFROStore sharedStore] context]];
-        NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                                  initWithKey:@"date" ascending:NO];
-        NSPredicate *predicate =
-        [NSPredicate predicateWithFormat: @"(counties.name = %@) AND (counties.states.name = %@)", selectedValue, stateName];
-        
-        [fetchRequest setPredicate:predicate];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-        [fetchRequest setEntity:entity];
-        NSString *titleName = [NSString stringWithFormat:@"%@ - %@", selectedValue, stateName];
-        AllReportsViewController *rvc = [[AllReportsViewController alloc] initwithFetchRequest:fetchRequest titleName:titleName];
-        UINavigationController *reportNav = [[UINavigationController alloc] initWithRootViewController:rvc];
-        
-        [tabbed.iivdc setCenterController:reportNav];
-        
-    }];
-
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setEntity:entity];
+    NSString *titleName = [NSString stringWithFormat:@"USA - %@ - %@", selectedValue, stateName];
+    EveryReportViewController *rvc = [[EveryReportViewController alloc] initwithFetchRequest:fetchRequest titleName:titleName];
+    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 # pragma mark - NSFetchedResultsController methods
@@ -122,8 +94,8 @@
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Counties" inManagedObjectContext:[[BFROStore sharedStore] context]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"states.name = %@" , stateName];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"USACountiesByLocation" inManagedObjectContext:[[BFROStore sharedStore] context]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"location.name = %@" , stateName];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc]
                               initWithKey:@"name" ascending:YES];
     
@@ -206,14 +178,11 @@
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		// Update to handle the error appropriately.
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		exit(-1);  // Fail
 	}
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    tabbed.iivdc.leftSize = 0;
-    //datePicker.datePickerMode = UIDatePickerModeDate;
 }
 
 

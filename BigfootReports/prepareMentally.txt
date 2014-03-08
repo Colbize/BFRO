@@ -1,45 +1,10 @@
 
 						<!-- BEGIN CONTENT SECTION -->
 
-	<style type="text/css">
-		<!--
-		.long {margin-top: 5}
-		-->
-	</style>
-		<!--
-				A:link
-		{
-			ffont-weight: bold;
-			COLOR: #30a0ff;
-			ccolor: #aaeedf;
-			font-family: Arial, Helvetica, sans-serif;
-		}
-		A:active
-		{
-			ffont-weight: bold;
-			color: #b00000;
-			font-family: Arial, Helvetica, sans-serif;
-		}
-		A:visited
-		{
-			ffont-weight: bold;
-			CCOLOR: #88aa99;
-			COLOR: #206aaa;
-			font-family: Arial, Helvetica, sans-serif;
-		}
-		A:hover
-		{
-			ffont-weight: bold;
-			color: #e00000;
-			font-family: Arial, Helvetica, sans-serif;
-			text-decoration: underline overline;
-		}
-		-->
-
 <h1>The Little Green Men Analogy</h1><br>
 <em>by Matt Moneymaker, March 25, 2011</em>
 <hr color="#738325" noshade="" size="4">
-<table width="706">
+<table width="100%">
   <tbody><tr bordercolor="#CCCCCC" valign="top"> 
     <td height="1703">
 
@@ -95,7 +60,7 @@ It provides insight into their motivations. That helps you anticipate what they 
         hits, you may need to descend to a lower elevation quickly, or climb up 
         a mountain pass and over to the wind-sheltered side of the mountain range. Your family may need to get up and go immediately for other reasons too, like the family business.<br>
         <br>
-        <img src="images/caveman_hunting.gif" alt="cavemen" align="left" height="200" hspace="20" vspace="5" width="311">The family business is to "drive" herds of deer and contain them in particular grazing areas, kinda like cowboys do with cattle. Your family drives deer herds through the forest by making powerful knock sounds with large sticks. When your family spreads out a good distance apart, and forms a drive-line, they can drive the deer in the direction they need them to go, using coordinated knock sounds. The deer move away from those sounds. It scares them. <br>
+        <a href = "images/caveman_hunting.gif"><img src="images/caveman_hunting.gif" alt="cavemen" align="left" height="200" hspace="20" vspace="5" width="311"></a>The family business is to "drive" herds of deer and contain them in particular grazing areas, kinda like cowboys do with cattle. Your family drives deer herds through the forest by making powerful knock sounds with large sticks. When your family spreads out a good distance apart, and forms a drive-line, they can drive the deer in the direction they need them to go, using coordinated knock sounds. The deer move away from those sounds. It scares them. <br>
         <br>
         Sometimes when there's no good sticks handy, you will clack large rocks together. <br>
         <br>
@@ -116,7 +81,7 @@ It provides insight into their motivations. That helps you anticipate what they 
         <br>
         You  go for long walks at night, trolling for more deer that can be driven into particular valleys and tributaries, so they will be more accessible to you when you need them in winter. <br>
         <br>
-        <img src="images/deer_forest.jpg" alt="deer_forest" align="right" height="346" hspace="20" vspace="20" width="339">You want to the deer to stick around and graze on the most fattening nuts, berries and plants. You know where those areas are and know how to keep the deer contained in those areas. <br>
+        <a href = "images/deer_forest.jpg"><img src="images/deer_forest.jpg" alt="deer_forest" align="right" height="346" hspace="20" vspace="20" width="339"></a>You want to the deer to stick around and graze on the most fattening nuts, berries and plants. You know where those areas are and know how to keep the deer contained in those areas. <br>
         <br>
         <strong>Life is good as long as you can keep the peace in your area. You need to keep the peace so the deer feel safe and they stick around.</strong><br>
         <br>
@@ -134,7 +99,7 @@ It provides insight into their motivations. That helps you anticipate what they 
         the little green men from a distance as they travel over the land. Occasionally 
         some littel green men stop in your area and disturb the peace and scare the deer away -- the deer your family spent so much time driving into that area. You don't like that.<br>
         <br>
-        <img src="images/alien_light.jpg" alt="alien_light" align="left" height="327" hspace="15" vspace="20" width="218">The little green men are less than half your size, and seem to have only 
+        <a href = "images/alien_light.jpg"><img src="images/alien_light.jpg" alt="alien_light" align="left" height="327" hspace="15" vspace="20" width="218"></a>The little green men are less than half your size, and seem to have only
         a fraction of your strength, but they have many technologies and weapons.  <br>
         <br>
         Little green men cannot travel very fast on foot, especially 
@@ -253,7 +218,7 @@ It provides insight into their motivations. That helps you anticipate what they 
         move along the main trail. You follow them all the way back to their camp. It turns 
         out to be a camp full of little green men. <br>
         <br>
-        <img src="images/campfire.gif" alt="campfire" align="left" height="355" hspace="15" vspace="5" width="475">        Now you really want to know what they are up to, 
+        <a href="images/campfire.gif"><img src="images/campfire.gif" alt="campfire" align="left" height="355" hspace="15" vspace="5" width="475"></a>Now you really want to know what they are up to,
         so you continue to watch them from a safe distance until they go to sleep in their tents. You 
         see boxes and coolers in their camp, so you know there's food, but you don't know if they brought food, or if they are collecting food. You want to look in those boxes to find out if they are collecting <em>your food</em>.  The only way 
         you can do that safely is by waiting until they are all asleep. So you depart and then 

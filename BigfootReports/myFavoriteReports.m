@@ -7,12 +7,18 @@
 //
 
 #import "myFavoriteReports.h"
-#import "ReportViewController.h"
+#import "ReportsViewController.h"
+#import "ReportsByLocation.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface myFavoriteReports ()
 {
     NSArray *favDic;
     NSMutableDictionary *favoritesDic;
+    ReportsByLocation *reportsInfo;
+    UIView *hudView;
+    UIActivityIndicatorView *aiView;
+    UILabel *noReportsLabel;
 }
 @end
 
@@ -64,31 +70,6 @@
 }
 
 
-//- (void)tableView:(UITableView *)tableView
-//  willDisplayCell:(UITableViewCell *)cell
-//forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    cell.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_background"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_selected_background"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    
-//    cell.textLabel.textColor = [UIColor colorWithRed:190.0f/255.0f green:197.0f/255.0f blue:212.0f/255.0f alpha:1.0f];
-//    cell.textLabel.highlightedTextColor = cell.textLabel.textColor;
-//    cell.textLabel.shadowColor = [UIColor colorWithRed:33.0f/255.0f green:38.0f/255.0f blue:49.0f/255.0f alpha:1.0f];
-//    cell.textLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-//    cell.textLabel.backgroundColor = [UIColor clearColor];
-//    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0f];
-//    
-//    cell.imageView.clipsToBounds = YES;
-//    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    
-//    UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_selected_background"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
-//    
-//    [cell.contentView addSubview: separator];
-//    
-//}
-
-
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -119,37 +100,154 @@
 
 #pragma mark - Table view delegate
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReportViewController *rvc = [[ReportViewController alloc] init];
-    [rvc setReportID:[NSNumber numberWithInteger:[[tableView cellForRowAtIndexPath:indexPath].textLabel.text substringFromIndex:12].integerValue]];
-    [self.navigationController pushViewController:rvc animated:YES];
+        
+    hudView = [[UIView alloc] initWithFrame:CGRectMake(75, 155, 170, 170)];
+    hudView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    hudView.clipsToBounds = YES;
+    hudView.layer.cornerRadius = 10.0;
+    
+    aiView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    aiView.frame = CGRectMake(65, 40, aiView.bounds.size.width, aiView.bounds.size.height);
+    [hudView addSubview:aiView];
+    [hudView setCenter:self.view.center];
+    [aiView startAnimating];
+    
+    UILabel *captionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 130, 22)];
+    captionLabel.backgroundColor = [UIColor clearColor];
+    captionLabel.textColor = [UIColor whiteColor];
+    captionLabel.adjustsFontSizeToFitWidth = YES;
+    captionLabel.textAlignment = NSTextAlignmentCenter;
+    captionLabel.text = @"Loading Report...";
+    [hudView addSubview:captionLabel];
+    [self.tableView.superview addSubview:hudView];
+    
+    double delayInSeconds = .2;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+
+        ReportsViewController *rvc = [[ReportsViewController alloc] init];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription
+                                       entityForName:@"ReportsByLocation"
+                                       inManagedObjectContext:[[BFROStore sharedStore] context]];
+        [fetchRequest setEntity:entity];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(reportID = %@)", [NSNumber numberWithInteger:[[tableView cellForRowAtIndexPath:indexPath].textLabel.text substringFromIndex:12].integerValue]];
+        [fetchRequest setPredicate:predicate];
+        
+        NSError *error;
+        reportsInfo = [[[[BFROStore sharedStore] context] executeFetchRequest:fetchRequest error:&error] lastObject];
+        
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to load report." message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alert show];
+            NSLog(@"%@", error);
+        } else {
+            [rvc setReportInfo:reportsInfo];
+        
+            [self.navigationController pushViewController:rvc animated:YES];
+        }
+
+        [aiView stopAnimating];
+        [hudView removeFromSuperview];
+        
+    });
 }
 
 #pragma mark - view load methods
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+
     [super viewDidLoad];
-    
+    self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    UIColor * color = [UIColor colorWithRed:28/255.0f green:27/255.0f blue:26/255.0f alpha:1.0f];
-    self.navigationController.navigationBar.tintColor = color;
-//    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cell_background"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
     
-    favoritesDic = [[[NSUserDefaults standardUserDefaults] objectForKey:@"favoritesDictionary"] mutableCopy];
-    favDic = favoritesDic.allKeys;
-        
     [self.navigationItem setRightBarButtonItem:[self editButtonItem]];
+    
+    // OPEN DRAWER BUTTON
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithTitle:Nil
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self action:@selector(revealMenu)];
+    [menuButton setImage:[UIImage imageNamed:@"menuButton"]];
+    [menuButton setTintColor:[UIColor whiteColor]];
+    
+    [[self navigationItem] setLeftBarButtonItem:menuButton];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.tabBarController.tabBar setHidden:YES];
+
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
+    
+    [[self.navigationController navigationBar] setBarTintColor:[UIColor colorWithRed:255/255.0f green:77/255.0f blue:77/255.0f alpha:1.0f]];
+    
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    
     favoritesDic = [[[NSUserDefaults standardUserDefaults] objectForKey:@"favoritesDictionary"] mutableCopy];
     favDic = favoritesDic.allKeys;
     [self.tableView reloadData];
-    tabbed.iivdc.leftSize = 0;
+    
+    self.title = @"My Favorite Reports";
+    
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                            withAnimation:UIStatusBarAnimationSlide];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    UIColor * bcolor = [UIColor colorWithRed:232/255.0f green:232/255.0f blue:232/255.0f alpha:1.0f];
+    [self.tableView setBackgroundColor:bcolor];
+
+    
+    if (favDic.count < 1) {
+        if (!noReportsLabel)
+            noReportsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+            UIFont* font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+            
+            UIColor* textColor = [UIColor lightGrayColor];
+            
+            NSDictionary *attrs = @{ NSForegroundColorAttributeName : textColor,
+                                     NSFontAttributeName : font,
+                                     NSTextEffectAttributeName : NSTextEffectLetterpressStyle};
+            
+            NSAttributedString* attrString = [[NSAttributedString alloc]
+                                              initWithString:@"No Reports Added"
+                                              attributes:attrs];
+            
+            noReportsLabel.attributedText = attrString;
+            
+            [noReportsLabel setBackgroundColor:[UIColor clearColor]];
+            
+            [self.view.superview addSubview:noReportsLabel];
+            [noReportsLabel setCenter:CGPointMake(self.view.frame.size.width/2 + 25, self.view.frame.size.height/2)];
+    }
+
 }
 
+# pragma mark - reveal menu
+- (void)revealMenu
+{
+    [self.sideMenuViewController openMenuAnimated:YES completion:nil];
+}
 
+# pragma mark - rotate view
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [noReportsLabel setCenter:CGPointMake(self.view.frame.size.width/2 + 25, self.view.frame.size.height/2)];
+}
 @end
