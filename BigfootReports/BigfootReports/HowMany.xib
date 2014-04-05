@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
+            <connections>
+                <outlet property="view" destination="1" id="wLA-H0-pcV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHu-op-G6L">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">How many bigfoots are there?
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">The short answer: No one knows, and no one ever will know for sure. There are only estimates. The informed estimates range from roughly 2000 - 6000 individuals for all of North America (which includes all Canada and southern Alaska).</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Making Estimates of the Bigfoot Population">
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">Estimating abundance of an animal population is as complicated as it is inexact. There are many different formulas and methods for estimating population sizes, all of which depend on at least a few specimens being available to study, tag, and/or take sub-sample counts of, in a controlled study area by trained biologists. For the rarest animals that receive little to no attention from field biologists, such as wolverines and bigfoots, the process of making estimates is even more speculative and difficult.
+
+The processes for traditional animal counts involve equations and almost constant reevaluation of the methods used. Very little carries over from a strict, methodical scientific approach when the biologists only have testimonial data to work from. The only thing that does carry over is the idea of "observability."
+
+"Observability" in the field of wildlife biology is expressed as a number. The number is the accepted ratio of unobserved individuals to observed individuals in a given species population, or sub-sample of the population. For example, if mountain quail are being counted in a given study area, and the observability factor is 4 to 1, and 20 quail are actually counted in the study area, then the quail population in that study area is estimated at 80.
+
+This is an oversimplification of what goes into the entire process of determining an abundance estimate, not to mention how the proper observability factor is determined and tested.
+
+When making abundance estimates of a rare, elusive species such as wolverines or bigfoots, the only numbers that serve as "counts" are the credible sighting reports from the public. That brings in a lot more subjectivity into the process because it boils down to a matter of opinion as to which reports are reliable enough to be part of that count. Also, the observability factors for the most elusive animals are more subjective and basically impossible to test. But there has to be some observability factors if abundance estimates are to be made. The observability factors for bigfoots are estimates themselves -- based mostly on behavioral considerations of both human observers and bigfoots, and upon habitat size and the ballpark numbers for credible reports.
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Some of the considerations are:">
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">
+  -  The numbers of credible reports and track finds since that information started being gathered in the early 1960's.
+ -   The fact that most observers described having a lot of hesitation before reporting their observation (caused by the fear of ridicule from their peers) -- which suggests that most observers never come forward to report their observations.
+ -   Observations consistently suggesting extreme elusiveness, fear of humans, nocturnal feeding, and nomadism.
+ -   Observations consistently suggesting that bigfoots rarely ever remain in groups of more than three.
+ -   Observations consistently suggesting that bigfoots and bigfoot groups need a lot of space but stay more or less on the move in forests throughout their lives.
+ -   Observations suggesting that they are both foragers and predators.
+ -   Observations suggesting that they try to avoid leaving tracks where possible (other predators are known to do the same).
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="The two most common considerations are:">
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> -   How many individuals must there be in order to sustain a viable breeding population, and
+ -   How many is too many to be reasonable, considering the relative scarcity of observations and track finds compared to other animals.
+
+A question presented by these two considerations is: Whether the figure for consideration #1 is higher than the figure for consideration #2. In other words, would a minimum breeding population size necessarily exceed a reasonableness threshold given the scarcity of observations and evidence gathered by humans? That would certainly be the case if the minimum breeding population were 10 million individuals, but it would not be the case if the minimum breeding population were only 300 individuals.
+
+We know from other mammal species that have faced extinction in the past, that a population can go as low as a few hundred individuals and still be viable for many generations. So the theoretical minimum breeding population can be set at roughly 300 individuals.
+
+One problem with any population estimate, even if it is only a theoretical parameter, is that it causes many people to visualize one big herd in one valley representing the entire population. Not everyone can conceive of a four-digit population scattered across a big continent, and thus being so widely scattered that they might never live in groups of more than three or four individuals. One must have a mathematical sense to understand that a few thousand elusive, nocturnal, nomadic individuals that are spread out among millions of square miles would make for a very rare species indeed.
+
+That scenario raises the question of whether a population figure close to the minimal breeding population threshold is too low to explain the number of sighting reports across the continent.
+
+Bigfoot / sasquatch sightings and track finds started being documented more or less from the early 1960's onward. Since that time there have been roughly 3500 documented sightings and track finds that are thought to be credible. The documented sightings and track finds are thought to represent only a fraction of the actual observations by humans in North America during the same time frame. The reports come from basically everywhere across continent where there are coniferous forests. It is likely that many observations and track finds over the years involved the same individuals. But it is also likely that many bigfoots have never been observed by any humans.
+
+In the past when all the objective and subjective considerations have been juggled to come up with upper and lower parameters for a population size, those parameters have usually fallen in the neighborhood of 2000 - 6000.
+
+The higher figures are favored by those who suggest that there would be two to three times as many documented sightings, if Canada and southern Alaska had anywhere near the same human population density as the lower forty-eight states. Humans have to be present for an observation to occur. Where there are no humans, there are no sightings, but there might be just as many bigfoots.
+
+A figure of 2000-6000 would not exceed the reasonableness threshold, but it is well above the minimum breeding population figure.
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Wouldn't there be an observable effect on the environment?">
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="18" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">The short answer: Occasionally one can find subtle signs of their presence in areas they happen to be feeding in. Those signs may be "observable," but they are only noticeable if you know what you are looking for. When skeptical scientists talk about an "observable effect on the environment," they mean destructive effects that are so pronounced and dramatic that anyone would immediately notice the aftermath of foraging bigfoots.
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="The &quot;Observable Effect&quot; Argument">
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">When the fatal flaws of all the other anti-bigfoot arguments are exposed, the "observable effect" argument is usually the final card played by debating skeptics. But even that argument is easily deconstructed.
+
+The following is a passage from a scientific text which addresses the Giganto-Bigfoot Theory. It mentions the "observable effect" argument as it typically presented -- with no substantiation:
+
+ -  Some suggest that [gigantos] did not in fact become extinct, and continue to exist as the Sasquatch and the Yeti. [Gigantos] could have crossed the Bering Land Bridge, the same way humans are thought to have entered the New World (Geoffrey Bourne, 1975, cited in Ciochon et al., 1990). So far, though there have been many alleged sightings, no physical evidence has been recovered. One is led to suspect that the question of Sasquatch (and related entities) is more for comparative mythology, cultural anthropology, or psychology, since an actual creature the size of [giganto] existing in numbers sufficient to qualify as a breeding population would not only leave physical remains, but would have an observable effect on their environment.
+     
+    (From the Teeth of the Dragon - Gigantopithecus blacki by Eric Pettifor)
+
+The observable effect argument is based on the behavior of African mountain gorillas. It assumes that gigantos in North America would live the same way. Specifically that:
+
+ -  Surviving gigantos would live in sizeable troupes like African mountain gorillas.
+ -  Troupes of gigantos would stick to the same mountain sides for generations, like African mountain gorillas.
+ -  Gigantos would be basically strict herbivores like African mountain gorillas.
+ -  African plants and trees are like North American plants and trees.
+ -  Gigantos would forage in North American coniferous forests the same way mountain gorillas forage in tropical African forests.
+
+If we step back from these presumptions, without concluding that they are all definitely false, but rather accepting that they are merely unsupported premises, then we can focus on the important mathematical factor:
+
+If the population of surviving gigantos (bigfoots) in North America is somewhere in the ballpark of 2000-6000, or less, with a minimal breeding population of roughly 300, then there are exponentially more deer and elk sharing the same environment. Deer and elk, therefore, have an exponentially greater effect on the natural environment than bigfoots. But that exponentially greater effect is ... not noticeable at all unless someone shows you what to look for.
+
+In North American forests, forage is mainly the soft tips of mature plants and trees, wild fruits and berries - things that are not very noticeable when they are gone. Targeting these types of food sources does not leave an "observable effect on the environment," in the same way that gorilla groups leave an observable effect in their tropical environment. Bigfoots apparently target the same choice parts of plants and trees as deer. Calorie for calorie it's the most efficient use of their foraging energy in North American forests -- forests that don't have bamboo groves, or the fleshy tropical broad-leafed trees and plants that mountain gorillas tend to tear apart.
+
+Even though bigfoots don't have tropical plants to feed on in North America, there is lots of coniferous forest forage here if you need to find it. Bigfoots can reach higher than deer and elk, so there is always more than enough for them to choose from in the growing seasons, no matter have much deer and elk competition they have. Reports and other evidence suggest they are predatory also, and seem to become more predatory in the winter months when the forage options are reduced.
+
+Between their ability to reach where other large forest foragers cannot reach, and their predation on other forest foragers when necessary, they have an enormous amount of food to select from in North America -- more than enough for a breeding population, without having to tear apart trees or cause any other "observable effect on the environment."
+
+Bigfoots do break branches and saplings occasionally, seemingly to mark trails, but that is nothing like the forest demolition performed by troupes of mountain gorillas in Africa. The occasional branch breakage above and alongside game trails in North America is visible, but it is not very dramatic. Most people would never pay much attention to these trail markers if they passed by them. If trail markers are observed by an average wildlife biologist who is not knowledgeable on this subject, he/she would never suspect a surviving wood ape as the culprit, even if there was no other apparent explanation for the characteristic twisting that requires enormous strength and can only be accomplish by something with hands.</string>
+                            <attributes>
+                                <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                <font key="NSOriginalFont" size="16" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="QHu-op-G6L" secondAttribute="bottom" id="Ml9-Pc-CbJ"/>
+                <constraint firstItem="QHu-op-G6L" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="NRK-J2-glb"/>
+                <constraint firstItem="QHu-op-G6L" firstAttribute="top" secondItem="1" secondAttribute="top" id="bf9-Qd-uRK"/>
+                <constraint firstAttribute="trailing" secondItem="QHu-op-G6L" secondAttribute="trailing" id="pGq-F3-xzL"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

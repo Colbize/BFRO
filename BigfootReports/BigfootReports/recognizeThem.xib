@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIViewController">
+            <connections>
+                <outlet property="view" destination="1" id="XNQ-Mc-vCW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB0-FH-VlH">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <string key="text">[This answer is adapted from a letter Matt prepared for a tribal council a couple of years ago.]
+
+One of the BFRO’s main goals is to force governmental land use agencies to acknowledge the existence of the sasquatch in management plans. Major land use policies can then be appropriately developed as they are established or periodically revised by state and federal administrators and legislators.
+
+Some of us might decide or agree that it is best to leave these elusive animals alone, but documentation remains a necessity for the good of the species. Society must come to acknowledge and respect their reality because habitat is not left alone. It is not unreasonable to imagine that sensitive ecosystems could be completely obliterated or fatally compromised if we were to "leave them alone" to the point of denying their existence. Without official acknowledgement, habitat, home ranges, and/or migration routes they've relied upon for centuries might be forever lost.
+
+The sasquatch is certainly rare and possibly endangered. Contrary to what many skeptics suggest, we think it is possible to achieve recognition from the scientific community and, subsequently, governmental agencies by means of clear videographic evidence. Once that is achieved, resources from private and governmental sources will facilitate studies to understand the biology of this species so as to ensure its future viability.</string>
+                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="KB0-FH-VlH" secondAttribute="bottom" id="GHZ-FC-e7B"/>
+                <constraint firstItem="KB0-FH-VlH" firstAttribute="top" secondItem="1" secondAttribute="top" id="be8-hC-iBh"/>
+                <constraint firstAttribute="trailing" secondItem="KB0-FH-VlH" secondAttribute="trailing" id="gX3-lv-roa"/>
+                <constraint firstItem="KB0-FH-VlH" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="tXE-vo-zO0"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

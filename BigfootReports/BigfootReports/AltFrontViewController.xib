@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AltFrontViewController">
+            <connections>
+                <outlet property="browseReports" destination="wyi-L7-aP5" id="Ha1-xO-d6n"/>
+                <outlet property="recentReports" destination="HpO-hN-H6F" id="ZKQ-Dk-waq"/>
+                <outlet property="spinner" destination="Lhg-uK-cvE" id="tTU-gu-K3B"/>
+                <outlet property="submitAReport" destination="mPT-qz-P1U" id="HEm-mn-GeG"/>
+                <outlet property="view" destination="pwn-n3-fga" id="ZFx-Sr-DWg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="pwn-n3-fga">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BFROLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="fOg-A7-Gcs">
+                    <rect key="frame" x="20" y="45" width="280" height="109"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="109" id="xdT-ww-Sec"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpO-hN-H6F">
+                    <rect key="frame" x="20" y="208" width="280" height="42"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.36439155953974184" green="0.38885159930604307" blue="0.42307692307692313" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Most Recent Reports">
+                        <color key="titleColor" red="0.88627457620000005" green="0.88627457620000005" blue="0.88627457620000005" alpha="1" colorSpace="deviceRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="recentReports:" destination="-1" eventType="touchUpInside" id="MlA-Dh-GOM"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPT-qz-P1U">
+                    <rect key="frame" x="20" y="308" width="280" height="42"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.58598618058084484" green="0.62148178797305587" blue="0.6857854920814479" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="RLO-7L-0tF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Submit a Report">
+                        <color key="titleColor" red="0.88627457620000005" green="0.88627457620000005" blue="0.88627457620000005" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" red="0.56341951246851119" green="0.57454193648388052" blue="0.61298076923076916" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="submitReport:" destination="-1" eventType="touchUpInside" id="Ur4-lX-CSC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyi-L7-aP5">
+                    <rect key="frame" x="20" y="258" width="280" height="42"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.46342093348718588" green="0.49452838964218149" blue="0.53805500565610864" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="NvU-Bu-Ujv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Browse Reports DB">
+                        <color key="titleColor" red="0.88627457620000005" green="0.88627457620000005" blue="0.88627457620000005" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="browseReports:" destination="-1" eventType="touchUpInside" id="DI0-bk-dWt"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Lhg-uK-cvE">
+                    <rect key="frame" x="267" y="219" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Lhg-uK-cvE" secondAttribute="trailing" constant="33" id="0cd-LV-4wk"/>
+                <constraint firstItem="fOg-A7-Gcs" firstAttribute="leading" secondItem="pwn-n3-fga" secondAttribute="leading" constant="20" symbolic="YES" id="D6w-mZ-9Dt"/>
+                <constraint firstItem="wyi-L7-aP5" firstAttribute="top" secondItem="Lhg-uK-cvE" secondAttribute="bottom" constant="19" id="KaT-rr-AEz"/>
+                <constraint firstItem="mPT-qz-P1U" firstAttribute="leading" secondItem="wyi-L7-aP5" secondAttribute="leading" id="LuN-bl-ep6"/>
+                <constraint firstItem="fOg-A7-Gcs" firstAttribute="top" secondItem="pwn-n3-fga" secondAttribute="top" constant="45" id="O4g-H3-ar8"/>
+                <constraint firstItem="mPT-qz-P1U" firstAttribute="trailing" secondItem="wyi-L7-aP5" secondAttribute="trailing" id="OcF-Fr-s0G"/>
+                <constraint firstItem="wyi-L7-aP5" firstAttribute="trailing" secondItem="HpO-hN-H6F" secondAttribute="trailing" id="SHj-9x-FPg"/>
+                <constraint firstItem="HpO-hN-H6F" firstAttribute="top" secondItem="fOg-A7-Gcs" secondAttribute="bottom" constant="54" id="TbQ-Kr-iFU"/>
+                <constraint firstItem="Lhg-uK-cvE" firstAttribute="centerY" secondItem="HpO-hN-H6F" secondAttribute="centerY" id="VYY-Fs-NAJ"/>
+                <constraint firstItem="HpO-hN-H6F" firstAttribute="leading" secondItem="wyi-L7-aP5" secondAttribute="leading" id="WYQ-PT-5n4"/>
+                <constraint firstItem="mPT-qz-P1U" firstAttribute="top" secondItem="wyi-L7-aP5" secondAttribute="bottom" constant="8" symbolic="YES" id="ZfW-z4-D4e"/>
+                <constraint firstItem="fOg-A7-Gcs" firstAttribute="trailing" secondItem="HpO-hN-H6F" secondAttribute="trailing" id="aff-y2-YTb"/>
+                <constraint firstItem="HpO-hN-H6F" firstAttribute="leading" secondItem="fOg-A7-Gcs" secondAttribute="leading" id="axM-xC-JVu"/>
+                <constraint firstItem="wyi-L7-aP5" firstAttribute="top" secondItem="HpO-hN-H6F" secondAttribute="bottom" constant="8" symbolic="YES" id="fjt-IX-yqf"/>
+                <constraint firstAttribute="trailing" secondItem="fOg-A7-Gcs" secondAttribute="trailing" constant="20" symbolic="YES" id="rOE-eK-PTs"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="BFROLogo.png" width="518" height="261"/>
+    </resources>
+</document>

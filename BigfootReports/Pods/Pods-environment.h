@@ -1,0 +1,98 @@
+
+// To check if a library is compiled with CocoaPods you
+// can use the `COCOAPODS` macro definition which is
+// defined in the xcconfigs so it is available in
+// headers also when they are imported in the client
+// project.
+
+
+// AFNetworking
+#define COCOAPODS_POD_AVAILABLE_AFNetworking
+#define COCOAPODS_VERSION_MAJOR_AFNetworking 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking 1
+
+// AFNetworking/NSURLConnection
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLConnection
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLConnection 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 1
+
+// AFNetworking/NSURLSession
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLSession
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLSession 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLSession 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLSession 1
+
+// AFNetworking/Reachability
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_Reachability
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_Reachability 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 1
+
+// AFNetworking/Security
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_Security
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_Security 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Security 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Security 1
+
+// AFNetworking/Serialization
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_Serialization
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_Serialization 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 1
+
+// AFNetworking/UIKit
+#define COCOAPODS_POD_AVAILABLE_AFNetworking_UIKit
+#define COCOAPODS_VERSION_MAJOR_AFNetworking_UIKit 2
+#define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
+
+// Facebook-iOS-SDK
+#define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
+#define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
+#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 13
+#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
+
+// Instabug
+#define COCOAPODS_POD_AVAILABLE_Instabug
+#define COCOAPODS_VERSION_MAJOR_Instabug 1
+#define COCOAPODS_VERSION_MINOR_Instabug 6
+#define COCOAPODS_VERSION_PATCH_Instabug 0
+
+// MWFeedParser/NSString+HTML
+#define COCOAPODS_POD_AVAILABLE_MWFeedParser_NSString_HTML
+#define COCOAPODS_VERSION_MAJOR_MWFeedParser_NSString_HTML 1
+#define COCOAPODS_VERSION_MINOR_MWFeedParser_NSString_HTML 0
+#define COCOAPODS_VERSION_PATCH_MWFeedParser_NSString_HTML 1
+
+// RaptureXML
+#define COCOAPODS_POD_AVAILABLE_RaptureXML
+#define COCOAPODS_VERSION_MAJOR_RaptureXML 1
+#define COCOAPODS_VERSION_MINOR_RaptureXML 0
+#define COCOAPODS_VERSION_PATCH_RaptureXML 1
+
+// STTwitter
+#define COCOAPODS_POD_AVAILABLE_STTwitter
+#define COCOAPODS_VERSION_MAJOR_STTwitter 0
+#define COCOAPODS_VERSION_MINOR_STTwitter 1
+#define COCOAPODS_VERSION_PATCH_STTwitter 2
+
+// TWTSideMenuViewController
+#define COCOAPODS_POD_AVAILABLE_TWTSideMenuViewController
+#define COCOAPODS_VERSION_MAJOR_TWTSideMenuViewController 0
+#define COCOAPODS_VERSION_MINOR_TWTSideMenuViewController 3
+#define COCOAPODS_VERSION_PATCH_TWTSideMenuViewController 0
+
+// TouchXML
+#define COCOAPODS_POD_AVAILABLE_TouchXML
+#define COCOAPODS_VERSION_MAJOR_TouchXML 0
+#define COCOAPODS_VERSION_MINOR_TouchXML 1
+#define COCOAPODS_VERSION_PATCH_TouchXML 0
+
+// iRate
+#define COCOAPODS_POD_AVAILABLE_iRate
+#define COCOAPODS_VERSION_MAJOR_iRate 1
+#define COCOAPODS_VERSION_MINOR_iRate 9
+#define COCOAPODS_VERSION_PATCH_iRate 3
+

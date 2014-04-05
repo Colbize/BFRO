@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LicenseViewController">
+            <connections>
+                <outlet property="MWFeedParserLabel" destination="m7y-Tf-kW1" id="LmQ-R4-MWa"/>
+                <outlet property="TDBadgeLabel" destination="qn0-zn-8dJ" id="vO0-qS-FO0"/>
+                <outlet property="TWTSideMenuViewControllerLabel" destination="1Yp-D3-mW1" id="2VI-hF-peA"/>
+                <outlet property="TwitterLabel" destination="amk-yy-gnL" id="VV3-GD-jVG"/>
+                <outlet property="afnetworkingLabel" destination="kzf-Tc-SO8" id="C7R-VE-Kyy"/>
+                <outlet property="iRateLabel" destination="YT9-hD-8LG" id="Hip-Q3-YIn"/>
+                <outlet property="licenseLabel" destination="rmT-Gs-4qL" id="zkc-Hj-SEs"/>
+                <outlet property="popoverLabel" destination="Byl-TI-WHJ" id="rTH-ej-OCj"/>
+                <outlet property="raptureXML" destination="UG8-Wq-lPN" id="kCb-ki-vPb"/>
+                <outlet property="toastLabel" destination="j9j-Af-IGC" id="38k-gU-NVb"/>
+                <outlet property="view" destination="ST3-wu-jWf" id="Qjb-NF-exg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ST3-wu-jWf">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="2118"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmT-Gs-4qL">
+                    <rect key="frame" x="20" y="20" width="728" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="ecb-by-co9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="aMh-xO-shZ">
+                    <rect key="frame" x="20" y="63" width="728" height="89"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="89" id="F8B-CS-Aaz"/>
+                    </constraints>
+                    <string key="text">There are a number of open source products and libraries used in the development of this application.  Their licenses are included here:</string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f88-1p-GX0">
+                    <rect key="frame" x="20" y="160" width="728" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="App Icons Provided by icons8">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="icons8:" destination="-1" eventType="touchUpInside" id="wnx-uI-EVJ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Yp-D3-mW1">
+                    <rect key="frame" x="20" y="198" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="Dga-xF-t1A"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="Hws-Mz-adY">
+                    <rect key="frame" x="20" y="239" width="728" height="157"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="157" id="7Vi-eG-swJ"/>
+                    </constraints>
+                    <string key="text">The MIT License (MIT)
+Copyright © 2013 Two Toasters &lt;general@twotoasters.com&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amk-yy-gnL">
+                    <rect key="frame" x="20" y="404" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="dt0-9R-2Se"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="Cxr-jG-5KW">
+                    <rect key="frame" x="20" y="445" width="728" height="225"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="225" id="cPS-NN-LXF"/>
+                    </constraints>
+                    <string key="text">STTwitter   
+  
+Copyright (c) 2012-2013, Nicolas Seriot
+All rights reserved.
+    
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+    
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+* Neither the name of the Nicolas Seriot nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+    
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzf-Tc-SO8">
+                    <rect key="frame" x="20" y="678" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="jLk-S0-sPk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YT9-hD-8LG">
+                    <rect key="frame" x="20" y="866" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="dWJ-uc-Tfe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7y-Tf-kW1">
+                    <rect key="frame" x="20" y="1121" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="c7b-L4-jb3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byl-TI-WHJ">
+                    <rect key="frame" x="20" y="1361" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="eC6-lx-DY6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="nuM-I8-Esi">
+                    <rect key="frame" x="20" y="1402" width="728" height="171"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="171" id="LDP-Jf-aX8"/>
+                    </constraints>
+                    <string key="text">(MIT Licensed)
+
+Copyright (c) 2012 Runway 20 Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qn0-zn-8dJ">
+                    <rect key="frame" x="20" y="1581" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="sic-Hu-0xZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="mwU-tD-Npx">
+                    <rect key="frame" x="20" y="1622" width="728" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="apq-Cu-Z6S"/>
+                    </constraints>
+                    <string key="text">TDBadgedCell is a free to use class for everyone. I wrote it so people could have the badges Apple never provided us with. If you modify the source please share alike and if you think you've improved upon what I have written I recomend sending me a pull request.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="8vf-cy-MD9">
+                    <rect key="frame" x="20" y="1717" width="728" height="191"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="191" id="7It-uF-irp"/>
+                    </constraints>
+                    <string key="text">Toast+UIView.h
+Toast
+Version 2.0
+
+Copyright (c) 2013 Charles Scalesse.
+ 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9j-Af-IGC">
+                    <rect key="frame" x="20" y="1676" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="EO2-Ol-U6D"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="RKX-8I-SFU">
+                    <rect key="frame" x="20" y="1162" width="728" height="191"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="191" id="QkF-D9-opA"/>
+                    </constraints>
+                    <string key="text">Copyright (c) 2010 Michael Waterfall
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+1. The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+2. This Software cannot be used to archive or collect data such as (but not limited to) that of events, news, experiences and activities, for the purpose of any concept relating to diary/journal keeping.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="xD9-3P-Sbe">
+                    <rect key="frame" x="20" y="907" width="728" height="206"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="206" id="173-ZP-qOR"/>
+                    </constraints>
+                    <string key="text">iRate
+
+Version 1.9.3, February 5th, 2014
+
+Copyright (C) 2011 Charcoal Design
+
+This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
+
+The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+
+Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+
+This notice may not be removed or altered from any source distribution.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="AzC-hD-UbL">
+                    <rect key="frame" x="20" y="719" width="728" height="139"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="139" id="4Rc-GM-nIv"/>
+                    </constraints>
+                    <string key="text">Copyright (c) 2013 AFNetworking (http://afnetworking.com/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="Mr2-y9-Ax0">
+                    <rect key="frame" x="20" y="1957" width="728" height="141"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="141" id="T0q-bV-lqi"/>
+                    </constraints>
+                    <mutableString key="text">Copyright (c) 2013 John Blanco
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UG8-Wq-lPN">
+                    <rect key="frame" x="20" y="1916" width="728" height="33"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="UZU-c7-FgV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="m7y-Tf-kW1" firstAttribute="top" secondItem="xD9-3P-Sbe" secondAttribute="bottom" constant="8" symbolic="YES" id="0sr-Ig-uac"/>
+                <constraint firstItem="Cxr-jG-5KW" firstAttribute="top" secondItem="amk-yy-gnL" secondAttribute="bottom" constant="8" symbolic="YES" id="2q0-91-f5T"/>
+                <constraint firstItem="Byl-TI-WHJ" firstAttribute="trailing" secondItem="nuM-I8-Esi" secondAttribute="trailing" id="2qk-sc-awi"/>
+                <constraint firstItem="1Yp-D3-mW1" firstAttribute="leading" secondItem="f88-1p-GX0" secondAttribute="leading" id="45b-g8-qZS"/>
+                <constraint firstItem="rmT-Gs-4qL" firstAttribute="top" secondItem="ST3-wu-jWf" secondAttribute="top" constant="20" symbolic="YES" id="922-Pi-Am5"/>
+                <constraint firstItem="Hws-Mz-adY" firstAttribute="top" secondItem="1Yp-D3-mW1" secondAttribute="bottom" constant="8" symbolic="YES" id="9UA-aF-2YD"/>
+                <constraint firstItem="UG8-Wq-lPN" firstAttribute="leading" secondItem="Mr2-y9-Ax0" secondAttribute="leading" id="AW1-a6-CoO"/>
+                <constraint firstItem="Cxr-jG-5KW" firstAttribute="leading" secondItem="amk-yy-gnL" secondAttribute="leading" id="B5e-cM-sgl"/>
+                <constraint firstItem="AzC-hD-UbL" firstAttribute="top" secondItem="kzf-Tc-SO8" secondAttribute="bottom" constant="8" symbolic="YES" id="C4a-xk-vJn"/>
+                <constraint firstItem="m7y-Tf-kW1" firstAttribute="leading" secondItem="RKX-8I-SFU" secondAttribute="leading" id="CY7-Va-5wH"/>
+                <constraint firstItem="amk-yy-gnL" firstAttribute="trailing" secondItem="Hws-Mz-adY" secondAttribute="trailing" id="D4L-vn-0BW"/>
+                <constraint firstItem="xD9-3P-Sbe" firstAttribute="top" secondItem="YT9-hD-8LG" secondAttribute="bottom" constant="8" symbolic="YES" id="E1a-Rm-vqt"/>
+                <constraint firstItem="AzC-hD-UbL" firstAttribute="trailing" secondItem="YT9-hD-8LG" secondAttribute="trailing" id="E3X-fe-br5"/>
+                <constraint firstItem="nuM-I8-Esi" firstAttribute="top" secondItem="Byl-TI-WHJ" secondAttribute="bottom" constant="8" symbolic="YES" id="FE8-me-nOJ"/>
+                <constraint firstItem="8vf-cy-MD9" firstAttribute="top" secondItem="j9j-Af-IGC" secondAttribute="bottom" constant="8" symbolic="YES" id="FgA-Pl-JsY"/>
+                <constraint firstItem="xD9-3P-Sbe" firstAttribute="leading" secondItem="YT9-hD-8LG" secondAttribute="leading" id="Gtv-Mg-jGf"/>
+                <constraint firstItem="rmT-Gs-4qL" firstAttribute="leading" secondItem="ST3-wu-jWf" secondAttribute="leading" constant="20" symbolic="YES" id="HLh-Mt-sxm"/>
+                <constraint firstItem="aMh-xO-shZ" firstAttribute="trailing" secondItem="rmT-Gs-4qL" secondAttribute="trailing" id="HoX-Fm-WZd"/>
+                <constraint firstItem="aMh-xO-shZ" firstAttribute="trailing" secondItem="f88-1p-GX0" secondAttribute="trailing" id="O3H-t9-kAa"/>
+                <constraint firstItem="mwU-tD-Npx" firstAttribute="trailing" secondItem="j9j-Af-IGC" secondAttribute="trailing" id="OBr-oo-qs6"/>
+                <constraint firstItem="mwU-tD-Npx" firstAttribute="top" secondItem="qn0-zn-8dJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Pxf-fZ-juh"/>
+                <constraint firstItem="YT9-hD-8LG" firstAttribute="top" secondItem="AzC-hD-UbL" secondAttribute="bottom" constant="8" symbolic="YES" id="QmA-6B-v0I"/>
+                <constraint firstItem="1Yp-D3-mW1" firstAttribute="leading" secondItem="Hws-Mz-adY" secondAttribute="leading" id="S93-TY-1Zb"/>
+                <constraint firstItem="mwU-tD-Npx" firstAttribute="trailing" secondItem="qn0-zn-8dJ" secondAttribute="trailing" id="SZW-lV-y7p"/>
+                <constraint firstItem="Byl-TI-WHJ" firstAttribute="leading" secondItem="nuM-I8-Esi" secondAttribute="leading" id="Tlj-pf-6xF"/>
+                <constraint firstItem="m7y-Tf-kW1" firstAttribute="leading" secondItem="xD9-3P-Sbe" secondAttribute="leading" id="Tmc-a0-sfd"/>
+                <constraint firstItem="j9j-Af-IGC" firstAttribute="leading" secondItem="8vf-cy-MD9" secondAttribute="leading" id="UJF-R0-8bm"/>
+                <constraint firstItem="Hws-Mz-adY" firstAttribute="leading" secondItem="amk-yy-gnL" secondAttribute="leading" id="VXR-vh-d39"/>
+                <constraint firstItem="UG8-Wq-lPN" firstAttribute="top" secondItem="8vf-cy-MD9" secondAttribute="bottom" constant="8" symbolic="YES" id="ZwF-b8-hKu"/>
+                <constraint firstAttribute="bottom" secondItem="Mr2-y9-Ax0" secondAttribute="bottom" constant="20" symbolic="YES" id="a1b-QK-IrT"/>
+                <constraint firstItem="kzf-Tc-SO8" firstAttribute="top" secondItem="Cxr-jG-5KW" secondAttribute="bottom" constant="8" symbolic="YES" id="dIt-Un-KhD"/>
+                <constraint firstItem="RKX-8I-SFU" firstAttribute="trailing" secondItem="m7y-Tf-kW1" secondAttribute="trailing" id="eGT-Ug-SmC"/>
+                <constraint firstItem="RKX-8I-SFU" firstAttribute="leading" secondItem="Byl-TI-WHJ" secondAttribute="leading" id="eJA-pk-ztp"/>
+                <constraint firstAttribute="trailing" secondItem="rmT-Gs-4qL" secondAttribute="trailing" constant="20" symbolic="YES" id="hKD-5J-CBj"/>
+                <constraint firstItem="AzC-hD-UbL" firstAttribute="leading" secondItem="YT9-hD-8LG" secondAttribute="leading" id="hf8-mA-T0V"/>
+                <constraint firstItem="UG8-Wq-lPN" firstAttribute="leading" secondItem="8vf-cy-MD9" secondAttribute="leading" id="hqh-A5-OIL"/>
+                <constraint firstItem="f88-1p-GX0" firstAttribute="leading" secondItem="aMh-xO-shZ" secondAttribute="leading" id="hz0-MD-98c"/>
+                <constraint firstItem="f88-1p-GX0" firstAttribute="top" secondItem="aMh-xO-shZ" secondAttribute="bottom" constant="8" symbolic="YES" id="i7x-D4-bMJ"/>
+                <constraint firstItem="1Yp-D3-mW1" firstAttribute="top" secondItem="f88-1p-GX0" secondAttribute="bottom" constant="8" symbolic="YES" id="iHc-Op-KiK"/>
+                <constraint firstItem="j9j-Af-IGC" firstAttribute="top" secondItem="mwU-tD-Npx" secondAttribute="bottom" constant="8" symbolic="YES" id="j88-Sm-DD4"/>
+                <constraint firstItem="1Yp-D3-mW1" firstAttribute="trailing" secondItem="f88-1p-GX0" secondAttribute="trailing" id="jLp-QE-L5g"/>
+                <constraint firstItem="kzf-Tc-SO8" firstAttribute="leading" secondItem="AzC-hD-UbL" secondAttribute="leading" id="kDL-kP-Z8C"/>
+                <constraint firstItem="aMh-xO-shZ" firstAttribute="top" secondItem="rmT-Gs-4qL" secondAttribute="bottom" constant="8" symbolic="YES" id="lCq-Db-DCA"/>
+                <constraint firstItem="Cxr-jG-5KW" firstAttribute="leading" secondItem="kzf-Tc-SO8" secondAttribute="leading" id="lon-72-o25"/>
+                <constraint firstItem="RKX-8I-SFU" firstAttribute="top" secondItem="m7y-Tf-kW1" secondAttribute="bottom" constant="8" symbolic="YES" id="pKy-qd-Kk9"/>
+                <constraint firstItem="qn0-zn-8dJ" firstAttribute="top" secondItem="nuM-I8-Esi" secondAttribute="bottom" constant="8" symbolic="YES" id="phW-TZ-msV"/>
+                <constraint firstItem="xD9-3P-Sbe" firstAttribute="trailing" secondItem="YT9-hD-8LG" secondAttribute="trailing" id="qEy-Ie-wxj"/>
+                <constraint firstItem="AzC-hD-UbL" firstAttribute="trailing" secondItem="kzf-Tc-SO8" secondAttribute="trailing" id="rys-nt-mug"/>
+                <constraint firstItem="Byl-TI-WHJ" firstAttribute="top" secondItem="RKX-8I-SFU" secondAttribute="bottom" constant="8" symbolic="YES" id="sZp-HF-AgE"/>
+                <constraint firstItem="qn0-zn-8dJ" firstAttribute="leading" secondItem="nuM-I8-Esi" secondAttribute="leading" id="tBI-NS-Z5E"/>
+                <constraint firstItem="aMh-xO-shZ" firstAttribute="leading" secondItem="rmT-Gs-4qL" secondAttribute="leading" id="u6W-nd-5yu"/>
+                <constraint firstItem="amk-yy-gnL" firstAttribute="top" secondItem="Hws-Mz-adY" secondAttribute="bottom" constant="8" symbolic="YES" id="uzH-NW-bAV"/>
+                <constraint firstItem="Mr2-y9-Ax0" firstAttribute="top" secondItem="UG8-Wq-lPN" secondAttribute="bottom" constant="8" symbolic="YES" id="w5u-64-wV6"/>
+                <constraint firstItem="mwU-tD-Npx" firstAttribute="leading" secondItem="j9j-Af-IGC" secondAttribute="leading" id="x04-eI-LDe"/>
+                <constraint firstItem="mwU-tD-Npx" firstAttribute="leading" secondItem="qn0-zn-8dJ" secondAttribute="leading" id="yD8-ZS-7kl"/>
+                <constraint firstItem="Mr2-y9-Ax0" firstAttribute="trailing" secondItem="UG8-Wq-lPN" secondAttribute="trailing" id="yUi-Zr-uVX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </scrollView>
+    </objects>
+</document>
