@@ -202,6 +202,17 @@
 - (void)findMe
 {
     [map setShowsUserLocation:YES];
+    
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+    }
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) {
+        findMeYN = YES;
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        [self.map makeToast:@"Location Service Not Enabled. To Enable go to iPhone Settings > Privacy > Location Services > BFRO to re-enable" duration:7.0 position:@"center"];
+    }
+    
     [locationManager startUpdatingLocation];
     findMeYN = YES;
 }

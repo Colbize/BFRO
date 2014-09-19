@@ -241,6 +241,7 @@
     
     [[cell tweetDate] setText:[dateFormatter stringFromDate:date]];
     cell.tweetDate.font = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? [UIFont fontWithName:@"HelveticaNeue-Bold" size:12] : [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+    [cell.tweetDate setAdjustsFontSizeToFitWidth:YES];
     
     [[cell tweet] setText:nil];
     [[cell tweet] setText:[tweet stringByDecodingHTMLEntities]]; //Helvetica Neue Bold 12.0

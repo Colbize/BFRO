@@ -7,19 +7,14 @@
 //
 
 #import "SettingsViewController.h"
-#import <Social/Social.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "LicenseViewController.h"
 #import "ImageViewController.h"
-#import "Instabug/Instabug.h"
 
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
-static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6plm3.apps.googleusercontent.com";
-@synthesize signInButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,7 +35,7 @@ static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6p
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -55,14 +50,10 @@ static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6p
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     if (indexPath.row == 0) {
-        [cell.textLabel setText:@"Send Feedback"];
-    } else if (indexPath.row == 1) {
-        [cell.textLabel setText:@"Submit a Bug"];
-    } else if (indexPath.row == 2) {
         [cell.textLabel setText:@"Rate App"];
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 1) {
         [cell.textLabel setText:@"Contact Us"];
-    } else if (indexPath.row == 4) {
+    } else if (indexPath.row == 2) {
         [cell.textLabel setText:@"Licenses"];
     }
     return cell;
@@ -71,28 +62,14 @@ static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6p
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        
-        [Instabug setButtonsColor:[UIColor colorWithRed:(58/255.0) green:(69/255.0) blue:(80/255.0) alpha:1.0]];
-        [Instabug setButtonsFontColor:[UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:1.0]];
-        [Instabug setHeaderColor:[UIColor colorWithRed:(130/255.0) green:(98/255.0) blue:(145/255.0) alpha:1.0]];
-        [Instabug setHeaderFontColor:[UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:1.0]];
-        [Instabug setTextBackgroundColor:[UIColor colorWithRed:(249/255.0) green:(249/255.0) blue:(249/255.0) alpha:1.0]];
-        [Instabug setTextFontColor:[UIColor colorWithRed:(82/255.0) green:(83/255.0) blue:(83/255.0) alpha:1.0]];
-        [Instabug ShowFeedbackFormWithScreenshot:(BOOL)NO];
-
-    } else if (indexPath.row == 1) {
-        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"How to Submit a Bug:" message:@"To submit a bug, go to where the bug is occuring within the app and shake the device for 2 seconds.  The app will automatically take a screenshot and you may annotate and/or add text along with the bug submission. Thank you for your support!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alertview show];
-        [alertview setTag:0];
-    } else if (indexPath.row == 2) {
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:nil message:@"Ratings are extremely apperciated! If you have any issues with the app please contact us first! Thank you." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alertview show];
         [alertview setTag:1];
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 1) {
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Contact Us Via:" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Phone", @"E-Mail", nil];
         [alertview show];
         [alertview setTag:2];
-    } else if (indexPath.row == 4) {
+    } else if (indexPath.row == 2) {
         LicenseViewController *license = [[LicenseViewController alloc] init];
         [self.navigationController pushViewController:license animated:YES];
     }
@@ -112,7 +89,7 @@ static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6p
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 1) {
-        NSString* url = [NSString stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=680262157"];
+        NSString* url = [NSString stringWithFormat: @"https://itunes.apple.com/us/app/bfro/id826168573?ls=1&mt=8"];
         [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
     } else if (alertView.tag  == 2) {
         if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Phone"]) {
@@ -203,12 +180,20 @@ static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6p
     [self.tableView setDataSource:self];
     
     NSAttributedString *designedBy = [[NSAttributedString alloc]
-                                      initWithString:@"Designed and Developed By:"
+                                      initWithString:@"Designed and Developed By Colby Reineke."
                                       attributes:@{ NSForegroundColorAttributeName : [UIColor darkGrayColor],
                                                     NSFontAttributeName : [UIFont fontWithName:@"Helvetica Neue" size:13.5],
                                                     NSTextEffectAttributeName : NSTextEffectLetterpressStyle}];
     
     self.designedBy.attributedText = designedBy;
+    
+    NSAttributedString *copyright = [[NSAttributedString alloc]
+                                      initWithString:@"Copyright BFRO © 2015"
+                                      attributes:@{ NSForegroundColorAttributeName : [UIColor darkGrayColor],
+                                                    NSFontAttributeName : [UIFont fontWithName:@"Helvetica Neue" size:15],
+                                                    NSTextEffectAttributeName : NSTextEffectLetterpressStyle}];
+    
+    self.copyright.attributedText = copyright;
     
 }
 
@@ -220,17 +205,6 @@ static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6p
     [self.navigationController.navigationBar setBarTintColor:color];
 
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
-    
-    if ([[GPPSignIn sharedInstance] authentication]) {
-        [self.signOutButton setTitle:@"SignOut of Google+" forState:UIControlStateNormal];
-        UIColor * color = [UIColor colorWithRed:255/255.0f green:93/255.0f blue:86/255.0f alpha:1.0f];
-        [self.signOutButton setBackgroundColor:color];
-
-    } else {
-        [self.signOutButton setTitle:@"Sign Into Google+" forState:UIControlStateNormal];
-        UIColor * color = [UIColor colorWithRed:124/255.0f green:153/255.0f blue:241/255.0f alpha:1.0f];
-        [self.signOutButton setBackgroundColor:color];
-    }
 }
 
 - (void)revealMenu
@@ -243,45 +217,5 @@ static NSString * const kClientId = @"134355214729-qdlaclmspla1nqs69440oekaleu6p
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)signOutGoogle:(id)sender {
-    if ([[GPPSignIn sharedInstance] authentication]) {
-        [self.view makeToast:@"Signed Out of Google+" duration:1.5 position:@"center"];
-        [[GPPSignIn sharedInstance] signOut];
-        
-        [self.signOutButton setTitle:@"Sign Into Google+" forState:UIControlStateNormal];
-        UIColor * color = [UIColor colorWithRed:124/255.0f green:153/255.0f blue:241/255.0f alpha:1.0f];
-        [self.signOutButton setBackgroundColor:color];
-    } else {
-        // Perform other actions here
-        GPPSignIn *signIn = [GPPSignIn sharedInstance];
-        signIn.shouldFetchGooglePlusUser = YES;
-        
-        // You previously set kClientId in the "Initialize the Google+ client" step]
-        signIn.clientID = kClientId;
-        
-        signIn.scopes = @[kGTLAuthScopePlusLogin];
-        // Optional: declare signIn.actions, see "app activities"
-        signIn.delegate = self;
-        [signIn authenticate];
-    }
-}
-
-- (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
-                   error: (NSError *) error
-{
-    if (!error) {
-        [self.view makeToast:@"Signed Into Google+, You may now share reports using Google+" duration:3 position:@"center"];
-
-        [self.signOutButton setTitle:@"SignOut of Google+" forState:UIControlStateNormal];
-        UIColor * color = [UIColor colorWithRed:255/255.0f green:93/255.0f blue:86/255.0f alpha:1.0f];
-        [self.signOutButton setBackgroundColor:color];
-    }
-}
-- (IBAction)goToDigitalWebsite:(id)sender {
-    ImageViewController *website = [[ImageViewController alloc] init];
-    website.url = [NSURL URLWithString:@"http://www.digitalchild.net"];
-    [self.navigationController pushViewController:website animated:YES];
 }
 @end

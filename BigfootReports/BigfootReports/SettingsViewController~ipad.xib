@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController">
             <connections>
+                <outlet property="copyright" destination="3zx-zr-kdm" id="Mnr-Ij-G0F"/>
                 <outlet property="designedBy" destination="BjA-s0-yVF" id="rXl-zG-Z3D"/>
-                <outlet property="signOutButton" destination="gAf-EG-1PI" id="1vj-Hu-5Uy"/>
                 <outlet property="tableView" destination="4Ft-DD-iXi" id="Xcb-lw-8QS"/>
                 <outlet property="versionNumberInfo" destination="vvq-GK-815" id="rj4-CF-NTI"/>
                 <outlet property="view" destination="iN0-l3-epB" id="iMd-Qn-EXm"/>
@@ -19,63 +20,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Ft-DD-iXi">
-                    <rect key="frame" x="111" y="213" width="546" height="483"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <rect key="frame" x="111" y="204" width="546" height="615"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="546" id="3LY-2d-jws"/>
-                        <constraint firstAttribute="height" constant="483" id="3vA-X8-mKT"/>
+                        <constraint firstAttribute="height" constant="615" id="3vA-X8-mKT"/>
                     </constraints>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAf-EG-1PI">
-                    <rect key="frame" x="202" y="126" width="364" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="0.36504708679999998" blue="0.33701908879999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="eWc-cR-fv5"/>
-                        <constraint firstAttribute="width" constant="364" id="kPv-Ng-KCp"/>
-                    </constraints>
-                    <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="Sign Out Google+">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="signOutGoogle:" destination="-1" eventType="touchUpInside" id="vzG-tM-bP0"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DigitalChildLLC.png" translatesAutoresizingMaskIntoConstraints="NO" id="eHH-KJ-FMH">
-                    <rect key="frame" x="247" y="849" width="501" height="155"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="501" id="YJh-LS-Tof"/>
-                        <constraint firstAttribute="height" constant="155" id="vpU-B8-xAP"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjA-s0-yVF">
-                    <rect key="frame" x="247" y="827" width="420" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjA-s0-yVF">
+                    <rect key="frame" x="8" y="922" width="740" height="37"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="8Xp-dR-Pet"/>
-                        <constraint firstAttribute="width" constant="420" id="kG4-NU-Xe9"/>
+                        <constraint firstAttribute="width" constant="740" id="kG4-NU-Xe9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUb-gI-9mi">
-                    <rect key="frame" x="247" y="849" width="501" height="155"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="goToDigitalWebsite:" destination="-1" eventType="touchUpInside" id="HrW-yQ-xuB"/>
-                    </connections>
-                </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvq-GK-815">
                     <rect key="frame" x="20" y="20" width="728" height="53"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="cVF-1d-7e6"/>
                     </constraints>
@@ -83,29 +46,34 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zx-zr-kdm">
+                    <rect key="frame" x="8" y="958" width="740" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="740" id="1ia-TN-wsQ"/>
+                        <constraint firstAttribute="height" constant="37" id="Xpd-d8-mhK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="4Ft-DD-iXi" firstAttribute="top" secondItem="gAf-EG-1PI" secondAttribute="bottom" constant="52" id="A50-q0-EhP"/>
-                <constraint firstItem="wUb-gI-9mi" firstAttribute="trailing" secondItem="eHH-KJ-FMH" secondAttribute="trailing" id="I1b-HI-Lef"/>
-                <constraint firstAttribute="bottom" secondItem="eHH-KJ-FMH" secondAttribute="bottom" constant="20" symbolic="YES" id="Ioy-Ta-gFw"/>
-                <constraint firstItem="gAf-EG-1PI" firstAttribute="top" secondItem="vvq-GK-815" secondAttribute="bottom" constant="53" id="Pxt-to-MZ3"/>
-                <constraint firstItem="vvq-GK-815" firstAttribute="trailing" secondItem="wUb-gI-9mi" secondAttribute="trailing" id="R85-PL-Xqf"/>
-                <constraint firstItem="gAf-EG-1PI" firstAttribute="centerX" secondItem="4Ft-DD-iXi" secondAttribute="centerX" id="SKm-3X-Rf1"/>
-                <constraint firstItem="eHH-KJ-FMH" firstAttribute="top" secondItem="wUb-gI-9mi" secondAttribute="top" id="VwU-B8-L98"/>
-                <constraint firstItem="wUb-gI-9mi" firstAttribute="leading" secondItem="eHH-KJ-FMH" secondAttribute="leading" id="ZYg-FJ-Mdi"/>
-                <constraint firstAttribute="bottom" secondItem="BjA-s0-yVF" secondAttribute="bottom" constant="160" id="aeR-Z0-wND"/>
+                <constraint firstItem="3zx-zr-kdm" firstAttribute="leading" secondItem="BjA-s0-yVF" secondAttribute="leading" id="6nZ-2L-OP7"/>
+                <constraint firstItem="4Ft-DD-iXi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="204" id="7La-nd-lqo"/>
+                <constraint firstAttribute="bottom" secondItem="3zx-zr-kdm" secondAttribute="bottom" constant="29" id="It2-1k-Jee"/>
+                <constraint firstItem="BjA-s0-yVF" firstAttribute="leading" secondItem="vvq-GK-815" secondAttribute="leading" constant="-12" id="RJY-Dk-te3"/>
+                <constraint firstAttribute="bottom" secondItem="BjA-s0-yVF" secondAttribute="bottom" constant="65" id="aeR-Z0-wND"/>
                 <constraint firstItem="vvq-GK-815" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="ckh-r9-yoW"/>
                 <constraint firstAttribute="trailing" secondItem="vvq-GK-815" secondAttribute="trailing" constant="20" symbolic="YES" id="fUh-Pm-uva"/>
-                <constraint firstItem="BjA-s0-yVF" firstAttribute="leading" secondItem="wUb-gI-9mi" secondAttribute="leading" id="hDc-fL-nL4"/>
-                <constraint firstItem="wUb-gI-9mi" firstAttribute="bottom" secondItem="eHH-KJ-FMH" secondAttribute="bottom" id="pi5-jp-qfc"/>
                 <constraint firstItem="vvq-GK-815" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="v3I-Bp-qZd"/>
-                <constraint firstItem="vvq-GK-815" firstAttribute="centerX" secondItem="gAf-EG-1PI" secondAttribute="centerX" id="vbq-wk-u3G"/>
+                <constraint firstItem="4Ft-DD-iXi" firstAttribute="centerX" secondItem="vvq-GK-815" secondAttribute="centerX" id="vwd-GC-F8Q"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="DigitalChildLLC.png" width="1195" height="395"/>
-    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>

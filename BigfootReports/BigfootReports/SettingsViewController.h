@@ -8,17 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import <GooglePlus/GooglePlus.h>
-@class GPPSignInButton;
 
-@interface SettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, GPPSignInDelegate, GPPShareDelegate>
+@interface SettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *designedBy;
-- (IBAction)signOutGoogle:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *signOutButton;
-@property (retain, nonatomic) GPPSignInButton *signInButton;
 @property (weak, nonatomic) IBOutlet UILabel *versionNumberInfo;
 - (IBAction)goToDigitalWebsite:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *copyright;
 @end

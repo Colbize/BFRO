@@ -71,7 +71,7 @@
     [webView setDelegate:self];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:url];
     [webView loadRequest:nsrequest
-                progress:^( NSUInteger bytesRead , long progressContentLength , long expectedContentLength ){
+                progress:^( NSUInteger bytesRead , long long progressContentLength , long long expectedContentLength ){
                     CGFloat progressCount = 0;
                     if (expectedContentLength > 0 && progressContentLength <= expectedContentLength) {
                         progressCount = (CGFloat) progressContentLength / expectedContentLength;
@@ -104,7 +104,7 @@
     [webView setDelegate:self];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:webView.request.URL];
     [webView loadRequest:nsrequest
-                progress:^( NSUInteger bytesRead ,long progressContentLength ,long expectedContentLength ){
+                progress:^( NSUInteger bytesRead ,long long progressContentLength ,long long expectedContentLength ){
                     CGFloat progressCount;
                     
                     if (expectedContentLength > 0 && progressContentLength <= expectedContentLength) {
@@ -146,7 +146,7 @@
     [webView setDelegate:self];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:url];
     [webView loadRequest:nsrequest
-                progress:^( NSUInteger bytesRead , long progressContentLength , long expectedContentLength ){
+                progress:^( NSUInteger bytesRead , long long progressContentLength , long long expectedContentLength ){
                     CGFloat progressCount;
                     
                     if (expectedContentLength > 0 && progressContentLength <= expectedContentLength) {

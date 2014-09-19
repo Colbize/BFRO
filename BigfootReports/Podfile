@@ -1,5 +1,4 @@
 pod 'RaptureXML', '~> 1.0.1'
-pod 'Instabug', '~> 1.5'
 pod 'TWTSideMenuViewController', '~> 0.3'
 pod 'iRate', '~> 1.9.3'
 pod 'TouchXML'

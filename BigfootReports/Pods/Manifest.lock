@@ -1,36 +1,38 @@
 PODS:
-  - AFNetworking (2.2.1):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.1):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.1):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.1)
-  - AFNetworking/Security (2.2.1)
-  - AFNetworking/Serialization (2.2.1)
-  - AFNetworking/UIKit (2.2.1):
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Facebook-iOS-SDK (3.13.0)
-  - Instabug (1.6)
+  - Bolts (1.1.2)
+  - Facebook-iOS-SDK (3.18.0):
+    - Bolts
   - iRate (1.9.3)
   - MWFeedParser/NSString+HTML (1.0.1)
   - RaptureXML (1.0.1)
-  - STTwitter (0.1.2)
+  - STTwitter (0.1.4)
   - TouchXML (0.1)
   - TWTSideMenuViewController (0.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Facebook-iOS-SDK
-  - Instabug (~> 1.5)
   - iRate (~> 1.9.3)
   - MWFeedParser/NSString+HTML
   - RaptureXML (~> 1.0.1)
@@ -39,14 +41,14 @@ DEPENDENCIES:
   - TWTSideMenuViewController (~> 0.3)
 
 SPEC CHECKSUMS:
-  AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
-  Facebook-iOS-SDK: 5788541337dc88265bc940cb5ffb05915f9b64e3
-  Instabug: b9804e47775f28399aa7626815f6f0b28fcf82a8
-  iRate: 99aef520b335a1eb4a14a8d9ba5e8db4e1d95bbe
-  MWFeedParser: c747d7e43ad365a7f18e84924496665944228e86
-  RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
-  STTwitter: b46bef092a1585abd1bdafc8b2b92048a37a14fc
-  TouchXML: 0fb977f0bdd2ce2e5d0790c80751769459708810
-  TWTSideMenuViewController: 477575b12d58e7f40fd91b6e9bc14a8812b42e2d
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  Bolts: 2635e8698a630774689441047f3465d78c48d485
+  Facebook-iOS-SDK: fa12c51cc57bfb6f92e47793c9d4d2c65bc92741
+  iRate: 34b63a5e9dabcd26a5cf573d872ebb366802d63d
+  MWFeedParser: 003cbf5398e99a7f2057fbe9583054fd1b84be72
+  RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
+  STTwitter: 809f63f856341fdd103fbc6d9e4818d48a91be0c
+  TouchXML: fa552bd1f8b98cb5233be61622655796765fe535
+  TWTSideMenuViewController: 18633fb4be397ed1e83352ed50ddd55d04d94de3
 
-COCOAPODS: 0.31.1
+COCOAPODS: 0.33.1

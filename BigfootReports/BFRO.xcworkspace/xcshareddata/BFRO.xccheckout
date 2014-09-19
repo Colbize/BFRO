@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F33F88EA-0B39-4F67-AEEF-7624AA257F80</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BFRO</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>63DEBF94241AD1B0CBE0527B09E601261F80DE36</key>
+		<string>https://github.com/Colbize/BFRO.git</string>
+		<key>D3707DE1-67B6-4324-88EC-F72F8357B8E2</key>
+		<string>https://github.com/Colbize/BFRO.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BigfootReports/BFRO.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>63DEBF94241AD1B0CBE0527B09E601261F80DE36</key>
+		<string>../..</string>
+		<key>D3707DE1-67B6-4324-88EC-F72F8357B8E2</key>
+		<string>../../../BigfootReports</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Colbize/BFRO.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>63DEBF94241AD1B0CBE0527B09E601261F80DE36</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>63DEBF94241AD1B0CBE0527B09E601261F80DE36</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BFRO</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D3707DE1-67B6-4324-88EC-F72F8357B8E2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BigfootReports</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -137,10 +137,10 @@
     } else {
     
         if (indexPath.row == 0) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"settings"]];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info"]];
             imageView.image = [self imageWithColor:[UIColor whiteColor] withImage:imageView.image];
             [[cell imageView] setImage:imageView.image];
-            [cell.textLabel setText:@"Settings"];
+            [cell.textLabel setText:@"App Info"];
         }
     }
     [cell.imageView setTintColor:[UIColor whiteColor]];

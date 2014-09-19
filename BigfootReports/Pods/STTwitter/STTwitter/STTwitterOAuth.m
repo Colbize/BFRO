@@ -19,8 +19,6 @@
 #   define STLog(...)
 #endif
 
-NSString * const kSTPOSTDataKey = @"kSTPOSTDataKey";
-
 @interface NSData (Base64)
 - (NSString *)base64Encoding; // private API
 @end
@@ -253,7 +251,7 @@ NSString * const kSTPOSTDataKey = @"kSTPOSTDataKey";
     return @"1.0";
 }
 
-- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock forceLogin:(NSNumber *)forceLogin screenName:(NSString *)screenName oauthCallback:(NSString *)oauthCallback errorBlock:(void(^)(NSError *error))errorBlock {
+- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize forceLogin:(NSNumber *)forceLogin screenName:(NSString *)screenName oauthCallback:(NSString *)oauthCallback errorBlock:(void(^)(NSError *error))errorBlock {
     
     NSString *theOAuthCallback = [oauthCallback length] ? oauthCallback : @"oob"; // out of band, ie PIN instead of redirect
     
@@ -281,7 +279,9 @@ NSString * const kSTPOSTDataKey = @"kSTPOSTDataKey";
               
               NSString *parameterString = [parameters componentsJoinedByString:@"&"];
 
-              NSString *urlString = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?%@", parameterString];
+              NSString *authenticateOrAuthorizeString = authenticateInsteadOfAuthorize ? @"authenticate" : @"authorize";
+              
+              NSString *urlString = [NSString stringWithFormat:@"https://api.twitter.com/oauth/%@?%@", authenticateOrAuthorizeString, parameterString];
               
               //
               
@@ -298,7 +298,7 @@ NSString * const kSTPOSTDataKey = @"kSTPOSTDataKey";
 }
 
 - (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock oauthCallback:(NSString *)oauthCallback errorBlock:(void(^)(NSError *error))errorBlock {
-    [self postTokenRequest:successBlock forceLogin:nil screenName:nil oauthCallback:oauthCallback errorBlock:errorBlock];
+    [self postTokenRequest:successBlock authenticateInsteadOfAuthorize:NO forceLogin:nil screenName:nil oauthCallback:oauthCallback errorBlock:errorBlock];
 }
 
 - (void)postReverseOAuthTokenRequest:(void(^)(NSString *authenticationHeader))successBlock errorBlock:(void(^)(NSError *error))errorBlock {
@@ -462,8 +462,6 @@ NSString * const kSTPOSTDataKey = @"kSTPOSTDataKey";
         [urlString appendFormat:@"?%@", parameterString];
     }
     
-    //    __block NSString *requestID = [[NSUUID UUID] UUIDString];
-    
     __block STHTTPRequest *r = [STHTTPRequest twitterRequestWithURLString:urlString
                                              stTwitterUploadProgressBlock:nil
                                            stTwitterDownloadProgressBlock:^(id json) {
@@ -546,13 +544,17 @@ downloadProgressBlock:(void(^)(id r, id json))downloadProgressBlock
 	NSString *postKey = [params valueForKey:kSTPOSTDataKey];
     // https://dev.twitter.com/docs/api/1.1/post/statuses/update_with_media
     NSData *postData = [params valueForKey:postKey];
+    NSString *postMediaFileName = [params valueForKey:kSTPOSTMediaFileNameKey];
     
     NSMutableDictionary *mutableParams = [params mutableCopy];
     [mutableParams removeObjectForKey:kSTPOSTDataKey];
+    [mutableParams removeObjectForKey:kSTPOSTMediaFileNameKey];
     if(postData) {
         [mutableParams removeObjectForKey:postKey];
         
-        [r addDataToUpload:postData parameterName:postKey mimeType:@"application/octet-stream" fileName:@"media.jpg"];
+        NSString *filename = postMediaFileName ? postMediaFileName : @"media.jpg";
+        
+        [r addDataToUpload:postData parameterName:postKey mimeType:@"application/octet-stream" fileName:filename];
     }
     
     [self signRequest:r isMediaUpload:(postData != nil) oauthCallback:oauthCallback];

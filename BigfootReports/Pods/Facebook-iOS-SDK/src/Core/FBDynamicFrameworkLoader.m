@@ -18,8 +18,8 @@
 
 #import <dlfcn.h>
 
+#import "FBInternalSettings.h"
 #import "FBLogger.h"
-#import "FBSettings.h"
 
 static dispatch_once_t g_dispatchTokenLibrary;
 static dispatch_once_t g_dispatchTokenSymbol;
@@ -88,11 +88,66 @@ static NSString *g_sqlitePath = @"/usr/lib/libsqlite3.dylib";
     return s;
 }
 
++ (CFTypeRef)loadTypeRefConstantFromSecurityFramework:(NSString *)constantName {
+    void *symbol = [self loadSymbol:constantName withFramework:@"Security"];
+    NSAssert((symbol != nil), @"Failed to load constant %@ in the Security framework", constantName);
+    CFTypeRef ref = *(CFTypeRef *)symbol;
+    return ref;
+}
+
 + (SecRandomRef)loadkSecRandomDefault {
     void *symbol = [self loadSymbol:@"kSecRandomDefault" withFramework:@"Security"];
     NSAssert((symbol != nil), @"Failed to load symbol kSecRandomDefault in the Security framework");
     SecRandomRef ref = *(SecRandomRef *)symbol;
     return ref;
+}
+
++ (CFTypeRef)loadkSecAttrAccessible {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecAttrAccessible"];
+}
+
++ (CFTypeRef)loadkSecAttrAccessibleAfterFirstUnlockThisDeviceOnly {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly"];
+}
+
++ (CFTypeRef)loadkSecAttrAccount {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecAttrAccount"];
+}
+
++ (CFTypeRef)loadkSecAttrService {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecAttrService"];
+}
+
++ (CFTypeRef)loadkSecAttrGeneric {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecAttrGeneric"];
+}
+
++ (CFTypeRef)loadkSecValueData {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecValueData"];
+}
+
++ (CFTypeRef)loadkSecClassGenericPassword {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecClassGenericPassword"];
+}
+
++ (CFTypeRef)loadkSecAttrAccessGroup {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecAttrAccessGroup"];
+}
+
++ (CFTypeRef)loadkSecMatchLimitOne {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecMatchLimitOne"];
+}
+
++ (CFTypeRef)loadkSecMatchLimit {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecMatchLimit"];
+}
+
++ (CFTypeRef)loadkSecReturnData {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecReturnData"];
+}
+
++ (CFTypeRef)loadkSecClass {
+    return [self loadTypeRefConstantFromSecurityFramework:@"kSecClass"];
 }
 
 + (void *)loadSymbol:(NSString *)symbol withFramework:(NSString *)framework {
@@ -131,8 +186,37 @@ int fbdfl_SecRandomCopyBytes(SecRandomRef rnd, size_t count, uint8_t *bytes) {
     return f(rnd, count, bytes);
 }
 
+typedef OSStatus (*SecItemUpdateFuncType)(CFDictionaryRef, CFDictionaryRef);
+typedef OSStatus (*SecItemAddFuncType)(CFDictionaryRef, CFTypeRef);
+typedef OSStatus (*SecItemCopyMatchingFuncType)(CFDictionaryRef, CFTypeRef);
+typedef OSStatus (*SecItemDeleteFuncType)(CFDictionaryRef);
+
+OSStatus fbdfl_SecItemUpdate(CFDictionaryRef query, CFDictionaryRef attributesToUpdate) {
+    NSString *handle = buildFrameworkPath(@"Security");
+    SecItemUpdateFuncType f = (SecItemUpdateFuncType)loadSymbol(handle, @"SecItemUpdate");
+    return f(query, attributesToUpdate);
+}
+
+OSStatus fbdfl_SecItemAdd(CFDictionaryRef attributes, CFTypeRef *result) {
+    NSString *handle = buildFrameworkPath(@"Security");
+    SecItemAddFuncType f = (SecItemAddFuncType)loadSymbol(handle, @"SecItemAdd");
+    return f(attributes, result);
+}
+
+OSStatus fbdfl_SecItemCopyMatching(CFDictionaryRef query, CFTypeRef *result) {
+    NSString *handle = buildFrameworkPath(@"Security");
+    SecItemCopyMatchingFuncType f = (SecItemCopyMatchingFuncType)loadSymbol(handle, @"SecItemCopyMatching");
+    return f(query, result);
+}
+
+OSStatus fbdfl_SecItemDelete(CFDictionaryRef query) {
+    NSString *handle = buildFrameworkPath(@"Security");
+    SecItemDeleteFuncType f = (SecItemDeleteFuncType)loadSymbol(handle, @"SecItemDelete");
+    return f(query);
+}
+
 // SQLITE3 APIs
-void *loadSqliteSymbol(NSString *symbol) {
+static void *loadSqliteSymbol(NSString *symbol) {
     return loadSymbol([FBDynamicFrameworkLoader sqlitePath], symbol);
 }
 
@@ -219,4 +303,60 @@ SQLITE_API int fbdfl_sqlite3_column_int(sqlite3_stmt *stmt, int iCol) {
 SQLITE_API const unsigned char *fbdfl_sqlite3_column_text(sqlite3_stmt *stmt, int iCol) {
     sqlite3_column_text_type f = (sqlite3_column_text_type)loadSqliteSymbol(@"sqlite3_column_text");
     return f(stmt, iCol);
+}
+
+typedef CATransform3D (*CATransform3DMakeScale_type)(CGFloat, CGFloat, CGFloat);
+typedef CATransform3D (*CATransform3DConcat_type)(CATransform3D, CATransform3D);
+const CATransform3D fbdfl_CATransform3DIdentity = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
+
+CATransform3D fbdfl_CATransform3DMakeScale (CGFloat sx, CGFloat sy, CGFloat sz)
+{
+    CATransform3DMakeScale_type f =
+        (CATransform3DMakeScale_type)[FBDynamicFrameworkLoader loadSymbol: @"CATransform3DMakeScale"
+                                                            withFramework: @"QuartzCore"];
+    return f(sx, sy, sz);
+}
+
+CATransform3D fbdfl_CATransform3DMakeTranslation (CGFloat tx, CGFloat ty, CGFloat tz)
+{
+    CATransform3DMakeScale_type f =
+    (CATransform3DMakeScale_type)[FBDynamicFrameworkLoader loadSymbol: @"CATransform3DMakeTranslation"
+                                                        withFramework: @"QuartzCore"];
+    return f(tx, ty, tz);
+}
+
+CATransform3D fbdfl_CATransform3DConcat (CATransform3D a, CATransform3D b)
+{
+    CATransform3DConcat_type f =
+    (CATransform3DConcat_type)[FBDynamicFrameworkLoader loadSymbol: @"CATransform3DConcat"
+                                                     withFramework: @"QuartzCore"];
+    return f(a, b);
+}
+
+
+typedef OSStatus (*AudioServicesCreateSystemSoundID_type)(CFURLRef, SystemSoundID *);
+OSStatus fbdfl_AudioServicesCreateSystemSoundID(CFURLRef inFileURL, SystemSoundID *outSystemSoundID)
+{
+    AudioServicesCreateSystemSoundID_type f =
+    (AudioServicesCreateSystemSoundID_type)[FBDynamicFrameworkLoader loadSymbol:@"AudioServicesCreateSystemSoundID"
+                                                                  withFramework:@"AudioToolbox"];
+    return f(inFileURL, outSystemSoundID);
+}
+
+typedef OSStatus (*AudioServicesDisposeSystemSoundID_type)(SystemSoundID);
+OSStatus fbdfl_AudioServicesDisposeSystemSoundID(SystemSoundID inSystemSoundID)
+{
+    AudioServicesDisposeSystemSoundID_type f =
+    (AudioServicesDisposeSystemSoundID_type)[FBDynamicFrameworkLoader loadSymbol:@"AudioServicesDisposeSystemSoundID"
+                                                                   withFramework:@"AudioToolbox"];
+    return f(inSystemSoundID);
+}
+
+typedef void (*AudioServicesPlaySystemSound_type)(SystemSoundID);
+void fbdfl_AudioServicesPlaySystemSound(SystemSoundID inSystemSoundID)
+{
+    AudioServicesPlaySystemSound_type f =
+    (AudioServicesPlaySystemSound_type)[FBDynamicFrameworkLoader loadSymbol:@"AudioServicesPlaySystemSound"
+                                                              withFramework:@"AudioToolbox"];
+    return f(inSystemSoundID);
 }

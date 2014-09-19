@@ -391,11 +391,15 @@ titleForHeaderInSection:(NSInteger)section
 #pragma mark - find me method
 - (IBAction)findMe:(id)sender {
     [map setShowsUserLocation:YES];
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+    }
+
     [locationManager startUpdatingLocation];
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) {
         findMeYN = YES;
     } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        [self.map makeToast:@"Location Service Not Enabled. To Enable go to Settings > Privacy > Location Services > BFRO to re-enable" duration:4.0 position:@"center"];
+        [self.map makeToast:@"Location Service Not Enabled. To Enable go to iPhone Settings > Privacy > Location Services > BFRO to re-enable" duration:7.0 position:@"center"];
     }
 }
 
@@ -426,7 +430,7 @@ titleForHeaderInSection:(NSInteger)section
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-     [self.map makeToast:@"Unable to determine location at this time.. Please try again later" duration:3.0 position:@"center"];
+
 }
 
 #pragma mark - MKAnnotationView methods
@@ -532,6 +536,7 @@ calloutAccessoryControlTapped:(UIControl *)control
     
     
 }
+
 - (void)stopLoading
 {
     [aiView stopAnimating];

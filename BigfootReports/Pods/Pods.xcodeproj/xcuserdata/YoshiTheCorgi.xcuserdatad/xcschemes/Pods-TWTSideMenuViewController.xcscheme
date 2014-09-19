@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2B97183572C4EBE9863BEF6"
+               BlueprintIdentifier = "6D66FC6F4E594A88A619C396"
                BuildableName = "libPods-TWTSideMenuViewController.a"
                BlueprintName = "Pods-TWTSideMenuViewController"
                ReferencedContainer = "container:Pods.xcodeproj">

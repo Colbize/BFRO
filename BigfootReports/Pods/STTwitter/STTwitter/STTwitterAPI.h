@@ -26,6 +26,11 @@ NS_ENUM(NSUInteger, STTwitterAPIErrorCode) {
     STTwitterAPIMediaDataIsEmpty
 };
 
+extern NSString *kBaseURLStringAPI_1_1;
+extern NSString *kBaseURLStringStream_1_1;
+extern NSString *kBaseURLStringUserStream_1_1;
+extern NSString *kBaseURLStringSiteStream_1_1;
+
 /*
  Tweet fields contents
  https://dev.twitter.com/docs/platform-objects/tweets
@@ -80,7 +85,15 @@ NS_ENUM(NSUInteger, STTwitterAPIErrorCode) {
 + (instancetype)twitterAPIAppOnlyWithConsumerKey:(NSString *)consumerKey
                                   consumerSecret:(NSString *)consumerSecret;
 
+/*
+ authenticateInsteadOfAuthorize == NO  will return an URL to oauth/authorize
+ authenticateInsteadOfAuthorize == YES will return an URL to oauth/authenticate
+ 
+ oauth/authorize differs from oauth/authorize in that if the user has already granted the application permission, the redirect will occur without the user having to re-approve the application. To realize this behavior, you must enable the Use Sign in with Twitter setting on your application record.
+ */
+
 - (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock
+authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize // use NO if you're not sure
               forceLogin:(NSNumber *)forceLogin
               screenName:(NSString *)screenName
            oauthCallback:(NSString *)oauthCallback
@@ -102,6 +115,8 @@ NS_ENUM(NSUInteger, STTwitterAPIErrorCode) {
                           errorBlock:(void(^)(NSError *error))errorBlock;
 
 // reverse auth step 2
+// WARNING: if the Twitter account was set in iOS settings, the tokens may be nil after a system update.
+// In this case, you can call -[ACAccountStore renewCredentialsForAccount:completion:] to let the user enter her Twitter password again.
 - (void)postReverseAuthAccessTokenWithAuthenticationHeader:(NSString *)authenticationHeader
                                               successBlock:(void(^)(NSString *oAuthToken, NSString *oAuthTokenSecret, NSString *userID, NSString *screenName))successBlock
                                                 errorBlock:(void(^)(NSError *error))errorBlock;
@@ -161,7 +176,7 @@ downloadProgressBlock:(void(^)(id json))downloadProgressBlock
 - (void)getStatusesMentionTimelineWithCount:(NSString *)count
                                     sinceID:(NSString *)sinceID
                                       maxID:(NSString *)maxID
-                                   trimUser:(NSNumber *)timUser
+                                   trimUser:(NSNumber *)trimUser
                          contributorDetails:(NSNumber *)contributorDetails
                             includeEntities:(NSNumber *)includeEntities
                                successBlock:(void(^)(NSArray *statuses))successBlock
@@ -169,9 +184,9 @@ downloadProgressBlock:(void(^)(id json))downloadProgressBlock
 
 // convenience method
 - (void)getMentionsTimelineSinceID:(NSString *)sinceID
-							 count:(NSUInteger)count
-					  successBlock:(void(^)(NSArray *statuses))successBlock
-						errorBlock:(void(^)(NSError *error))errorBlock;
+                             count:(NSUInteger)count
+                      successBlock:(void(^)(NSArray *statuses))successBlock
+                        errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
  GET	statuses/user_timeline
@@ -202,13 +217,13 @@ downloadProgressBlock:(void(^)(id json))downloadProgressBlock
 - (void)getUserTimelineWithScreenName:(NSString *)screenName
                               sinceID:(NSString *)sinceID
                                 maxID:(NSString *)maxID
-								count:(NSUInteger)count
+                                count:(NSUInteger)count
                          successBlock:(void(^)(NSArray *statuses))successBlock
                            errorBlock:(void(^)(NSError *error))errorBlock;
 
 // convenience method
 - (void)getUserTimelineWithScreenName:(NSString *)screenName
-								count:(NSUInteger)count
+                                count:(NSUInteger)count
                          successBlock:(void(^)(NSArray *statuses))successBlock
                            errorBlock:(void(^)(NSError *error))errorBlock;
 
@@ -341,6 +356,20 @@ downloadProgressBlock:(void(^)(id json))downloadProgressBlock
             successBlock:(void(^)(NSDictionary *status))successBlock
               errorBlock:(void(^)(NSError *error))errorBlock;
 
+// starting May 28th, 2014
+// https://dev.twitter.com/notifications/multiple-media-entities-in-tweets
+// https://dev.twitter.com/docs/api/multiple-media-extended-entities
+- (void)postStatusUpdate:(NSString *)status
+       inReplyToStatusID:(NSString *)existingStatusID
+                mediaIDs:(NSArray *)mediaIDs
+                latitude:(NSString *)latitude
+               longitude:(NSString *)longitude
+                 placeID:(NSString *)placeID
+      displayCoordinates:(NSNumber *)displayCoordinates
+                trimUser:(NSNumber *)trimUser
+            successBlock:(void(^)(NSDictionary *status))successBlock
+              errorBlock:(void(^)(NSError *error))errorBlock;
+
 /*
  POST	statuses/retweet/:id
  
@@ -443,12 +472,12 @@ downloadProgressBlock:(void(^)(id json))downloadProgressBlock
                            maxID:(NSString *)maxID // eg. "54321"
                  includeEntities:(NSNumber *)includeEntities
                         callback:(NSString *)callback // eg. "processTweets"
-					successBlock:(void(^)(NSDictionary *searchMetadata, NSArray *statuses))successBlock
-					  errorBlock:(void(^)(NSError *error))errorBlock;
+                    successBlock:(void(^)(NSDictionary *searchMetadata, NSArray *statuses))successBlock
+                      errorBlock:(void(^)(NSError *error))errorBlock;
 
 // convenience method
 - (void)getSearchTweetsWithQuery:(NSString *)q
-					successBlock:(void(^)(NSDictionary *searchMetadata, NSArray *statuses))successBlock
+                    successBlock:(void(^)(NSDictionary *searchMetadata, NSArray *statuses))successBlock
                       errorBlock:(void(^)(NSError *error))errorBlock;
 
 #pragma mark Streaming
@@ -554,9 +583,9 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
                       errorBlock:(void(^)(NSError *error))errorBlock;
 // convenience
 - (void)getDirectMessagesSinceID:(NSString *)sinceID
-						   count:(NSUInteger)count
-					successBlock:(void(^)(NSArray *messages))successBlock
-					  errorBlock:(void(^)(NSError *error))errorBlock;
+                           count:(NSUInteger)count
+                    successBlock:(void(^)(NSArray *messages))successBlock
+                      errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
  GET    direct_messages/sent
@@ -590,8 +619,8 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 - (void)postDestroyDirectMessageWithID:(NSString *)messageID
                        includeEntities:(NSNumber *)includeEntities
-						  successBlock:(void(^)(NSDictionary *message))successBlock
-							errorBlock:(void(^)(NSError *error))errorBlock;
+                          successBlock:(void(^)(NSDictionary *message))successBlock
+                            errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
  POST	direct_messages/new
@@ -600,7 +629,8 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
  */
 
 - (void)postDirectMessage:(NSString *)status
-					   to:(NSString *)screenName
+            forScreenName:(NSString *)screenName
+                 orUserID:(NSString *)userID
              successBlock:(void(^)(NSDictionary *message))successBlock
                errorBlock:(void(^)(NSError *error))errorBlock;
 
@@ -635,7 +665,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 // convenience
 - (void)getFriendsIDsForScreenName:(NSString *)screenName
-				      successBlock:(void(^)(NSArray *friends))successBlock
+                      successBlock:(void(^)(NSArray *friends))successBlock
                         errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
@@ -708,8 +738,8 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 // convenience
 - (void)postFollow:(NSString *)screenName
-	  successBlock:(void(^)(NSDictionary *user))successBlock
-		errorBlock:(void(^)(NSError *error))errorBlock;
+      successBlock:(void(^)(NSDictionary *user))successBlock
+        errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
  POST	friendships/destroy
@@ -728,8 +758,8 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 // convenience
 - (void)postUnfollow:(NSString *)screenName
-		successBlock:(void(^)(NSDictionary *user))successBlock
-		  errorBlock:(void(^)(NSError *error))errorBlock;
+        successBlock:(void(^)(NSDictionary *user))successBlock
+          errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
  POST	friendships/update
@@ -790,7 +820,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 // convenience
 - (void)getFriendsForScreenName:(NSString *)screenName
-				   successBlock:(void(^)(NSArray *friends))successBlock
+                   successBlock:(void(^)(NSArray *friends))successBlock
                      errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
@@ -811,7 +841,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 // convenience
 - (void)getFollowersForScreenName:(NSString *)screenName
-					 successBlock:(void(^)(NSArray *followers))successBlock
+                     successBlock:(void(^)(NSArray *followers))successBlock
                        errorBlock:(void(^)(NSError *error))errorBlock;
 
 #pragma mark Users
@@ -883,8 +913,8 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 // convenience
 - (void)postUpdateProfile:(NSDictionary *)profileData
-			 successBlock:(void(^)(NSDictionary *myInfo))successBlock
-			   errorBlock:(void(^)(NSError *error))errorBlock;
+             successBlock:(void(^)(NSDictionary *myInfo))successBlock
+               errorBlock:(void(^)(NSError *error))errorBlock;
 
 /*
  POST	account/update_profile_background_image
@@ -1018,8 +1048,8 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 
 // convenience
 - (void)getUserInformationFor:(NSString *)screenName
-				 successBlock:(void(^)(NSDictionary *user))successBlock
-				   errorBlock:(void(^)(NSError *error))errorBlock;
+                 successBlock:(void(^)(NSDictionary *user))successBlock
+                   errorBlock:(void(^)(NSError *error))errorBlock;
 
 // convenience
 - (void)profileImageFor:(NSString *)screenName
@@ -1109,6 +1139,54 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
                           orScreenName:(NSString *)screenName
                           successBlock:(void(^)(NSDictionary *banner))successBlock
                             errorBlock:(void(^)(NSError *error))errorBlock;
+
+/*
+ POST   mutes/users/create
+ 
+ Mutes the user specified in the ID parameter for the authenticating user.
+ 
+ Returns the muted user in the requested format when successful. Returns a string describing the failure condition when unsuccessful.
+ 
+ Actions taken in this method are asynchronous and changes will be eventually consistent.
+ */
+- (void)postMutesUsersCreateForScreenName:(NSString *)screenName
+                                 orUserID:(NSString *)userID
+                             successBlock:(void(^)(NSDictionary *user))successBlock
+                               errorBlock:(void(^)(NSError *error))errorBlock;
+
+/*
+ POST   mutes/users/destroy
+ 
+ Un-mutes the user specified in the ID parameter for the authenticating user.
+ 
+ Returns the unmuted user in the requested format when successful. Returns a string describing the failure condition when unsuccessful.
+ 
+ Actions taken in this method are asynchronous and changes will be eventually consistent.
+ */
+- (void)postMutesUsersDestroyForScreenName:(NSString *)screenName
+                                  orUserID:(NSString *)userID
+                              successBlock:(void(^)(NSDictionary *user))successBlock
+                                errorBlock:(void(^)(NSError *error))errorBlock;
+
+/*
+ GET    mutes/users/ids
+ 
+ Returns an array of numeric user ids the authenticating user has muted.
+ */
+- (void)getMutesUsersIDsWithCursor:(NSString *)cursor
+                      successBlock:(void(^)(NSArray *userIDs, NSString *previousCursor, NSString *nextCursor))successBlock
+                        errorBlock:(void(^)(NSError *error))errorBlock;
+
+/*
+ GET    mutes/users/list
+ 
+ Returns an array of user objects the authenticating user has muted.
+ */
+- (void)getMutesUsersListWithCursor:(NSString *)cursor
+                    includeEntities:(NSNumber *)includeEntities
+                         skipStatus:(NSNumber *)skipStatus
+                       successBlock:(void(^)(NSArray *users, NSString *previousCursor, NSString *nextCursor))successBlock
+                         errorBlock:(void(^)(NSError *error))errorBlock;
 
 #pragma mark Suggested Users
 
@@ -1828,8 +1906,42 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
  */
 
 - (void)getRateLimitsForResources:(NSArray *)resources // eg. statuses,friends,trends,help
-					 successBlock:(void(^)(NSDictionary *rateLimits))successBlock
-					   errorBlock:(void(^)(NSError *error))errorBlock;
+                     successBlock:(void(^)(NSDictionary *rateLimits))successBlock
+                       errorBlock:(void(^)(NSError *error))errorBlock;
+
+#pragma mark Tweets
+
+/*
+ GET statuses/lookup
+ 
+ Returns fully-hydrated tweet objects for up to 100 tweets per request, as specified by comma-separated values passed to the id parameter. This method is especially useful to get the details (hydrate) a collection of Tweet IDs. GET statuses/show/:id is used to retrieve a single tweet object.
+ */
+
+- (void)getStatusesLookupTweetIDs:(NSArray *)tweetIDs
+                  includeEntities:(NSNumber *)includeEntities
+                         trimUser:(NSNumber *)trimUser
+                              map:(NSNumber *)map
+                     successBlock:(void(^)(NSArray *tweets))successBlock
+                       errorBlock:(void(^)(NSError *error))errorBlock;
+
+#pragma mark Media
+
+/*
+ POST media/upload.json
+ 
+ https://dev.twitter.com/docs/api/multiple-media-extended-entities
+ */
+
+- (void)postMediaUpload:(NSURL *)mediaURL
+    uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+           successBlock:(void(^)(NSDictionary *imageDictionary, NSString *mediaID, NSString *size))successBlock
+             errorBlock:(void(^)(NSError *error))errorBlock;
+
+- (void)postMediaUploadData:(NSData *)data
+                   fileName:(NSString *)fileName
+        uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+               successBlock:(void(^)(NSDictionary *imageDictionary, NSString *mediaID, NSString *size))successBlock
+                 errorBlock:(void(^)(NSError *error))errorBlock;
 
 #pragma mark -
 #pragma mark UNDOCUMENTED APIs
@@ -1928,5 +2040,19 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
                   sendErrorCodes:(NSNumber *)sendErrorCodes
                     successBlock:(void(^)(id results))successBlock
                       errorBlock:(void(^)(NSError *error))errorBlock;
+
+// POST direct_messages/new.json
+// only the media_id is part of the private API
+- (void)_postDirectMessage:(NSString *)status
+             forScreenName:(NSString *)screenName
+                  orUserID:(NSString *)userID
+                   mediaID:(NSString *)mediaID // returned by POST media/upload.json
+              successBlock:(void(^)(NSDictionary *message))successBlock
+                errorBlock:(void(^)(NSError *error))errorBlock;
+
+// GET conversation/show/:id.json
+- (void)_getConversationShowWithTweetID:(NSString *)tweetID
+                           successBlock:(void(^)(id results))successBlock
+                             errorBlock:(void(^)(NSError *error))errorBlock;
 
 @end

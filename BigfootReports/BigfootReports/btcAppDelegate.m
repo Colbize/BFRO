@@ -10,8 +10,6 @@
 #import "BFROStore.h"
 #import "EveryReportViewController.h"
 #import <FacebookSDK.h>
-#import "TestFlight.h"
-#import <GooglePlus/GooglePlus.h>
 #import "SightingsMapViewController.h"
 #import "NewsFeedViewController.h"
 #import "FAQViewController.h"
@@ -20,7 +18,6 @@
 #import "SideDeckViewController.h"
 #import "AltFrontViewController.h"
 #import "iRate.h"
-#import "Instabug/Instabug.h"
 
 @interface btcAppDelegate ()
 
@@ -42,10 +39,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [TestFlight takeOff:@"bbe91f76-43cc-42fd-b787-6f050e2a8ce8"];
-    
-   [Instabug KickOffWithToken:@"c5aa2b739e33a08e77dbbbeca4de0015" CaptureSource:InstabugCaptureSourceUIKit FeedbackEvent:InstabugFeedbackEventShake IsTrackingLocation:NO];
-    [Instabug setShowStartAlert:NO];
     
     NSMutableDictionary *favoritesDic = [[[NSUserDefaults standardUserDefaults] objectForKey:@"favoritesDictionary"] mutableCopy];
     
@@ -202,37 +195,31 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    if ([sourceApplication isEqualToString:@"com.facebook.Facebook"]) {
-        BOOL urlWasHandled = [FBAppCall handleOpenURL:url
-                                    sourceApplication:sourceApplication
-                                      fallbackHandler:^(FBAppCall *call) {
-                                          NSLog(@"Unhandled deep link: %@", url);
-                                          // Parse the incoming URL to look for a target_url parameter
-                                          NSString *query = [url fragment];
-                                          if (!query) {
-                                              query = [url query];
-                                          }
-                                          NSDictionary *params = [self parseURLParams:query];
-                                          // Check if target URL exists
-                                          NSString *targetURLString = [params valueForKey:@"target_url"];
-                                          if (targetURLString) {
-                                              // Show the incoming link in an alert
-                                              // Your code to direct the user to the appropriate flow within your app goes here
-                                              [[[UIAlertView alloc] initWithTitle:@"Received link:"
-                                                                          message:targetURLString
-                                                                         delegate:self
-                                                                cancelButtonTitle:@"OK"
-                                                                otherButtonTitles:nil] show];
-                                          }
-                                      }];
+    BOOL urlWasHandled = [FBAppCall handleOpenURL:url
+                                sourceApplication:sourceApplication
+                                  fallbackHandler:^(FBAppCall *call) {
+                                      NSLog(@"Unhandled deep link: %@", url);
+                                      // Parse the incoming URL to look for a target_url parameter
+                                      NSString *query = [url fragment];
+                                      if (!query) {
+                                          query = [url query];
+                                      }
+                                      NSDictionary *params = [self parseURLParams:query];
+                                      // Check if target URL exists
+                                      NSString *targetURLString = [params valueForKey:@"target_url"];
+                                      if (targetURLString) {
+                                          // Show the incoming link in an alert
+                                          // Your code to direct the user to the appropriate flow within your app goes here
+                                          [[[UIAlertView alloc] initWithTitle:@"Received link:"
+                                                                      message:targetURLString
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"OK"
+                                                            otherButtonTitles:nil] show];
+                                      }
+                                  }];
+    
+    return urlWasHandled;
         
-        return urlWasHandled;
-        
-    } else {
-        return [GPPURLHandler handleURL:url
-                      sourceApplication:sourceApplication
-                             annotation:annotation];
-    }
 }
 
 // A function for parsing URL parameters

@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "STTwitterProtocol.h"
 
-extern NSString * const kSTPOSTDataKey;
-
 /*
  Based on the following documentation
  http://oauth.net/core/1.0/
@@ -46,6 +44,7 @@ NS_ENUM(NSUInteger, STTwitterOAuthErrorCode) {
                                     password:(NSString *)password;
 
 - (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock
+authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize
               forceLogin:(NSNumber *)forceLogin // optional, default @(NO)
               screenName:(NSString *)screenName // optional, default nil
            oauthCallback:(NSString *)oauthCallback

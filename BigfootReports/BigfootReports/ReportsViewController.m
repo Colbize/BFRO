@@ -254,24 +254,8 @@ static NSString * const kClientId = @"134355214729-vcf2fqdol14t653r45lsu5avh2stb
     UIBarButtonItem *mess = [[UIBarButtonItem alloc] initWithCustomView:message];
     
     // UIACTION SHEET
-     sheet = [[UIActionSheet alloc] initWithTitle:@"Share Report via:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"", @"", @"", @"Copy Link", @"Send as Message", nil];
+     sheet = [[UIActionSheet alloc] initWithTitle:@"Share Report via:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Facebook", @"Twitter", @"Copy Link", @"Send as Message", nil];
     
-    UIImageView *imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"facebook"]];
-    imageView1.image = [self imageWithColor:[UIColor colorWithRed:59/255.0f green:89/255.0f blue:153/255.0f alpha:1.0f]
-                                  withImage:imageView1.image];
-    
-    UIImageView *imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twitter"]];
-    imageView2.image = [self imageWithColor:[UIColor colorWithRed:85/255.0f green:172/255.0f blue:238/255.0f alpha:1.0f]
-                                  withImage:imageView2.image];
-    
-    UIImageView *imageView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"google_plus"]];
-    imageView3.image = [self imageWithColor:[UIColor colorWithRed:211/255.0f green:72/255.0f blue:54/255.0f alpha:1.0f]
-                                  withImage:imageView3.image];
-    
-    [[[sheet valueForKey:@"_buttons"] objectAtIndex:0] setImage:imageView1.image forState:UIControlStateNormal];
-    [[[sheet valueForKey:@"_buttons"] objectAtIndex:1] setImage:imageView2.image forState:UIControlStateNormal];
-    [[[sheet valueForKey:@"_buttons"] objectAtIndex:2] setImage:imageView3.image  forState:UIControlStateNormal];
-
     
     // ADD TO FAVORITES BUTTON
     addToFavorites = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -351,24 +335,15 @@ static NSString * const kClientId = @"134355214729-vcf2fqdol14t653r45lsu5avh2stb
     // FACEBOOK SHARE
     if (buttonIndex == 0) {
         
-        // Check if the Facebook app is installed and we can present the share dialog
-        FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
-        params.link = [NSURL URLWithString:reportInfo.link];
-        params.name = [NSString stringWithFormat:@"ReportID: %@ - %@", reportInfo.reportID, [dateFormatter stringFromDate:reportInfo.dateOfSighting]];
-        params.caption = [NSString stringWithFormat:@"Sighting Location: %@ %@", reportInfo.usaCountyReports.location.name, reportInfo.usaCountyReports.name];
-        params.picture = [NSURL URLWithString:@"https://pbs.twimg.com/profile_images/2732515089/5b2ae2bfeb46e5f0bb034ec273712f48.png"];
-        params.description = reportInfo.shortDesc;
-        
-        
         // If the Facebook app is installed and we can present the share dialog
-        if ([FBDialogs canPresentShareDialogWithParams:params]) {
+        if ([FBDialogs canPresentMessageDialog]) {
             
             // Present share dialog
-            [FBDialogs presentShareDialogWithLink:params.link
-                                             name:params.name
-                                          caption:params.caption
-                                      description:params.description
-                                          picture:params.picture
+            [FBDialogs presentShareDialogWithLink:[NSURL URLWithString:reportInfo.link]
+                                             name:[NSString stringWithFormat:@"ReportID: %@ - %@", reportInfo.reportID, [dateFormatter stringFromDate:reportInfo.dateOfSighting]]
+                                          caption:[NSString stringWithFormat:@"Sighting Location: %@ %@", reportInfo.usaCountyReports.location.name, reportInfo.usaCountyReports.name]
+                                      description:reportInfo.shortDesc
+                                          picture:[NSURL URLWithString:@"https://pbs.twimg.com/profile_images/2732515089/5b2ae2bfeb46e5f0bb034ec273712f48.png"]
                                       clientState:nil
                                           handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
                                               if(error) {
@@ -488,36 +463,11 @@ static NSString * const kClientId = @"134355214729-vcf2fqdol14t653r45lsu5avh2stb
         
     } else if (buttonIndex == 2) {
         
-        GPPSignIn *signIn = [GPPSignIn sharedInstance];
-        signIn.shouldFetchGooglePlusUser = YES;
-        //signIn.shouldFetchGooleUserEmail = YES;  // Uncomment to get the user's email
-        
-        // You previously set kClientId in the "Initialize the Google+ client" step]
-        signIn.clientID = kClientId;
-        
-        // Uncomment one of these two statements for the scope you chose in the previous step
-        signIn.scopes = @[ kGTLAuthScopePlusLogin ];  // "https://www.googleapis.com/auth/plus.login" scope
-        
-        // Optional: declare signIn.actions, see "app activities"
-        signIn.delegate = self;
-        
-        if ([[GPPSignIn sharedInstance] authentication]) {
-            // The user is signed in.
-            // Perform other actions here, such as showing a sign-out button
-            [signIn trySilentAuthentication];
-        } else {
-            // Perform other actions here
-            [signIn authenticate];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Signed Into Google+" message:@" You may sign out of Google+ by going to Settings in this App." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            [alert show];
-        }
-    } else if (buttonIndex == 3) {
-        
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = [NSString stringWithFormat:@"%@", reportInfo.link];
         [self.view makeToast:@"Copied!" duration:1.5 position:@"center"];
         
-    } else if (buttonIndex == 4) {
+    } else if (buttonIndex == 3) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Send Report Info Via" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Message",@"E-mail", nil];
         [alert show];

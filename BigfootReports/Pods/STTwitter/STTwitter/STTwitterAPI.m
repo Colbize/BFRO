@@ -14,10 +14,11 @@
 #import <Accounts/Accounts.h>
 #import "STHTTPRequest.h"
 
-static NSString *kBaseURLStringAPI = @"https://api.twitter.com/1.1";
-static NSString *kBaseURLStringStream = @"https://stream.twitter.com/1.1";
-static NSString *kBaseURLStringUserStream = @"https://userstream.twitter.com/1.1";
-static NSString *kBaseURLStringSiteStream = @"https://sitestream.twitter.com/1.1";
+NSString *kBaseURLStringAPI_1_1 = @"https://api.twitter.com/1.1";
+NSString *kBaseURLStringUpload_1_1 = @"https://upload.twitter.com/1.1";
+NSString *kBaseURLStringStream_1_1 = @"https://stream.twitter.com/1.1";
+NSString *kBaseURLStringUserStream_1_1 = @"https://userstream.twitter.com/1.1";
+NSString *kBaseURLStringSiteStream_1_1 = @"https://sitestream.twitter.com/1.1";
 
 static NSDateFormatter *dateFormatter = nil;
 
@@ -30,11 +31,15 @@ static NSDateFormatter *dateFormatter = nil;
 - (id)init {
     self = [super init];
     
+    STTwitterAPI * __weak weakSelf = self;
+    
     [[NSNotificationCenter defaultCenter] addObserverForName:ACAccountStoreDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         // account must be considered invalid
         
-        if([self.oauth isKindOfClass:[STTwitterOS class]]) {
-            self.oauth = nil;
+        if(weakSelf == nil) return;
+        
+        if([weakSelf.oauth isKindOfClass:[STTwitterOS class]]) {
+            weakSelf.oauth = nil;
         }
     }];
     
@@ -170,12 +175,24 @@ static NSDateFormatter *dateFormatter = nil;
     return dateFormatter;
 }
 
-- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock forceLogin:(NSNumber *)forceLogin screenName:(NSString *)screenName oauthCallback:(NSString *)oauthCallback errorBlock:(void(^)(NSError *error))errorBlock {
-    [_oauth postTokenRequest:successBlock forceLogin:forceLogin screenName:screenName oauthCallback:oauthCallback errorBlock:errorBlock];
+- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock
+authenticateInsteadOfAuthorize:(BOOL)authenticateInsteadOfAuthorize
+              forceLogin:(NSNumber *)forceLogin screenName:(NSString *)screenName
+           oauthCallback:(NSString *)oauthCallback
+              errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    [_oauth postTokenRequest:successBlock
+authenticateInsteadOfAuthorize:authenticateInsteadOfAuthorize
+                  forceLogin:forceLogin
+                  screenName:screenName
+               oauthCallback:oauthCallback
+                  errorBlock:errorBlock];
 }
 
-- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock oauthCallback:(NSString *)oauthCallback errorBlock:(void(^)(NSError *error))errorBlock {
-    [_oauth postTokenRequest:successBlock forceLogin:nil screenName:nil oauthCallback:oauthCallback errorBlock:errorBlock];
+- (void)postTokenRequest:(void(^)(NSURL *url, NSString *oauthToken))successBlock
+           oauthCallback:(NSString *)oauthCallback
+              errorBlock:(void(^)(NSError *error))errorBlock {
+    [_oauth postTokenRequest:successBlock authenticateInsteadOfAuthorize:NO forceLogin:nil screenName:nil oauthCallback:oauthCallback errorBlock:errorBlock];
 }
 
 - (void)postAccessTokenRequestWithPIN:(NSString *)pin
@@ -188,17 +205,20 @@ static NSDateFormatter *dateFormatter = nil;
 
 - (void)verifyCredentialsWithSuccessBlock:(void(^)(NSString *username))successBlock errorBlock:(void(^)(NSError *error))errorBlock {
     
+    STTwitterAPI * __weak weakSelf = self;
+    
     if([_oauth canVerifyCredentials]) {
         [_oauth verifyCredentialsWithSuccessBlock:^(NSString *username) {
-            self.userName = username;
-            successBlock(_userName);
+            [weakSelf setUserName:username];
+            successBlock(username);
         } errorBlock:^(NSError *error) {
             errorBlock(error);
         }];
     } else {
         [self getAccountVerifyCredentialsWithSuccessBlock:^(NSDictionary *account) {
-            self.userName = [account valueForKey:@"screen_name"];
-            successBlock(_userName);
+            NSString *username = [account valueForKey:@"screen_name"];
+            [weakSelf setUserName:username];
+            successBlock(username);
         } errorBlock:^(NSError *error) {
             errorBlock(error);
         }];
@@ -207,6 +227,7 @@ static NSDateFormatter *dateFormatter = nil;
 
 - (void)invalidateBearerTokenWithSuccessBlock:(void(^)())successBlock
                                    errorBlock:(void(^)(NSError *error))errorBlock {
+    
     if([self.oauth respondsToSelector:@selector(invalidateBearerTokenWithSuccessBlock:errorBlock:)]) {
         [self.oauth invalidateBearerTokenWithSuccessBlock:successBlock errorBlock:errorBlock];
     } else {
@@ -356,7 +377,7 @@ downloadProgressBlock:(void(^)(id json))downloadProgressBlock
             errorBlock:(void(^)(NSError *error))errorBlock {
     
     [self getResource:resource
-        baseURLString:kBaseURLStringAPI
+        baseURLString:kBaseURLStringAPI_1_1
            parameters:parameters
 downloadProgressBlock:progressBlock
          successBlock:successBlock
@@ -370,7 +391,7 @@ downloadProgressBlock:progressBlock
             errorBlock:(void(^)(NSError *error))errorBlock {
     
     [self getResource:resource
-        baseURLString:kBaseURLStringAPI
+        baseURLString:kBaseURLStringAPI_1_1
            parameters:parameters
 downloadProgressBlock:nil
          successBlock:successBlock
@@ -385,7 +406,7 @@ downloadProgressBlock:nil
              errorBlock:(void(^)(NSError *error))errorBlock {
     
     [self postResource:resource
-         baseURLString:kBaseURLStringAPI
+         baseURLString:kBaseURLStringAPI_1_1
             parameters:parameters
    uploadProgressBlock:uploadProgressBlock
  downloadProgressBlock:progressBlock
@@ -400,7 +421,7 @@ downloadProgressBlock:nil
              errorBlock:(void(^)(NSError *error))errorBlock {
     
     [self postResource:resource
-         baseURLString:kBaseURLStringAPI
+         baseURLString:kBaseURLStringAPI_1_1
             parameters:parameters
    uploadProgressBlock:nil
  downloadProgressBlock:nil
@@ -465,6 +486,8 @@ downloadProgressBlock:nil
                        r.errorBlock = ^(NSError *error) {
                            errorBlock(error);
                        };
+
+                       [r startAsynchronous];
                    } errorBlock:^(NSError *error) {
                        errorBlock(error);
                    }];
@@ -809,6 +832,7 @@ downloadProgressBlock:nil
 
 - (void)postStatusUpdate:(NSString *)status
        inReplyToStatusID:(NSString *)existingStatusID
+                mediaIDs:(NSArray *)mediaIDs
                 latitude:(NSString *)latitude
                longitude:(NSString *)longitude
                  placeID:(NSString *)placeID // wins over lat/lon
@@ -817,13 +841,18 @@ downloadProgressBlock:nil
             successBlock:(void(^)(NSDictionary *status))successBlock
               errorBlock:(void(^)(NSError *error))errorBlock {
     
-    if(status == nil) {
+    if([mediaIDs count] == 0 && status == nil) {
         NSError *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:STTwitterAPICannotPostEmptyStatus userInfo:@{NSLocalizedDescriptionKey : @"cannot post empty status"}];
         errorBlock(error);
         return;
     }
     
     NSMutableDictionary *md = [NSMutableDictionary dictionaryWithObject:status forKey:@"status"];
+    
+    if([mediaIDs count] > 0) {
+        NSString *mediaIDsString = [mediaIDs componentsJoinedByString:@","];
+        md[@"media_ids"] = mediaIDsString;
+    }
     
     if(existingStatusID) {
         md[@"in_reply_to_status_id"] = existingStatusID;
@@ -843,6 +872,28 @@ downloadProgressBlock:nil
     } errorBlock:^(NSError *error) {
         errorBlock(error);
     }];
+}
+
+- (void)postStatusUpdate:(NSString *)status
+       inReplyToStatusID:(NSString *)existingStatusID
+                latitude:(NSString *)latitude
+               longitude:(NSString *)longitude
+                 placeID:(NSString *)placeID // wins over lat/lon
+      displayCoordinates:(NSNumber *)displayCoordinates
+                trimUser:(NSNumber *)trimUser
+            successBlock:(void(^)(NSDictionary *status))successBlock
+              errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    [self postStatusUpdate:status
+         inReplyToStatusID:existingStatusID
+                  mediaIDs:nil
+                  latitude:latitude
+                 longitude:longitude
+                   placeID:placeID
+        displayCoordinates:displayCoordinates
+                  trimUser:trimUser
+              successBlock:successBlock
+                errorBlock:errorBlock];
 }
 
 - (void)postStatusUpdate:(NSString *)status
@@ -872,7 +923,7 @@ downloadProgressBlock:nil
     md[kSTPOSTDataKey] = @"media[]";
     
     [self postResource:@"statuses/update_with_media.json"
-         baseURLString:kBaseURLStringAPI
+         baseURLString:kBaseURLStringAPI_1_1
             parameters:md
    uploadProgressBlock:uploadProgressBlock
  downloadProgressBlock:nil
@@ -1188,7 +1239,7 @@ downloadProgressBlock:nil
     if([locations length]) md[@"locations"] = locations;
     
     return [self postResource:@"statuses/filter.json"
-                baseURLString:kBaseURLStringStream
+                baseURLString:kBaseURLStringStream_1_1
                    parameters:md
           uploadProgressBlock:nil
         downloadProgressBlock:^(id json) {
@@ -1238,7 +1289,7 @@ downloadProgressBlock:nil
     if(stallWarnings) md[@"stall_warnings"] = [stallWarnings boolValue] ? @"1" : @"0";
     
     return [self getResource:@"statuses/sample.json"
-               baseURLString:kBaseURLStringStream
+               baseURLString:kBaseURLStringStream_1_1
                   parameters:md
        downloadProgressBlock:^(id json) {
            
@@ -1273,7 +1324,7 @@ downloadProgressBlock:nil
     if(stallWarnings) md[@"stall_warnings"] = [stallWarnings boolValue] ? @"1" : @"0";
     
     return [self getResource:@"statuses/firehose.json"
-               baseURLString:kBaseURLStringStream
+               baseURLString:kBaseURLStringStream_1_1
                   parameters:md
        downloadProgressBlock:^(id json) {
            
@@ -1318,7 +1369,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     if([locations length]) md[@"locations"] = locations;
     
     return [self getResource:@"user.json"
-               baseURLString:kBaseURLStringUserStream
+               baseURLString:kBaseURLStringUserStream_1_1
                   parameters:md
        downloadProgressBlock:^(id json) {
            
@@ -1359,7 +1410,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     if([follow length]) md[@"follow"] = follow;
     
     return [self getResource:@"site.json"
-               baseURLString:kBaseURLStringSiteStream
+               baseURLString:kBaseURLStringSiteStream_1_1
                   parameters:md
        downloadProgressBlock:^(id json) {
            
@@ -1476,17 +1527,55 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 }
 
 - (void)postDirectMessage:(NSString *)status
-					   to:(NSString *)screenName
+            forScreenName:(NSString *)screenName
+                 orUserID:(NSString *)userID
              successBlock:(void(^)(NSDictionary *message))successBlock
                errorBlock:(void(^)(NSError *error))errorBlock {
     NSMutableDictionary *md = [NSMutableDictionary dictionaryWithObject:status forKey:@"text"];
-    [md setObject:screenName forKey:@"screen_name"];
     
-    [self postAPIResource:@"direct_messages/new.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
-        successBlock(response);
-    } errorBlock:^(NSError *error) {
-        errorBlock(error);
-    }];
+    NSAssert(screenName != nil || userID != nil, @"screenName OR userID is required");
+    
+    if(screenName) {
+        md[@"screen_name"] = screenName;
+    } else {
+        md[@"user_id"] = userID;
+    }
+    
+    [self postAPIResource:@"direct_messages/new.json"
+               parameters:md
+             successBlock:^(NSDictionary *rateLimits, id response) {
+                 successBlock(response);
+             } errorBlock:^(NSError *error) {
+                 errorBlock(error);
+             }];
+}
+
+- (void)_postDirectMessage:(NSString *)status
+             forScreenName:(NSString *)screenName
+                  orUserID:(NSString *)userID
+                   mediaID:(NSString *)mediaID
+              successBlock:(void(^)(NSDictionary *message))successBlock
+                errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionaryWithObject:status forKey:@"text"];
+    
+    NSAssert(screenName != nil || userID != nil, @"screenName OR userID is required");
+    
+    if(screenName) {
+        md[@"screen_name"] = screenName;
+    } else {
+        md[@"user_id"] = userID;
+    }
+    
+    if(mediaID) md[@"media_id"] = mediaID;
+    
+    [self postAPIResource:@"direct_messages/new.json"
+               parameters:md
+             successBlock:^(NSDictionary *rateLimits, id response) {
+                 successBlock(response);
+             } errorBlock:^(NSError *error) {
+                 errorBlock(error);
+             }];
 }
 
 #pragma mark Friends & Followers
@@ -1848,7 +1937,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
                      orScreenName:screenName
                            cursor:nil
                             count:nil
-                       skipStatus:NO
+                       skipStatus:@(NO)
               includeUserEntities:@(YES)
                      successBlock:^(NSArray *users, NSString *previousCursor, NSString *nextCursor) {
                          successBlock(users);
@@ -2017,8 +2106,8 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
 }
 
 - (void)postUpdateProfile:(NSDictionary *)profileData
-			 successBlock:(void(^)(NSDictionary *myInfo))successBlock
-			   errorBlock:(void(^)(NSError *error))errorBlock {
+             successBlock:(void(^)(NSDictionary *myInfo))successBlock
+               errorBlock:(void(^)(NSError *error))errorBlock {
     [self postAPIResource:@"account/update_profile.json" parameters:profileData successBlock:^(NSDictionary *rateLimits, id response) {
         successBlock(response);
     } errorBlock:^(NSError *error) {
@@ -2424,6 +2513,92 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     }];
 }
 
+// POST mutes/users/create
+- (void)postMutesUsersCreateForScreenName:(NSString *)screenName
+                                 orUserID:(NSString *)userID
+                             successBlock:(void(^)(NSDictionary *user))successBlock
+                               errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSAssert((userID || screenName), @"userID or screenName is missing");
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionary];
+    
+    if(screenName) md[@"screen_name"] = screenName;
+    if(userID) md[@"user_id"] = userID;
+    
+    [self postAPIResource:@"mutes/users/create.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+        successBlock(response);
+    } errorBlock:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
+// POST mutes/users/destroy
+- (void)postMutesUsersDestroyForScreenName:(NSString *)screenName
+                                  orUserID:(NSString *)userID
+                              successBlock:(void(^)(NSDictionary *user))successBlock
+                                errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSAssert((userID || screenName), @"userID or screenName is missing");
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionary];
+    
+    if(screenName) md[@"screen_name"] = screenName;
+    if(userID) md[@"user_id"] = userID;
+    
+    [self postAPIResource:@"mutes/users/destroy.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+        successBlock(response);
+    } errorBlock:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
+// GET mutes/users/ids
+- (void)getMutesUsersIDsWithCursor:(NSString *)cursor
+                      successBlock:(void(^)(NSArray *userIDs, NSString *previousCursor, NSString *nextCursor))successBlock
+                        errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionary];
+    
+    if(cursor) md[@"cursor"] = cursor;
+    
+    [self getAPIResource:@"mutes/users/ids.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+        
+        NSArray *userIDs = [response valueForKey:@"ids"];
+        NSString *previousCursor = [response valueForKey:@"previous_cursor_str"];
+        NSString *nextCursor = [response valueForKey:@"next_cursor_str"];
+        
+        successBlock(userIDs, previousCursor, nextCursor);
+    } errorBlock:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
+// GET mutes/users/list
+- (void)getMutesUsersListWithCursor:(NSString *)cursor
+                    includeEntities:(NSNumber *)includeEntities
+                         skipStatus:(NSNumber *)skipStatus
+                       successBlock:(void(^)(NSArray *users, NSString *previousCursor, NSString *nextCursor))successBlock
+                         errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionary];
+    
+    if(cursor) md[@"cursor"] = cursor;
+    if(includeEntities) md[@"include_entities"] = includeEntities;
+    if(skipStatus) md[@"skip_status"] = skipStatus;
+    
+    [self getAPIResource:@"mutes/users/list.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+        
+        NSArray *users = [response valueForKey:@"users"];
+        NSString *previousCursor = [response valueForKey:@"previous_cursor_str"];
+        NSString *nextCursor = [response valueForKey:@"next_cursor_str"];
+        
+        successBlock(users, previousCursor, nextCursor);
+    } errorBlock:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
 #pragma mark Suggested Users
 
 // GET users/suggestions/:slug
@@ -2779,7 +2954,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     NSParameterAssert(listID);
     
     NSMutableDictionary *md = [NSMutableDictionary dictionary];
-    md[@"listID"] = listID;
+    md[@"list_id"] = listID;
     if(cursor) md[@"cursor"] = cursor;
     if(includeEntities) md[@"include_entities"] = [includeEntities boolValue] ? @"1" : @"0";
     if(skipStatus) md[@"skip_status"] = [skipStatus boolValue] ? @"1" : @"0";
@@ -2999,7 +3174,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     NSAssert(listID, @"listID is missing");
     
     NSMutableDictionary *md = [NSMutableDictionary dictionary];
-    md[@"listID"] = listID;
+    md[@"list_id"] = listID;
     if(userID) md[@"user_id"] = userID;
     if(screenName) md[@"screen_name"] = screenName;
     if(includeEntities) md[@"include_entities"] = [includeEntities boolValue] ? @"1" : @"0";
@@ -3108,7 +3283,7 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     
     NSParameterAssert(listID);
     NSAssert((userID || screenName), @"missing userID or screenName");
-
+    
     NSMutableDictionary *md = [NSMutableDictionary dictionary];
     md[@"list_id"] = listID;
     if(userID) md[@"user_id"] = userID;
@@ -3816,6 +3991,91 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     }];
 }
 
+#pragma mark Tweets
+
+/*
+ GET statuses/lookup
+ 
+ Returns fully-hydrated tweet objects for up to 100 tweets per request, as specified by comma-separated values passed to the id parameter. This method is especially useful to get the details (hydrate) a collection of Tweet IDs. GET statuses/show/:id is used to retrieve a single tweet object.
+ */
+
+- (void)getStatusesLookupTweetIDs:(NSArray *)tweetIDs
+                  includeEntities:(NSNumber *)includeEntities
+                         trimUser:(NSNumber *)trimUser
+                              map:(NSNumber *)map
+                     successBlock:(void(^)(NSArray *tweets))successBlock
+                       errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionary];
+    
+    NSParameterAssert(tweetIDs);
+    NSAssert(([tweetIDs isKindOfClass:[NSArray class]]), @"tweetIDs must be an array");
+    
+    md[@"id"] = [tweetIDs componentsJoinedByString:@","];
+    if(includeEntities) md[@"include_entities"] = [includeEntities boolValue] ? @"true" : @"false";
+    if(trimUser) md[@"trim_user"] = [trimUser boolValue] ? @"1" : @"0";
+    if(map) md[@"map"] = [map boolValue] ? @"1" : @"0";
+    
+    [self getAPIResource:@"statuses/lookup.json" parameters:md successBlock:^(NSDictionary *rateLimits, id response) {
+        successBlock(response);
+    } errorBlock:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
+#pragma mark Media
+
+- (void)postMediaUpload:(NSURL *)mediaURL
+    uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+           successBlock:(void(^)(NSDictionary *imageDictionary, NSString *mediaID, NSString *size))successBlock
+             errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSData *data = [NSData dataWithContentsOfURL:mediaURL];
+    
+    NSString *fileName = [mediaURL isFileURL] ? [[mediaURL path] lastPathComponent] : @"media.jpg";
+    
+    [self postMediaUploadData:data
+                     fileName:fileName
+          uploadProgressBlock:uploadProgressBlock
+                 successBlock:successBlock
+                   errorBlock:errorBlock];
+}
+
+- (void)postMediaUploadData:(NSData *)data
+                   fileName:(NSString *)fileName
+        uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+               successBlock:(void(^)(NSDictionary *imageDictionary, NSString *mediaID, NSString *size))successBlock
+                 errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    // https://dev.twitter.com/docs/api/multiple-media-extended-entities
+    
+    if(data == nil) {
+        NSError *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:STTwitterAPIMediaDataIsEmpty userInfo:@{NSLocalizedDescriptionKey : @"data is nil"}];
+        errorBlock(error);
+        return;
+    }
+    
+    NSMutableDictionary *md = [NSMutableDictionary dictionary];
+    md[@"media"] = data;
+    md[kSTPOSTDataKey] = @"media";
+    md[kSTPOSTMediaFileNameKey] = fileName;
+    
+    [self postResource:@"media/upload.json"
+         baseURLString:kBaseURLStringUpload_1_1
+            parameters:md
+   uploadProgressBlock:uploadProgressBlock
+ downloadProgressBlock:nil
+          successBlock:^(NSDictionary *rateLimits, id response) {
+              
+              NSDictionary *imageDictionary = [response valueForKey:@"image"];
+              NSString *mediaID = [response valueForKey:@"media_id_string"];
+              NSString *size = [response valueForKey:@"size"];
+              
+              successBlock(imageDictionary, mediaID, size);
+          }
+            errorBlock:errorBlock];
+}
+
 #pragma mark -
 #pragma mark UNDOCUMENTED APIs
 
@@ -4091,12 +4351,28 @@ includeMessagesFromFollowedAccounts:(NSNumber *)includeMessagesFromFollowedAccou
     }];
 }
 
+// GET conversation/show/:id.json
+- (void)_getConversationShowWithTweetID:(NSString *)tweetID
+                           successBlock:(void(^)(id results))successBlock
+                      errorBlock:(void(^)(NSError *error))errorBlock {
+    
+    NSParameterAssert(tweetID);
+    
+    NSString *ressource = [NSString stringWithFormat:@"conversation/show/%@.json", tweetID];
+    
+    [self getAPIResource:ressource parameters:nil successBlock:^(NSDictionary *rateLimits, id response) {
+        successBlock(response);
+    } errorBlock:^(NSError *error) {
+        errorBlock(error);
+    }];
+}
+
 @end
 
 @implementation NSString (STTwitterAPI)
 
 - (NSString *)htmlLinkName {
-    NSString *ahref = [self firstMatchWithRegex:@"<a href=\".*\">(.*)</a>" error:nil];
+    NSString *ahref = [self st_firstMatchWithRegex:@"<a href=\".*\">(.*)</a>" error:nil];
     
     return ahref ? ahref : self;
 }

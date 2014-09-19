@@ -1,8 +1,13 @@
 ## STTwitter
 
-_A comprehensive Objective-C library for Twitter REST API 1.1_
+_A stable, mature and comprehensive Objective-C library for Twitter REST API 1.1_
 
+**[2014-06-18]** [Swifter](https://github.com/mattdonnelly/Swifter), A Twitter framework for iOS & OS X written in Swift, by [@MatthewDonnelly](htps://www.twitter.com/MatthewDonnelly/)  
+**[2014-05-31]** Follow STTwitter on Twitter: [@STTLibrary](https://www.twitter.com/STTLibrary/)  
+**[2014-05-22]** STTwitter was presented at [CocoaHeads Lausanne](https://www.facebook.com/events/732041160150290/) ([slides](http://seriot.ch/resources/abusing_twitter_api/sttwitter_cocoaheads.pdf))  
 **[2013-10-24]** STTwitter was presented at [SoftShake 2013](http://soft-shake.ch) ([slides](http://seriot.ch/resources/abusing_twitter_api/ios_twitter_integration_sos13.pdf)).
+
+[![Build Status](https://travis-ci.org/nst/STTwitter.svg?branch=master)](https://travis-ci.org/nst/STTwitter)
 
 1. [Testimonials](#testimonials)
 2. [Installation](#installation)
@@ -36,14 +41,13 @@ Drag and drop STTwitter directory into your project.
 Link your project with the following frameworks:
 
 - Accounts.framework
-- Twitter.framework
+- Social.framework
+- Twitter.framework (iOS only)
 - Security.framework (OS X only)
-- Social.framework (iOS only, weak)
 
 If you want to use CocoaPods, add the following two lines to your Podfile:
 
     pod 'STTwitter'
-    platform :ios, '5.0'
 
 Then, run the following command to install the STTwitter pod:
 
@@ -56,6 +60,18 @@ STTwitter requires iOS 5+ or OS X 10.7+.
 Vea Software has a great written + live-demo [tutorial](http://tutorials.veasoftware.com/2013/12/23/twitter-api-version-1-1-app-authentication/) about creating a simple iOS app using STTwitter's app only mode.
 
 ### Code Snippets
+
+Here are several ways to use STTwitter.
+
+You'll find complete, minimal, command-line projects in the `demo_cli` directory:
+
+- [streaming](https://github.com/nst/STTwitter/blob/master/demo_cli/streaming/main.m) use the streaming API to filter all tweets with some word
+- [streaming_with_bot](https://github.com/nst/STTwitter/blob/master/demo_cli/streaming_with_bot/main.m) same as above, but reply instantly from another account
+- [reverse_auth](https://github.com/nst/STTwitter/blob/master/demo_cli/reverse_auth/main.m) perform reverse authentication
+- [followers](https://github.com/nst/STTwitter/blob/master/demo_cli/followers/main.m) display your followers by following Twitter's API cursors, and waiting for a while before reaching rate limits
+- [favorites](https://github.com/nst/STTwitter/blob/master/demo_cli/favorites/main.m) display tweets favorited by people you follow, set a tweet's favorite status
+- [conversation](https://github.com/nst/STTwitter/blob/master/demo_cli/conversation/main.m) post several tweets in the same conversation
+- [t2rss](https://github.com/nst/STTwitter/blob/master/demo_cli/t2rss/main.m) convert your timeline into an RSS feed
 
 ##### Instantiate STTwitterAPI
 
@@ -112,7 +128,7 @@ STTwitterAPI *twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:@""
                                                         consumerSecret:@""];
 
 [twitter verifyCredentialsWithSuccessBlock:^(NSString *bearerToken) {
-    
+
     [twitter getUserTimelineWithScreenName:@"barackobama"
                               successBlock:^(NSArray *statuses) {
         // ...
@@ -153,7 +169,7 @@ So there are five cases altogether, hence these five methods:
                                   consumerSecret:(NSString *)consumerSecret
                                       oauthToken:(NSString *)oauthToken
                                 oauthTokenSecret:(NSString *)oauthTokenSecret;
-               
+
 + (STTwitterAPI *)twitterAPIAppOnlyWithConsumerKey:(NSString *)consumerKey
                                     consumerSecret:(NSString *)consumerSecret;
 ```
@@ -167,9 +183,9 @@ The most common use case of reverse authentication is letting users register/log
     iOS/OSX     Twitter     Server
     -------------->                 reverse auth.
     < - - - - - - -                 access tokens
-        
+
     ----------------------------->  access tokens
-        
+
                    <--------------  access Twitter on user's behalf
                     - - - - - - ->
 
@@ -181,27 +197,27 @@ STTwitterAPI *twitter = [STTwitterAPI twitterAPIWithOAuthConsumerName:nil
                                                        consumerSecret:@"CONSUMER_SECRET"];
 
 [twitter postReverseOAuthTokenRequest:^(NSString *authenticationHeader) {
-    
+
     STTwitterAPI *twitterAPIOS = [STTwitterAPI twitterAPIOSWithFirstAccount];
-    
+
     [twitterAPIOS verifyCredentialsWithSuccessBlock:^(NSString *username) {
-        
+
         [twitterAPIOS postReverseAuthAccessTokenWithAuthenticationHeader:authenticationHeader
                                                             successBlock:^(NSString *oAuthToken,
                                                                            NSString *oAuthTokenSecret,
                                                                            NSString *userID,
                                                                            NSString *screenName) {
-                                                                
+
                                                                 // use the tokens...
-                                                                
+
                                                             } errorBlock:^(NSError *error) {
                                                                 // ...
                                                             }];
-        
+
     } errorBlock:^(NSError *error) {
         // ...
     }];
-    
+
 } errorBlock:^(NSError *error) {
     // ...
 }];
@@ -225,8 +241,8 @@ Once you got the OAuth tokens, you can get your timeline and post a new status.
 
 There is also a simple iOS demo project in `demo_ios`.
 
-<img border="1" src="Art/osx.png" width="840" alt="STTwitter Demo iOS"></img> 
-<img border="1" src="Art/ios.png" alt="STTwitter Demo iOS"></img> 
+<img border="1" src="Art/osx.png" width="840" alt="STTwitter Demo iOS"></img>
+<img border="1" src="Art/ios.png" alt="STTwitter Demo iOS"></img>
 <img border="1" src="Art/tweet.png" alt="sample tweet"></img>
 
 ### Integration Tips
@@ -245,14 +261,14 @@ In older projects, you can set the compilation flag `-DNS_BLOCK_ASSERTIONS=1`.
 
 ##### Number of Characters in a Tweet
 
-Use the method `-[NSString numberOfCharactersInATweet]` to let the user know how many characters she can enter before the end of the Tweet. The method may also return a negative value if the string exceeds a tweet's maximum length. The method considers the shortened URL lengths.
+Use the method `-[NSString st_numberOfCharactersInATweet]` to let the user know how many characters she can enter before the end of the Tweet. The method may also return a negative value if the string exceeds a tweet's maximum length. The method considers the shortened URL lengths.
 
 ##### Date Formatter
 
-In order to convert the string in the `created_at` field from Twitter's JSON into an NSDate instance, you can use the `+[NSDateFormatter stTwitterDateFormatter]`.
+In order to convert the string in the `created_at` field from Twitter's JSON into an NSDate instance, you can use the `+[NSDateFormatter st_TwitterDateFormatter]`.
 
 ```Objective-C
-NSDateFormatter *df = [NSDateFormatter stTwitterDateFormatter];
+NSDateFormatter *df = [NSDateFormatter st_TwitterDateFormatter];
 NSString *dateString = [d valueForKey:@"created_at"]; // "Sun Jun 28 20:33:01 +0000 2009"
 NSDate *date = [df dateFromString:dateString];
 ```
@@ -285,6 +301,12 @@ You may want to use Twitter's own Objective-C library for text processing: [http
 + (TwitterTextEntity*)repliedScreenNameInText:(NSString*)text;
 ```
 
+##### Logout
+
+The correct approach to logout a user is setint the `STTwitterAPI` instance to nil.
+
+You'll create a new one at the next login.
+
 ##### Boolean Parameters
 
 There are a lot of optional parameters in Twitter API. In STTwitter, you can ignore such parameters by passing `nil`. Regarding boolean parameters, STTwitter can't just use Objective-C `YES` and `NO` because `NO` has the same value as `nil` (zero). So boolean parameters are wrapped into `NSNumber` objects, which are pretty easy to use with boolean values thanks to Objective-C literals. So, with STTwitter, you will assign an optional parameter of Twitter API either as `@(YES)`, `@(NO)` or `nil`.
@@ -309,7 +331,7 @@ STTwitter provides a full, "one-to-one" Objective-C front-end to Twitter REST AP
 
 `STTwitterAPI+MyApp.m`
 
-```Objective-C    
+```Objective-C
 #import "STTwitterAPI+MyApp.h"
 
 @implementation STTwitterAPI (MyApp)
@@ -327,7 +349,7 @@ STTwitter provides a full, "one-to-one" Objective-C front-end to Twitter REST AP
                    successBlock(status);
 
                } errorBlock:^(NSError *error) {
-        
+
                    errorBlock(error);
 
                }];
@@ -359,7 +381,7 @@ Twitter restricts the xAuth authentication process to xAuth-enabled consumer tok
 
 ##### Anything Else
 
-Please [fill an issue](https://github.com/nst/STTwitter/issues) on GitHub.
+Please [fill an issue](https://github.com/nst/STTwitter/issues) on GitHub or use the [STTwitter tag](http://stackoverflow.com/questions/tagged/sttwitter) on StackOverflow.
 
 ### Developers
 
@@ -370,37 +392,37 @@ The application only interacts with `STTwitterAPI`.
 You can create your own convenience methods with fewer parameters. You can also use this generic method directly:
 
 ```Objective-C
-        - (id)fetchResource:(NSString *)resource
-                 HTTPMethod:(NSString *)HTTPMethod
-              baseURLString:(NSString *)baseURLString
-                 parameters:(NSDictionary *)parameters
-        uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-      downloadProgressBlock:(void (^)(id request, id response))downloadProgressBlock
-               successBlock:(void (^)(id request, NSDictionary *headers, id response))successBlock
-                 errorBlock:(void (^)(id request, NSDictionary *headers, NSError *error))errorBlock;
+  - (id)fetchResource:(NSString *)resource
+           HTTPMethod:(NSString *)HTTPMethod
+        baseURLString:(NSString *)baseURLString
+           parameters:(NSDictionary *)params
+  uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+downloadProgressBlock:(void (^)(id request, id response))downloadProgressBlock
+         successBlock:(void (^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response))successBlock
+           errorBlock:(void (^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock;
 ```
 
 ##### Layer Model
-     
-     +-----------------------------------------------------------------+
-     |                         Your Application                        |
-     +-------------------------------------------------+---------------+
-     |                  STTwitterAPI                   | STTwitterHTML |
-     +-------------------------------------------------+               |
-     + - - - - - - - - - - - - - - - - - - - - - - - - +               |
-     |              STTwitterOAuthProtocol             |               |
-     + - - - - - - - - - - - - - - - - - - - - - - - - +               |
-     +-------------+----------------+------------------+               |
-     | STTwitterOS | STTwitterOAuth | STTwitterAppOnly |               |
-     |             +----------------+------------------+---------------+
-     |             |                   STHTTPRequest                   |
-     +-------------+---------------------------------------------------+
+
+     +------------------------------------------------------------------------+
+     |                         Your Application                               |
+     +--------------------------------------------------------+---------------+
+     |                  STTwitterAPI                          | STTwitterHTML |
+     +--------------------------------------------------------+               |
+     + - - - - - - - - - - - - - - - - - - - - - - - - - - - -+               |
+     |              STTwitterOAuthProtocol                    |               |
+     + - - - - - - - - - - - - - - - - - - - - - - - - - - - -+               |
+     +--------------------+----------------+------------------+               |
+     |    STTwitterOS     | STTwitterOAuth | STTwitterAppOnly |               |
+     +--------------------+----------------+------------------+---------------+
+     | STTwitterOSRequest |                   STHTTPRequest                   |
+     +--------------------+---------------------------------------------------+
       |
       + Accounts.framework
       + Social.framework
-     
+
 ##### Summary
-     
+
      * STTwitterAPI
         - can be instantiated with the authentication mode you want
         - provides methods to interact with each Twitter API endpoint
@@ -411,11 +433,14 @@ You can create your own convenience methods with fewer parameters. You can also 
 
      * STTwitterOAuthProtocol
         - provides generic methods to POST and GET resources on Twitter's hosts
-     
+
      * STTwitterOS
         - uses Twitter accounts defined in OS X Preferences or iOS Settings
         - uses OS X / iOS frameworks to interact with Twitter API
-     
+
+     * STTwitterOSRequest
+        - black-based wrapper around SLRequest's underlying NSURLRequest
+        
      * STTwitterOAuth
         - implements OAuth and xAuth authentication
 

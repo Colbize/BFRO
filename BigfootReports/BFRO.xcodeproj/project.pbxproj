@@ -42,7 +42,6 @@
 		515C532618661008008A1E31 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532518661008008A1E31 /* MediaPlayer.framework */; };
 		515C532A18661084008A1E31 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532918661084008A1E31 /* GoogleOpenSource.framework */; };
 		515C532C1866108F008A1E31 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532B1866108F008A1E31 /* GooglePlus.framework */; };
-		515C532E18661580008A1E31 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 515C532D18661580008A1E31 /* GooglePlus.bundle */; };
 		515D4B8418A40A8500231080 /* EveryReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515D4B8318A40A8500231080 /* EveryReportViewController.m */; };
 		515D4B8718A40B1400231080 /* EveryReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515D4B8618A40B1400231080 /* EveryReportViewController.xib */; };
 		515D4B8C18A40B6D00231080 /* sightingsInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515D4B8818A40B6D00231080 /* sightingsInfo.xib */; };
@@ -106,6 +105,7 @@
 		51830F4B186355AD00992815 /* topic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F49186355AD00992815 /* topic@2x.png */; };
 		51830F4E1863564900992815 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F4C1863564900992815 /* info.png */; };
 		51830F4F1863564900992815 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F4D1863564900992815 /* info@2x.png */; };
+		5188E4FD19CBCF1100379206 /* bfro1.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5188E4FC19CBCF1100379206 /* bfro1.sqlite */; };
 		51927A4B1897399200C5E98E /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A4A1897399200C5E98E /* download.png */; };
 		51927A4D1897399C00C5E98E /* download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A4C1897399C00C5E98E /* download@2x.png */; };
 		51927A5E189880E600C5E98E /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A5D189880E600C5E98E /* search@2x.png */; };
@@ -116,13 +116,11 @@
 		51927A87189AD97300C5E98E /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A86189AD97300C5E98E /* home@2x.png */; };
 		51927A89189AD98600C5E98E /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A88189AD98600C5E98E /* home.png */; };
 		519C89B3184A5A1700397562 /* BigfootReports.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 519C89B1184A5A1700397562 /* BigfootReports.xcdatamodeld */; };
+		519D48DF19CBD1130009E565 /* ReportsByLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4E861188C759200D2E4A5 /* ReportsByLocation.m */; };
 		519DCB7618B7EA2E0069D5EC /* delete_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7518B7EA2E0069D5EC /* delete_sign@2x.png */; };
 		519DCB7818B7EA410069D5EC /* delete_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7718B7EA410069D5EC /* delete_sign.png */; };
 		519DCB7A18B814020069D5EC /* helpTipMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7918B814020069D5EC /* helpTipMap.xib */; };
 		519DCB7C18B82EED0069D5EC /* helpTipPoints.xib in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7B18B82EED0069D5EC /* helpTipPoints.xib */; };
-		519DCB8418B8367A0069D5EC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 519DCB7E18B8367A0069D5EC /* libTestFlight.a */; };
-		519DCB8518B8367B0069D5EC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7F18B8367A0069D5EC /* README.md */; };
-		519DCB8618B8367B0069D5EC /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB8018B8367A0069D5EC /* release_notes.md */; };
 		519DCB8818B91AD30069D5EC /* helpTipSearch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB8718B91AD30069D5EC /* helpTipSearch.xib */; };
 		519DF8C01858DAAD0046E8BF /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 519DF8BF1858DAAD0046E8BF /* Toast+UIView.m */; };
 		519DF8CE1858DB9E0046E8BF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519DF8CD1858DB9E0046E8BF /* SystemConfiguration.framework */; };
@@ -162,7 +160,6 @@
 		51A4E862188C759200D2E4A5 /* ReportsByLocation.h in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E860188C759200D2E4A5 /* ReportsByLocation.h */; };
 		51A4E863188C759200D2E4A5 /* ReportsByLocation.m in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E861188C759200D2E4A5 /* ReportsByLocation.m */; };
 		51A4E865188C776300D2E4A5 /* bfro1.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E864188C776300D2E4A5 /* bfro1.sqlite */; };
-		51A4E86B188C9E5C00D2E4A5 /* bfro1.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E86A188C9E5C00D2E4A5 /* bfro1.sqlite */; };
 		51A4E86D188CCEBD00D2E4A5 /* eraser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E86C188CCEBD00D2E4A5 /* eraser@2x.png */; };
 		51A4E86F188CCEC600D2E4A5 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E86E188CCEC600D2E4A5 /* eraser.png */; };
 		51AB0A2C188E141A005F52A0 /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51AB0A2B188E141A005F52A0 /* help@2x.png */; };
@@ -253,7 +250,6 @@
 		515C532518661008008A1E31 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		515C532918661084008A1E31 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		515C532B1866108F008A1E31 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
-		515C532D18661580008A1E31 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = ../GooglePlus.bundle; sourceTree = "<group>"; };
 		515D4B8318A40A8500231080 /* EveryReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EveryReportViewController.m; sourceTree = "<group>"; };
 		515D4B8518A40AC700231080 /* EveryReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EveryReportViewController.h; sourceTree = "<group>"; };
 		515D4B8618A40B1400231080 /* EveryReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EveryReportViewController.xib; sourceTree = "<group>"; };
@@ -333,6 +329,7 @@
 		51830F49186355AD00992815 /* topic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topic@2x.png"; sourceTree = "<group>"; };
 		51830F4C1863564900992815 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		51830F4D1863564900992815 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
+		5188E4FC19CBCF1100379206 /* bfro1.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = bfro1.sqlite; sourceTree = "<group>"; };
 		51927A4A1897399200C5E98E /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		51927A4C1897399C00C5E98E /* download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@2x.png"; sourceTree = "<group>"; };
 		51927A5D189880E600C5E98E /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
@@ -348,12 +345,6 @@
 		519DCB7718B7EA410069D5EC /* delete_sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_sign.png; sourceTree = "<group>"; };
 		519DCB7918B814020069D5EC /* helpTipMap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = helpTipMap.xib; sourceTree = "<group>"; };
 		519DCB7B18B82EED0069D5EC /* helpTipPoints.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = helpTipPoints.xib; sourceTree = "<group>"; };
-		519DCB7E18B8367A0069D5EC /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		519DCB7F18B8367A0069D5EC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		519DCB8018B8367A0069D5EC /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		519DCB8118B8367A0069D5EC /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		519DCB8218B8367A0069D5EC /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		519DCB8318B8367A0069D5EC /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		519DCB8718B91AD30069D5EC /* helpTipSearch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = helpTipSearch.xib; sourceTree = "<group>"; };
 		519DF8BE1858DAAD0046E8BF /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
 		519DF8BF1858DAAD0046E8BF /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
@@ -412,7 +403,6 @@
 		51A4E860188C759200D2E4A5 /* ReportsByLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsByLocation.h; sourceTree = "<group>"; };
 		51A4E861188C759200D2E4A5 /* ReportsByLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsByLocation.m; sourceTree = "<group>"; };
 		51A4E864188C776300D2E4A5 /* bfro1.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = bfro1.sqlite; sourceTree = "<group>"; };
-		51A4E86A188C9E5C00D2E4A5 /* bfro1.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = bfro1.sqlite; sourceTree = "<group>"; };
 		51A4E86C188CCEBD00D2E4A5 /* eraser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eraser@2x.png"; sourceTree = "<group>"; };
 		51A4E86E188CCEC600D2E4A5 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
 		51AB0A2B188E141A005F52A0 /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
@@ -476,7 +466,6 @@
 				515C530E18650F8B008A1E31 /* Security.framework in Frameworks */,
 				51A411041842A58A00170857 /* CoreGraphics.framework in Frameworks */,
 				51A411021842A58A00170857 /* Foundation.framework in Frameworks */,
-				519DCB8418B8367A0069D5EC /* libTestFlight.a in Frameworks */,
 				515C532C1866108F008A1E31 /* GooglePlus.framework in Frameworks */,
 				51B8FE501864A7E80041A64C /* Social.framework in Frameworks */,
 				519DF8D01858DBA60046E8BF /* CoreLocation.framework in Frameworks */,
@@ -584,19 +573,6 @@
 			name = "Side Deck";
 			sourceTree = "<group>";
 		};
-		519DCB7D18B8367A0069D5EC /* TestFlightSDK3.0.0 */ = {
-			isa = PBXGroup;
-			children = (
-				519DCB7E18B8367A0069D5EC /* libTestFlight.a */,
-				519DCB7F18B8367A0069D5EC /* README.md */,
-				519DCB8018B8367A0069D5EC /* release_notes.md */,
-				519DCB8118B8367A0069D5EC /* TestFlight+AsyncLogging.h */,
-				519DCB8218B8367A0069D5EC /* TestFlight+ManualSessions.h */,
-				519DCB8318B8367A0069D5EC /* TestFlight.h */,
-			);
-			path = TestFlightSDK3.0.0;
-			sourceTree = "<group>";
-		};
 		519DF8BD1858DAAD0046E8BF /* Toast */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,7 +585,6 @@
 		519DF8CB1858DAC40046E8BF /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-				519DCB7D18B8367A0069D5EC /* TestFlightSDK3.0.0 */,
 				515EA367187DAFCB00E66147 /* Popover */,
 				51C1E9971869D92D00D6CF0C /* iconBadge */,
 				51A411391842AA3900170857 /* hpple */,
@@ -621,7 +596,7 @@
 		519DF8CC1858DADC0046E8BF /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				51A4E86A188C9E5C00D2E4A5 /* bfro1.sqlite */,
+				5188E4FC19CBCF1100379206 /* bfro1.sqlite */,
 				51A4E860188C759200D2E4A5 /* ReportsByLocation.h */,
 				51A4E861188C759200D2E4A5 /* ReportsByLocation.m */,
 				51A411711843B2F800170857 /* BFROStore.h */,
@@ -841,7 +816,6 @@
 				51A4110C1842A58A00170857 /* InfoPlist.strings */,
 				51A4110F1842A58A00170857 /* main.m */,
 				51A411111842A58A00170857 /* BFRO-Prefix.pch */,
-				515C532D18661580008A1E31 /* GooglePlus.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1026,7 +1000,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				519DCB8618B8367B0069D5EC /* release_notes.md in Resources */,
 				51927A5E189880E600C5E98E /* search@2x.png in Resources */,
 				5180D6DC18A40D5E001CAD26 /* physicalEvidenceViewController.xib in Resources */,
 				51830EAD185E6FE100992815 /* map_marker.png in Resources */,
@@ -1049,7 +1022,6 @@
 				51CF066118882601002F6A27 /* back@2x.png in Resources */,
 				51830F451863553F00992815 /* hearts@2x.png in Resources */,
 				51830F4A186355AD00992815 /* topic.png in Resources */,
-				519DCB8518B8367B0069D5EC /* README.md in Resources */,
 				51830F4B186355AD00992815 /* topic@2x.png in Resources */,
 				51C1E97E1867770F00D6CF0C /* message@2x.png in Resources */,
 				51A4E862188C759200D2E4A5 /* ReportsByLocation.h in Resources */,
@@ -1076,6 +1048,7 @@
 				5180D6D718A40D5E001CAD26 /* climbTrees.xib in Resources */,
 				51830F4E1863564900992815 /* info.png in Resources */,
 				51A43FAA18806BC2000939A9 /* near_me@2x.png in Resources */,
+				5188E4FD19CBCF1100379206 /* bfro1.sqlite in Resources */,
 				5180D6C218A40D1B001CAD26 /* AboutBFRO.xib in Resources */,
 				51C1E9811867979400D6CF0C /* location.png in Resources */,
 				51C1E97A1867770200D6CF0C /* read_message@2x.png in Resources */,
@@ -1088,7 +1061,6 @@
 				517008CF18AD7CA6003251DC /* settings.png in Resources */,
 				51A04A35189DA90C009466E7 /* searchByDate.xib in Resources */,
 				51927A89189AD98600C5E98E /* home.png in Resources */,
-				515C532E18661580008A1E31 /* GooglePlus.bundle in Resources */,
 				515F271218B1751300601A28 /* helpTipReports.xib in Resources */,
 				51C1E9791867770200D6CF0C /* read_message.png in Resources */,
 				5180D6D918A40D5E001CAD26 /* Hoax.xib in Resources */,
@@ -1140,7 +1112,6 @@
 				51A04A4218A0670A009466E7 /* AltFrontViewController.xib in Resources */,
 				51A4E86D188CCEBD00D2E4A5 /* eraser@2x.png in Resources */,
 				51576A4E18AFDCD000755914 /* LicenseViewController~ipad.xib in Resources */,
-				51A4E86B188C9E5C00D2E4A5 /* bfro1.sqlite in Resources */,
 				519DCB8818B91AD30069D5EC /* helpTipSearch.xib in Resources */,
 				51830F43186353EB00992815 /* bug@2x.png in Resources */,
 				515D4BA918A41CC400231080 /* reportInfo.xib in Resources */,
@@ -1216,6 +1187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				519D48DF19CBD1130009E565 /* ReportsByLocation.m in Sources */,
 				51A411701842B0B700170857 /* FillDB.m in Sources */,
 				51A04A4118A0670A009466E7 /* AltFrontViewController.m in Sources */,
 				51A4113F1842AA5600170857 /* TFHppleElement.m in Sources */,
