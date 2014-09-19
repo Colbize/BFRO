@@ -27,7 +27,6 @@ PODS:
   - MWFeedParser/NSString+HTML (1.0.1)
   - RaptureXML (1.0.1)
   - STTwitter (0.1.4)
-  - TouchXML (0.1)
   - TWTSideMenuViewController (0.3)
 
 DEPENDENCIES:
@@ -37,7 +36,6 @@ DEPENDENCIES:
   - MWFeedParser/NSString+HTML
   - RaptureXML (~> 1.0.1)
   - STTwitter
-  - TouchXML
   - TWTSideMenuViewController (~> 0.3)
 
 SPEC CHECKSUMS:
@@ -48,7 +46,6 @@ SPEC CHECKSUMS:
   MWFeedParser: 003cbf5398e99a7f2057fbe9583054fd1b84be72
   RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
   STTwitter: 809f63f856341fdd103fbc6d9e4818d48a91be0c
-  TouchXML: fa552bd1f8b98cb5233be61622655796765fe535
   TWTSideMenuViewController: 18633fb4be397ed1e83352ed50ddd55d04d94de3
 
 COCOAPODS: 0.33.1

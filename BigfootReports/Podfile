@@ -1,12 +1,10 @@
 pod 'RaptureXML', '~> 1.0.1'
 pod 'TWTSideMenuViewController', '~> 0.3'
 pod 'iRate', '~> 1.9.3'
-pod 'TouchXML'
-
 platform :ios, '7'
     pod 'MWFeedParser/NSString+HTML'
 pod "STTwitter"
 platform :ios, '5.0'
-pod "Facebook-iOS-SDK"
+    pod "Facebook-iOS-SDK"
 platform :ios, '7.0'
 pod "AFNetworking", "~> 2.0"

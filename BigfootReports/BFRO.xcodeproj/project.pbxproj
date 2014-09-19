@@ -103,7 +103,6 @@
 		51830F4B186355AD00992815 /* topic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F49186355AD00992815 /* topic@2x.png */; };
 		51830F4E1863564900992815 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F4C1863564900992815 /* info.png */; };
 		51830F4F1863564900992815 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F4D1863564900992815 /* info@2x.png */; };
-		5188E4FD19CBCF1100379206 /* bfro1.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5188E4FC19CBCF1100379206 /* bfro1.sqlite */; };
 		51927A4B1897399200C5E98E /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A4A1897399200C5E98E /* download.png */; };
 		51927A4D1897399C00C5E98E /* download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A4C1897399C00C5E98E /* download@2x.png */; };
 		51927A5E189880E600C5E98E /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A5D189880E600C5E98E /* search@2x.png */; };
@@ -957,7 +956,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = btc;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Colby Reineke";
 				TargetAttributes = {
 					51A410FD1842A58A00170857 = {
@@ -1042,7 +1041,6 @@
 				5180D6D718A40D5E001CAD26 /* climbTrees.xib in Resources */,
 				51830F4E1863564900992815 /* info.png in Resources */,
 				51A43FAA18806BC2000939A9 /* near_me@2x.png in Resources */,
-				5188E4FD19CBCF1100379206 /* bfro1.sqlite in Resources */,
 				5180D6C218A40D1B001CAD26 /* AboutBFRO.xib in Resources */,
 				51C1E9811867979400D6CF0C /* location.png in Resources */,
 				51C1E97A1867770200D6CF0C /* read_message@2x.png in Resources */,
@@ -1276,7 +1274,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1318,7 +1315,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1414,7 +1410,6 @@
 		51A411341842A58A00170857 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BigfootReports.app/BigfootReports";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1437,7 +1432,6 @@
 		51A411351842A58A00170857 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BigfootReports.app/BigfootReports";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
