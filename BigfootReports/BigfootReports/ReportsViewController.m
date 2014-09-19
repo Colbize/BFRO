@@ -14,7 +14,6 @@
 #import "Location.h"
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
 #import <QuartzCore/QuartzCore.h>
 #import "reportMapViewController.h"
 
@@ -546,50 +545,6 @@ static NSString * const kClientId = @"134355214729-vcf2fqdol14t653r45lsu5avh2stb
     }
     [controller dismissViewControllerAnimated:YES completion:nil];
     
-}
-
-#pragma mark - Google+ methods
-- (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
-                   error: (NSError *) error
-{
-    NSLog(@"%@", error);
-    if (!error) {
-        
-        [GPPShare sharedInstance].delegate = self;
-
-        id<GPPNativeShareBuilder> shareBuilder = [[GPPShare sharedInstance] nativeShareDialog];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"MMMM yyyy"];
-        
-        // This line will fill out the title, description, and thumbnail from
-        // the URL that you are sharing and includes a link to that URL.
-        [shareBuilder setURLToShare:[NSURL URLWithString:reportInfo.link]];
-        [shareBuilder setPrefillText:[NSString stringWithFormat:@"Date: %@ \nSighting Location: %@, %@", [dateFormatter stringFromDate:reportInfo.dateOfSighting],  reportInfo.usaCountyReports.name, reportInfo.usaCountyReports.location.name]];
-
-        [shareBuilder open];
-    } else {
-        [self.view makeToast:@"An Error Occurred... Please Try Again." duration:2 position:@"Center"];
-    }
-}
-
-// Reports the status of the share action.  |error| is nil upon success.  This callback takes
-// preference over |finishedSharing:|.  You should implement one of these.
-- (void)finishedSharingWithError:(NSError *)error
-{
-    UIAlertView *alert;
-    
-    if (!error) {
-        [self.view makeToast:@"Shared!" duration:1.5 position:@"center"];
-
-    } else if (error.code == kGPPErrorShareboxCanceled) {
-    
-    } else {
-        [self.view makeToast:@"Failed to Share!" duration:1.5 position:@"center"];
-
-    }
-    [alert show];
-
 }
 
 #pragma mark - facebook sharing

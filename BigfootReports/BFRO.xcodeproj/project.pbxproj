@@ -40,8 +40,6 @@
 		515C532218660FED008A1E31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532118660FED008A1E31 /* CoreMotion.framework */; };
 		515C532418660FFC008A1E31 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532318660FFC008A1E31 /* CoreText.framework */; };
 		515C532618661008008A1E31 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532518661008008A1E31 /* MediaPlayer.framework */; };
-		515C532A18661084008A1E31 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532918661084008A1E31 /* GoogleOpenSource.framework */; };
-		515C532C1866108F008A1E31 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515C532B1866108F008A1E31 /* GooglePlus.framework */; };
 		515D4B8418A40A8500231080 /* EveryReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515D4B8318A40A8500231080 /* EveryReportViewController.m */; };
 		515D4B8718A40B1400231080 /* EveryReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515D4B8618A40B1400231080 /* EveryReportViewController.xib */; };
 		515D4B8C18A40B6D00231080 /* sightingsInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515D4B8818A40B6D00231080 /* sightingsInfo.xib */; };
@@ -195,7 +193,6 @@
 		51CF065F188825F7002F6A27 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 51CF065E188825F7002F6A27 /* back.png */; };
 		51CF066118882601002F6A27 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51CF066018882601002F6A27 /* back@2x.png */; };
 		51CF066318882FC4002F6A27 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CF066218882FC4002F6A27 /* MessageUI.framework */; };
-		51CF06641889A22F002F6A27 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519DF8D41858DF540046E8BF /* iAd.framework */; };
 		51DCD5BC18A7E83D008D5E1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51DCD5BB18A7E83D008D5E1A /* Images.xcassets */; };
 		7D0CA242EC6E4DAD8113C2D3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F4DABBB36D47E6858E117C /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -453,12 +450,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51CF06641889A22F002F6A27 /* iAd.framework in Frameworks */,
 				51CF066318882FC4002F6A27 /* MessageUI.framework in Frameworks */,
 				51AC7510187B152400415A0E /* MapKit.framework in Frameworks */,
 				515C532618661008008A1E31 /* MediaPlayer.framework in Frameworks */,
 				515C532418660FFC008A1E31 /* CoreText.framework in Frameworks */,
-				515C532A18661084008A1E31 /* GoogleOpenSource.framework in Frameworks */,
 				515C532218660FED008A1E31 /* CoreMotion.framework in Frameworks */,
 				515C532018660FD5008A1E31 /* AssetsLibrary.framework in Frameworks */,
 				515C531E18660FCC008A1E31 /* AddressBook.framework in Frameworks */,
@@ -466,7 +461,6 @@
 				515C530E18650F8B008A1E31 /* Security.framework in Frameworks */,
 				51A411041842A58A00170857 /* CoreGraphics.framework in Frameworks */,
 				51A411021842A58A00170857 /* Foundation.framework in Frameworks */,
-				515C532C1866108F008A1E31 /* GooglePlus.framework in Frameworks */,
 				51B8FE501864A7E80041A64C /* Social.framework in Frameworks */,
 				519DF8D01858DBA60046E8BF /* CoreLocation.framework in Frameworks */,
 				519DF8CE1858DB9E0046E8BF /* SystemConfiguration.framework in Frameworks */,
@@ -1365,12 +1359,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/YoshiTheCorgi/Downloads/google-plus-ios-sdk-1.5.0",
-					/Users/YoshiTheCorgi/Documents/BigfootReports,
-					"/Users/YoshiTheCorgi/Programming/Bigfoot\\ Reports\\ Project/BigfootReports",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BigfootReports/BFRO-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1384,10 +1373,6 @@
 					"$(inherited)",
 					/Users/YoshiTheCorgi/Documents/BigfootReports/BigfootReports/TestFlightSDK2.1.3,
 					/Users/YoshiTheCorgi/Programming/Bigfoot,
-					Reports,
-					Project/BigfootReports/BigfootReports/TestFlightSDK2.1.3,
-					"$(PROJECT_DIR)/BigfootReports/TestFlightSDK2.2.1",
-					"$(PROJECT_DIR)/BigfootReports/TestFlightSDK3.0.0",
 				);
 				PRODUCT_NAME = BFRO;
 				PROVISIONING_PROFILE = "";
@@ -1404,12 +1389,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/YoshiTheCorgi/Downloads/google-plus-ios-sdk-1.5.0",
-					/Users/YoshiTheCorgi/Documents/BigfootReports,
-					"/Users/YoshiTheCorgi/Programming/Bigfoot\\ Reports\\ Project/BigfootReports",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BigfootReports/BFRO-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1423,10 +1403,6 @@
 					"$(inherited)",
 					/Users/YoshiTheCorgi/Documents/BigfootReports/BigfootReports/TestFlightSDK2.1.3,
 					/Users/YoshiTheCorgi/Programming/Bigfoot,
-					Reports,
-					Project/BigfootReports/BigfootReports/TestFlightSDK2.1.3,
-					"$(PROJECT_DIR)/BigfootReports/TestFlightSDK2.2.1",
-					"$(PROJECT_DIR)/BigfootReports/TestFlightSDK3.0.0",
 				);
 				PRODUCT_NAME = BFRO;
 				PROVISIONING_PROFILE = "";

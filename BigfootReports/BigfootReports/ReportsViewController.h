@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ReportsByLocation.h"
-#import <GooglePlus/GooglePlus.h>
 #import <MessageUI/MessageUI.h>
 @class GPPSignInButton;
 
 
-@interface ReportsViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, GPPSignInDelegate, GPPShareDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
+@interface ReportsViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *goToTop;
