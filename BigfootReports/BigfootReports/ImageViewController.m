@@ -58,6 +58,8 @@
     [back setImage:[UIImage imageNamed:@"back"]];
     [homeButton setImage:[UIImage imageNamed:@"home"]];
     
+    [webView setDelegate:self];
+    
     [webView setBackgroundColor:[UIColor clearColor]];
     [webView setOpaque:NO];
     [webView setBackgroundColor:[UIColor blackColor]];
@@ -68,9 +70,9 @@
     }
     
     [progress setProgress:0];
-    [webView setDelegate:self];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:url];
-    [webView loadRequest:nsrequest
+    
+    [webView loadRequest:nsrequest MIMEType:nil textEncodingName:nil
                 progress:^( NSUInteger bytesRead , long long progressContentLength , long long expectedContentLength ){
                     CGFloat progressCount = 0;
                     if (expectedContentLength > 0 && progressContentLength <= expectedContentLength) {
@@ -81,13 +83,12 @@
                     }
                     
                     [progress setProgress:progressCount animated:YES];
-                }
-                 success:nil
-                           failure:^(NSError *error) {
-                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                               [alert show];
-                           }];
-    
+                } success:^NSData *(NSHTTPURLResponse *response, NSData *data) {
+                    return data;
+                } failure:^(NSError *error) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                    [alert show];
+                }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,10 +104,9 @@
 
     [webView setDelegate:self];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:webView.request.URL];
-    [webView loadRequest:nsrequest
-                progress:^( NSUInteger bytesRead ,long long progressContentLength ,long long expectedContentLength ){
-                    CGFloat progressCount;
-                    
+    [webView loadRequest:nsrequest MIMEType:nil textEncodingName:nil
+                progress:^( NSUInteger bytesRead , long long progressContentLength , long long expectedContentLength ){
+                    CGFloat progressCount = 0;
                     if (expectedContentLength > 0 && progressContentLength <= expectedContentLength) {
                         progressCount = (CGFloat) progressContentLength / expectedContentLength;
                     }
@@ -115,12 +115,12 @@
                     }
                     
                     [progress setProgress:progressCount animated:YES];
-                }
-                 success:nil
-                 failure:^(NSError *error) {
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                     [alert show];
-                 }];
+                } success:^NSData *(NSHTTPURLResponse *response, NSData *data) {
+                    return data;
+                } failure:^(NSError *error) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                    [alert show];
+                }];
 
 }
 
@@ -145,10 +145,9 @@
     
     [webView setDelegate:self];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:url];
-    [webView loadRequest:nsrequest
+    [webView loadRequest:nsrequest MIMEType:nil textEncodingName:nil
                 progress:^( NSUInteger bytesRead , long long progressContentLength , long long expectedContentLength ){
-                    CGFloat progressCount;
-                    
+                    CGFloat progressCount = 0;
                     if (expectedContentLength > 0 && progressContentLength <= expectedContentLength) {
                         progressCount = (CGFloat) progressContentLength / expectedContentLength;
                     }
@@ -157,13 +156,12 @@
                     }
                     
                     [progress setProgress:progressCount animated:YES];
-                }
-                 success:nil
-                 failure:^(NSError *error) {
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                     [alert show];
-                 }];
-    
+                } success:^NSData *(NSHTTPURLResponse *response, NSData *data) {
+                    return data;
+                } failure:^(NSError *error) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                    [alert show];
+                }];    
 
 }
 
@@ -261,11 +259,17 @@
 
 
 #pragma mark - webview methods
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    
+}
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     if (![error.localizedDescription isEqualToString:@"Plug-in handled load"]) {
     }
+    
+    NSLog(@"%@", error);
 }
 
 - (BOOL)webView:(UIWebView *)myWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;

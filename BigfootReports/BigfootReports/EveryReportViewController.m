@@ -200,10 +200,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [self.navigationController pushViewController:rvc animated:YES];
    
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:info.reportID];
-    
-    NSMutableDictionary *recentlyAdded = [[[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAdded"] mutableCopy];
-    [recentlyAdded removeObjectForKey:info.reportID];
-    [[NSUserDefaults standardUserDefaults] setObject:recentlyAdded forKey:@"RecentlyAdded"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -866,6 +862,32 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)revealMenu
 {
     [self.sideMenuViewController openMenuAnimated:YES completion:nil];
+}
+
+#pragma mark - swipe to delete
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (recentlyAddedSection) return YES;
+    else return NO;
+}
+
+
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        // Delete the row from the data source
+        ReportsByLocation *info = [fetchedResultsController objectAtIndexPath:indexPath];
+        
+        NSMutableDictionary *recentlyAdded = [[[NSUserDefaults standardUserDefaults] objectForKey:@"RecentlyAdded"] mutableCopy];
+        [recentlyAdded removeObjectForKey:info.reportID];
+        [[NSUserDefaults standardUserDefaults] setObject:recentlyAdded forKey:@"RecentlyAdded"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [[[BFROStore sharedStore] context] deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    }
 }
 
 @end

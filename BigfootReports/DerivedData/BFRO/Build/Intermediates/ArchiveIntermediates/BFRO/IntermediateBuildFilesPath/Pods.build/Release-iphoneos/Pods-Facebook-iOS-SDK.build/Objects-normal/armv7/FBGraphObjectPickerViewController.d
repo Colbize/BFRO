@@ -1,0 +1,20 @@
+dependencies: \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/UI/FBGraphObjectPickerViewController.m \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/UI/FBGraphObjectPickerViewController+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Network/FBGraphObjectPagingLoader.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Network/FBGraphObjectTableDataSource.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphObject.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphObjectPickerViewController.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSession.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSDKMacros.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBViewController.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Network/FBGraphObjectTableSelection.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBLogger.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBSession+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBSessionAppEventsState.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBSystemAccountStoreAdapter.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBTask.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBTaskCompletionSource.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSettings.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBUtility.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBFetchedAppSettings.h

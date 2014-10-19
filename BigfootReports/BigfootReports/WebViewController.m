@@ -107,6 +107,7 @@
         [alert show];
     }
 }
+
 -(void)webview:(UIWebView *)webview didFailLoadWithError:(NSError *)error
 {
     [self.view makeToast:error.localizedDescription duration:2 position:@"Center"];

@@ -118,7 +118,7 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setEntity:entity];
     EveryReportViewController *arvc = [[EveryReportViewController alloc] initwithFetchRequest:fetchRequest titleName:nil];
-    arvc.title = @"Recent Reports";
+    arvc.title = @"Recent Sightings";
     [spinner stopAnimating];
     [self.navigationController pushViewController:arvc animated:YES];
     [self.browseReports setEnabled:YES];

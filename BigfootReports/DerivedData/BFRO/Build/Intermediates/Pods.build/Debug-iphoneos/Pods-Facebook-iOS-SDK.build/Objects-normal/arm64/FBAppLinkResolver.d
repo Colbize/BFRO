@@ -1,0 +1,20 @@
+dependencies: \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/AppLink/FBAppLinkResolver.m \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBAppLinkResolver.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/BuildHeaders/Bolts/BFAppLinkResolving.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/BuildHeaders/Bolts/BFAppLink.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/BuildHeaders/Bolts/BFAppLinkTarget.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/BuildHeaders/Bolts/BFTask.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/BuildHeaders/Bolts/BFTaskCompletionSource.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBInternalSettings.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSettings.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSDKMacros.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Network/FBRequest+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBRequest.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphObject.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBOpenGraphAction.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBOpenGraphObject.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBRequestConnection.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBUtility.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBFetchedAppSettings.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBLogger.h

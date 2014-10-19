@@ -12,7 +12,6 @@
 #import "CountiesViewController.h"
 #import "EveryReportViewController.h"
 #import "TDBadgedCell.h"
-@class ReportsByLocation;
 
 @interface ChooseReportLocationViewController ()
 {

@@ -1,0 +1,24 @@
+dependencies: \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/UI/FBFriendPickerViewController.m \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBFriendPickerViewController.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBCacheDescriptor.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSession.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSDKMacros.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphUser.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphPerson.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphObject.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphPlace.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphLocation.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBPeoplePickerViewController.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphObjectPickerViewController.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBViewController.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/UI/FBFriendPickerViewController+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/UI/FBPeoplePickerViewController+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Insights/FBAppEvents+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBAppEvents.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBError.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/UI/FBFriendPickerCacheDescriptor.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/UI/FBGraphObjectPickerViewController+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Network/FBGraphObjectPagingLoader.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Network/FBGraphObjectTableDataSource.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Network/FBGraphObjectTableSelection.h

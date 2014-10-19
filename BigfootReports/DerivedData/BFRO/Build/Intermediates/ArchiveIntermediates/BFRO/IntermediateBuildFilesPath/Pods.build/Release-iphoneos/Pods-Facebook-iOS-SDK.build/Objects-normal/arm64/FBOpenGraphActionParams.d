@@ -1,0 +1,23 @@
+dependencies: \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/DeviceAPI/FBOpenGraphActionParams.m \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/DeviceAPI/FBOpenGraphActionParams+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBOpenGraphActionParams.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBDialogsParams.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBOpenGraphAction.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphObject.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSDKMacros.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/DeviceAPI/FBAppBridge.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBAppCall.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBAccessTokenData.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSession.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBAppLinkData.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBDialogsData.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/DeviceAPI/FBAppBridgeScheme.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/DeviceAPI/FBDialogsParams+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBError.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBInternalSettings.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSettings.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBLogger.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBOpenGraphActionShareDialogParams.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBUtility.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBFetchedAppSettings.h

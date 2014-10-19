@@ -1,0 +1,28 @@
+dependencies: \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBTestSession.m \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBTestSession.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSession.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSDKMacros.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBTestSession+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Legacy/FBSessionManualTokenCachingStrategy.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBSessionTokenCachingStrategy.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBAccessTokenData.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBError.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBSession+Protected.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBSession+Internal.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBSessionAppEventsState.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Login/FBSystemAccountStoreAdapter.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBTask.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBTaskCompletionSource.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBRequest.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphObject.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBOpenGraphAction.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBOpenGraphObject.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBRequestConnection.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphUser.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphPerson.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphPlace.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/FBGraphLocation.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBUtility.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBFetchedAppSettings.h \
+  /Users/YoshiTheCorgi/Programming/BFRO/BigfootReports/Pods/Facebook-iOS-SDK/src/Core/FBLogger.h

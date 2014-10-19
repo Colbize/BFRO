@@ -16,8 +16,6 @@
 		512074691891B54100353AEF /* comeFrom.txt in Resources */ = {isa = PBXBuildFile; fileRef = 512074681891B54100353AEF /* comeFrom.txt */; };
 		512074781891EF1900353AEF /* bfroExpeditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 512074761891EF1900353AEF /* bfroExpeditionsViewController.m */; };
 		512074791891EF1900353AEF /* bfroExpeditionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 512074771891EF1900353AEF /* bfroExpeditionsViewController.xib */; };
-		5120747E1891F53D00353AEF /* BFROStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5120747C1891F53D00353AEF /* BFROStoreViewController.m */; };
-		5120747F1891F53D00353AEF /* BFROStoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5120747D1891F53D00353AEF /* BFROStoreViewController.xib */; };
 		512074811892025A00353AEF /* camping_tent.png in Resources */ = {isa = PBXBuildFile; fileRef = 512074801892025A00353AEF /* camping_tent.png */; };
 		512074831892026B00353AEF /* camping_tent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 512074821892026B00353AEF /* camping_tent@2x.png */; };
 		512074851892F6E100353AEF /* prepareMentally.txt in Resources */ = {isa = PBXBuildFile; fileRef = 512074841892F6E100353AEF /* prepareMentally.txt */; };
@@ -62,6 +60,7 @@
 		517008DA18ADB93E003251DC /* internal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 517008D918ADB93E003251DC /* internal@2x.png */; };
 		517008E818AEA1F9003251DC /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 517008E618AEA1F9003251DC /* LicenseViewController.m */; };
 		517008E918AEA1F9003251DC /* LicenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 517008E718AEA1F9003251DC /* LicenseViewController.xib */; };
+		5171883019F3835800715F56 /* ReportsByLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5171882F19F3835800715F56 /* ReportsByLocation.m */; };
 		5180D6C218A40D1B001CAD26 /* AboutBFRO.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5180D6C118A40D1B001CAD26 /* AboutBFRO.xib */; };
 		5180D6C418A40D2F001CAD26 /* BuryDead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5180D6C318A40D2F001CAD26 /* BuryDead.xib */; };
 		5180D6D718A40D5E001CAD26 /* climbTrees.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5180D6C518A40D5E001CAD26 /* climbTrees.xib */; };
@@ -103,6 +102,8 @@
 		51830F4B186355AD00992815 /* topic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F49186355AD00992815 /* topic@2x.png */; };
 		51830F4E1863564900992815 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F4C1863564900992815 /* info.png */; };
 		51830F4F1863564900992815 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51830F4D1863564900992815 /* info@2x.png */; };
+		5184B39D19DE452C00F37CDC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5184B39C19DE452C00F37CDC /* LaunchScreen.xib */; };
+		5184B39F19DE46D700F37CDC /* bfroSplash@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5184B39E19DE46D700F37CDC /* bfroSplash@3x.png */; };
 		51927A4B1897399200C5E98E /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A4A1897399200C5E98E /* download.png */; };
 		51927A4D1897399C00C5E98E /* download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A4C1897399C00C5E98E /* download@2x.png */; };
 		51927A5E189880E600C5E98E /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A5D189880E600C5E98E /* search@2x.png */; };
@@ -113,7 +114,6 @@
 		51927A87189AD97300C5E98E /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A86189AD97300C5E98E /* home@2x.png */; };
 		51927A89189AD98600C5E98E /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 51927A88189AD98600C5E98E /* home.png */; };
 		519C89B3184A5A1700397562 /* BigfootReports.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 519C89B1184A5A1700397562 /* BigfootReports.xcdatamodeld */; };
-		519D48DF19CBD1130009E565 /* ReportsByLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4E861188C759200D2E4A5 /* ReportsByLocation.m */; };
 		519DCB7618B7EA2E0069D5EC /* delete_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7518B7EA2E0069D5EC /* delete_sign@2x.png */; };
 		519DCB7818B7EA410069D5EC /* delete_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7718B7EA410069D5EC /* delete_sign.png */; };
 		519DCB7A18B814020069D5EC /* helpTipMap.xib in Resources */ = {isa = PBXBuildFile; fileRef = 519DCB7918B814020069D5EC /* helpTipMap.xib */; };
@@ -154,8 +154,6 @@
 		51A4E84F188B68F300D2E4A5 /* USACountiesByLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4E84E188B68F300D2E4A5 /* USACountiesByLocation.m */; };
 		51A4E855188B68F300D2E4A5 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4E854188B68F300D2E4A5 /* Location.m */; };
 		51A4E858188B68F400D2E4A5 /* AllArticles.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4E857188B68F400D2E4A5 /* AllArticles.m */; };
-		51A4E862188C759200D2E4A5 /* ReportsByLocation.h in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E860188C759200D2E4A5 /* ReportsByLocation.h */; };
-		51A4E863188C759200D2E4A5 /* ReportsByLocation.m in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E861188C759200D2E4A5 /* ReportsByLocation.m */; };
 		51A4E865188C776300D2E4A5 /* bfro1.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E864188C776300D2E4A5 /* bfro1.sqlite */; };
 		51A4E86D188CCEBD00D2E4A5 /* eraser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E86C188CCEBD00D2E4A5 /* eraser@2x.png */; };
 		51A4E86F188CCEC600D2E4A5 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A4E86E188CCEC600D2E4A5 /* eraser.png */; };
@@ -217,9 +215,6 @@
 		512074751891EF1900353AEF /* bfroExpeditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bfroExpeditionsViewController.h; sourceTree = "<group>"; };
 		512074761891EF1900353AEF /* bfroExpeditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bfroExpeditionsViewController.m; sourceTree = "<group>"; };
 		512074771891EF1900353AEF /* bfroExpeditionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = bfroExpeditionsViewController.xib; sourceTree = "<group>"; };
-		5120747B1891F53D00353AEF /* BFROStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFROStoreViewController.h; sourceTree = "<group>"; };
-		5120747C1891F53D00353AEF /* BFROStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFROStoreViewController.m; sourceTree = "<group>"; };
-		5120747D1891F53D00353AEF /* BFROStoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BFROStoreViewController.xib; sourceTree = "<group>"; };
 		512074801892025A00353AEF /* camping_tent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camping_tent.png; sourceTree = "<group>"; };
 		512074821892026B00353AEF /* camping_tent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camping_tent@2x.png"; sourceTree = "<group>"; };
 		512074841892F6E100353AEF /* prepareMentally.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prepareMentally.txt; sourceTree = "<group>"; };
@@ -274,6 +269,8 @@
 		517008E518AEA1F9003251DC /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
 		517008E618AEA1F9003251DC /* LicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseViewController.m; sourceTree = "<group>"; };
 		517008E718AEA1F9003251DC /* LicenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LicenseViewController.xib; sourceTree = "<group>"; };
+		5171882E19F3835800715F56 /* ReportsByLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsByLocation.h; sourceTree = "<group>"; };
+		5171882F19F3835800715F56 /* ReportsByLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsByLocation.m; sourceTree = "<group>"; };
 		5180D6C118A40D1B001CAD26 /* AboutBFRO.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutBFRO.xib; sourceTree = "<group>"; };
 		5180D6C318A40D2F001CAD26 /* BuryDead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuryDead.xib; sourceTree = "<group>"; };
 		5180D6C518A40D5E001CAD26 /* climbTrees.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = climbTrees.xib; sourceTree = "<group>"; };
@@ -325,6 +322,8 @@
 		51830F49186355AD00992815 /* topic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topic@2x.png"; sourceTree = "<group>"; };
 		51830F4C1863564900992815 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		51830F4D1863564900992815 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
+		5184B39C19DE452C00F37CDC /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		5184B39E19DE46D700F37CDC /* bfroSplash@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bfroSplash@3x.png"; path = "Images.xcassets/LaunchImage.launchimage/bfroSplash@3x.png"; sourceTree = "<group>"; };
 		5188E4FC19CBCF1100379206 /* bfro1.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = bfro1.sqlite; sourceTree = "<group>"; };
 		51927A4A1897399200C5E98E /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		51927A4C1897399C00C5E98E /* download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@2x.png"; sourceTree = "<group>"; };
@@ -396,8 +395,6 @@
 		51A4E856188B68F400D2E4A5 /* AllArticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllArticles.h; sourceTree = "<group>"; };
 		51A4E857188B68F400D2E4A5 /* AllArticles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllArticles.m; sourceTree = "<group>"; };
 		51A4E85F188C72CB00D2E4A5 /* BigfootReportsRevised.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BigfootReportsRevised.xcdatamodel; sourceTree = "<group>"; };
-		51A4E860188C759200D2E4A5 /* ReportsByLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsByLocation.h; sourceTree = "<group>"; };
-		51A4E861188C759200D2E4A5 /* ReportsByLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsByLocation.m; sourceTree = "<group>"; };
 		51A4E864188C776300D2E4A5 /* bfro1.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = bfro1.sqlite; sourceTree = "<group>"; };
 		51A4E86C188CCEBD00D2E4A5 /* eraser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eraser@2x.png"; sourceTree = "<group>"; };
 		51A4E86E188CCEC600D2E4A5 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
@@ -494,16 +491,6 @@
 			name = Expedition;
 			sourceTree = "<group>";
 		};
-		5120747A1891F51600353AEF /* BFRO Store */ = {
-			isa = PBXGroup;
-			children = (
-				5120747B1891F53D00353AEF /* BFROStoreViewController.h */,
-				5120747C1891F53D00353AEF /* BFROStoreViewController.m */,
-				5120747D1891F53D00353AEF /* BFROStoreViewController.xib */,
-			);
-			name = "BFRO Store";
-			sourceTree = "<group>";
-		};
 		515B94C618A9441400512016 /* SubmitAReport */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,8 +577,6 @@
 			isa = PBXGroup;
 			children = (
 				5188E4FC19CBCF1100379206 /* bfro1.sqlite */,
-				51A4E860188C759200D2E4A5 /* ReportsByLocation.h */,
-				51A4E861188C759200D2E4A5 /* ReportsByLocation.m */,
 				51A411711843B2F800170857 /* BFROStore.h */,
 				51A411721843B2F800170857 /* BFROStore.m */,
 				51A4116E1842B0B700170857 /* FillDB.h */,
@@ -601,6 +586,8 @@
 				51A4E857188B68F400D2E4A5 /* AllArticles.m */,
 				51A4E853188B68F300D2E4A5 /* Location.h */,
 				51A4E854188B68F300D2E4A5 /* Location.m */,
+				5171882E19F3835800715F56 /* ReportsByLocation.h */,
+				5171882F19F3835800715F56 /* ReportsByLocation.m */,
 				51A4E84D188B68F300D2E4A5 /* USACountiesByLocation.h */,
 				51A4E84E188B68F300D2E4A5 /* USACountiesByLocation.m */,
 			);
@@ -610,6 +597,7 @@
 		519DF8D31858DD060046E8BF /* App Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				5184B39C19DE452C00F37CDC /* LaunchScreen.xib */,
 				51A411121842A58A00170857 /* btcAppDelegate.h */,
 				515D4B9B18A40F7400231080 /* btcAppDelegate.m */,
 			);
@@ -714,7 +702,6 @@
 				51CF064F1884600C002F6A27 /* BFRO News */,
 				51AB0A2F188E1530005F52A0 /* FAQs */,
 				512074741891EEC000353AEF /* Expedition */,
-				5120747A1891F51600353AEF /* BFRO Store */,
 				515B94C618A9441400512016 /* SubmitAReport */,
 				515D4BA518A40FE800231080 /* Custom Tab Bar */,
 				519DF8CC1858DADC0046E8BF /* Core Data */,
@@ -728,6 +715,7 @@
 		51A4110A1842A58A00170857 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5184B39E19DE46D700F37CDC /* bfroSplash@3x.png */,
 				514D7F8A18BC43DC004D216C /* submitAReport.txt */,
 				519DCB7718B7EA410069D5EC /* delete_sign.png */,
 				519DCB7518B7EA2E0069D5EC /* delete_sign@2x.png */,
@@ -1017,7 +1005,6 @@
 				51830F4A186355AD00992815 /* topic.png in Resources */,
 				51830F4B186355AD00992815 /* topic@2x.png in Resources */,
 				51C1E97E1867770F00D6CF0C /* message@2x.png in Resources */,
-				51A4E862188C759200D2E4A5 /* ReportsByLocation.h in Resources */,
 				51A43FA21880650D000939A9 /* layers@2x.png in Resources */,
 				51A4110E1842A58A00170857 /* InfoPlist.strings in Resources */,
 				515B94D018A9BFC500512016 /* whyImportant.html in Resources */,
@@ -1035,6 +1022,7 @@
 				514D7F8B18BC43DC004D216C /* submitAReport.txt in Resources */,
 				51207461189177D600353AEF /* literature.txt in Resources */,
 				512074851892F6E100353AEF /* prepareMentally.txt in Resources */,
+				5184B39D19DE452C00F37CDC /* LaunchScreen.xib in Resources */,
 				5120745B1891763900353AEF /* physiology.txt in Resources */,
 				512074951896D58A00353AEF /* ShopViewiPad.xib in Resources */,
 				5180D6DD18A40D5E001CAD26 /* recognizeThem.xib in Resources */,
@@ -1049,6 +1037,7 @@
 				51A43FA918806BC2000939A9 /* near_me.png in Resources */,
 				51927A87189AD97300C5E98E /* home@2x.png in Resources */,
 				5180D6DE18A40D5E001CAD26 /* wasntThisFake.txt in Resources */,
+				5184B39F19DE46D700F37CDC /* bfroSplash@3x.png in Resources */,
 				5180D6E418A40D5E001CAD26 /* WhatIsBigfootViewController.xib in Resources */,
 				517008CF18AD7CA6003251DC /* settings.png in Resources */,
 				51A04A35189DA90C009466E7 /* searchByDate.xib in Resources */,
@@ -1066,13 +1055,11 @@
 				515D4BAB18A47B4100231080 /* AltFrontViewController~ipad.xib in Resources */,
 				51CF065D188825EC002F6A27 /* forward.png in Resources */,
 				515D4B8718A40B1400231080 /* EveryReportViewController.xib in Resources */,
-				51A4E863188C759200D2E4A5 /* ReportsByLocation.m in Resources */,
 				51C1E97D1867770F00D6CF0C /* message.png in Resources */,
 				51830F41186353B000992815 /* bug.png in Resources */,
 				510046FE18AB221A00F28C39 /* reviewReport.xib in Resources */,
 				517008E918AEA1F9003251DC /* LicenseViewController.xib in Resources */,
 				51C1E9951867A42000D6CF0C /* increase_font.png in Resources */,
-				5120747F1891F53D00353AEF /* BFROStoreViewController.xib in Resources */,
 				5180D6E018A40D5E001CAD26 /* wasntThisFakeViewController.xib in Resources */,
 				51CF065B188825D9002F6A27 /* forward@2x.png in Resources */,
 				51576A4A18AFCE3100755914 /* DigitalChildLLC.png in Resources */,
@@ -1179,7 +1166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				519D48DF19CBD1130009E565 /* ReportsByLocation.m in Sources */,
 				51A411701842B0B700170857 /* FillDB.m in Sources */,
 				51A04A4118A0670A009466E7 /* AltFrontViewController.m in Sources */,
 				51A4113F1842AA5600170857 /* TFHppleElement.m in Sources */,
@@ -1196,6 +1182,7 @@
 				519DF8DD1858E2370046E8BF /* reportCell.m in Sources */,
 				51927A7F1899F8D200C5E98E /* ChooseReportLocationViewController.m in Sources */,
 				5180D6E318A40D5E001CAD26 /* WhatIsBigfootViewController.m in Sources */,
+				5171883019F3835800715F56 /* ReportsByLocation.m in Sources */,
 				51830EA1185BE1CC00992815 /* myFavoriteReports.m in Sources */,
 				515B94CE18A981F300512016 /* customBarButtonItem.m in Sources */,
 				515D4B8418A40A8500231080 /* EveryReportViewController.m in Sources */,
@@ -1214,7 +1201,6 @@
 				51CF06551885AC67002F6A27 /* NewsFeedCell.m in Sources */,
 				51A411101842A58A00170857 /* main.m in Sources */,
 				515D4BA418A40FE300231080 /* MoreTableViewDataSource.m in Sources */,
-				5120747E1891F53D00353AEF /* BFROStoreViewController.m in Sources */,
 				515D4B9E18A40FC100231080 /* SettingsViewController.m in Sources */,
 				515D4B9C18A40F7400231080 /* btcAppDelegate.m in Sources */,
 				51CF064A188307F6002F6A27 /* MapPoint.m in Sources */,
@@ -1368,7 +1354,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/YoshiTheCorgi/Documents/BigfootReports/BigfootReports/TestFlightSDK2.1.3,
-					/Users/YoshiTheCorgi/Programming/Bigfoot,
 				);
 				PRODUCT_NAME = BFRO;
 				PROVISIONING_PROFILE = "";
@@ -1398,7 +1383,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/YoshiTheCorgi/Documents/BigfootReports/BigfootReports/TestFlightSDK2.1.3,
-					/Users/YoshiTheCorgi/Programming/Bigfoot,
 				);
 				PRODUCT_NAME = BFRO;
 				PROVISIONING_PROFILE = "";

@@ -20,13 +20,13 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.2)
-  - Facebook-iOS-SDK (3.18.0):
-    - Bolts
+  - Bolts (1.1.3)
+  - Facebook-iOS-SDK (3.19.0):
+    - Bolts (~> 1.0)
   - iRate (1.9.3)
   - MWFeedParser/NSString+HTML (1.0.1)
   - RaptureXML (1.0.1)
-  - STTwitter (0.1.4)
+  - STTwitter (0.1.5)
   - TWTSideMenuViewController (0.3)
 
 DEPENDENCIES:
@@ -40,12 +40,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  Bolts: 2635e8698a630774689441047f3465d78c48d485
-  Facebook-iOS-SDK: fa12c51cc57bfb6f92e47793c9d4d2c65bc92741
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  Facebook-iOS-SDK: cb7d74759d0b1ba546e6e6f1dde407b0d4e448d6
   iRate: 34b63a5e9dabcd26a5cf573d872ebb366802d63d
   MWFeedParser: 003cbf5398e99a7f2057fbe9583054fd1b84be72
   RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
-  STTwitter: 809f63f856341fdd103fbc6d9e4818d48a91be0c
+  STTwitter: 60f28af91d622b9a3f74f28cd021413277d413bb
   TWTSideMenuViewController: 18633fb4be397ed1e83352ed50ddd55d04d94de3
 
 COCOAPODS: 0.33.1

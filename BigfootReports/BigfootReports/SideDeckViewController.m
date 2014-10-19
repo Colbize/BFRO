@@ -121,7 +121,7 @@
             cell.badge.radius = 6;
             cell.badge.fontSize = 18;
             cell.badgeTextColor = [UIColor whiteColor];
-            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 50.f :450.f;
+            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 60.f :450.f;
         } else if (indexPath.row == 1) {
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"internal"]];
             imageView.image = [self imageWithColor:[UIColor whiteColor] withImage:imageView.image];
@@ -131,7 +131,7 @@
             cell.badge.radius = 6;
             cell.badge.fontSize = 18;
             cell.badgeTextColor = [UIColor whiteColor];
-            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 50.f : 450.f;
+            cell.badgeRightOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 60.f : 450.f;
             [cell.textLabel setText:@"New Reports"];
         }
     } else {
@@ -187,6 +187,9 @@
         [self.sideMenuViewController setMainViewController:controller animated:YES closeMenu:YES];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    
+    // HACK to spoof the removal of a report in "new reports" section..  We don't actually want to remove the report.
+    [[[BFROStore sharedStore] context] rollback];
 }
 
 # pragma mark - show recently added
@@ -202,7 +205,8 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setEntity:entity];
     NSString *titleString = [NSString stringWithFormat:@"New Reports"];
-    EveryReportViewController *rvc = [[EveryReportViewController alloc] initwithFetchRequest:fetchRequest titleName:titleString];
+    EveryReportViewController *rvc = [[EveryReportViewController alloc] initwithFetchRequest:fetchRequest
+                                                                                   titleName:titleString];
     [rvc setRecentlyAddedSection:YES];
     [self stopLoading];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
@@ -214,7 +218,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"NOTE!"
-                                                          message:@"A report will be automatically removed from the \"Recently Added\" section once the report has been opened/read."
+                                                          message:@"To remove a report from this section.  Swipe left on the report."
                                                          delegate:nil
                                                 cancelButtonTitle:@"Ok"
                                                 otherButtonTitles:nil];

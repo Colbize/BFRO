@@ -7,6 +7,7 @@
 //
 
 #import "BFROStore.h"
+#include <sys/xattr.h>
 
 @implementation BFROStore
 
@@ -46,6 +47,8 @@
             }
         }
         
+        [self addSkipBackupAttributeToItemAtURL:storeURL];
+        
         if (![psc addPersistentStoreWithType:NSSQLiteStoreType
                                configuration:nil
                                          URL:storeURL
@@ -73,5 +76,26 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+
+{
+    
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    
+    
+    NSError *error = nil;
+    
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    
+    if(!success){
+        
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+        
+    }
+    
+    return success;
+}
 
 @end

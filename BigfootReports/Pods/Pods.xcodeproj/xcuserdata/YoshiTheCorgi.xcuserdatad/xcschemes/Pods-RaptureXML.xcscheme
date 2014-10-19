@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "671CB75777E149109B7D73B6"
+               BlueprintIdentifier = "F6F87E88DE744DAFACFB839E"
                BuildableName = "libPods-RaptureXML.a"
                BlueprintName = "Pods-RaptureXML"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "671CB75777E149109B7D73B6"
-            BuildableName = "libPods-RaptureXML.a"
-            BlueprintName = "Pods-RaptureXML"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
